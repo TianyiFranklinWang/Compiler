@@ -9,6 +9,7 @@ if __name__ == "__main__":
     for no, test_sample in enumerate(test_samples):
         print(f"[{no + 1}/{len(test_samples)}] Running on sample {test_sample}...")
         process = subprocess.Popen(
-            f"{EXE_DIR_ABS} {TEST_SAMPLE_DIR_ABS}\\{test_sample}", shell=True)
+            f"{EXE_DIR_ABS} {TEST_SAMPLE_DIR_ABS}\\{test_sample}", shell=True
+        )
         process.wait()
         print("\n")
