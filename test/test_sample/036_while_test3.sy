@@ -42,7 +42,7 @@ int EightWhile() {
     }
     b = b - 2;
   }
-  
+
   return (a + (b + d) + c)-(e + d - g + h);
 }
 

@@ -28,6 +28,6 @@ int main()
     int m;
     m = 1478;
     int t;
-    
+
     return factor(m);
 }

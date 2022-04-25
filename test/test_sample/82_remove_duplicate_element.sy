@@ -10,7 +10,7 @@ int removeElement(int nums[], int n, int val) {
         }
     }
     return n;
-}    
+}
 int main(){
     int res;
     int a[10];

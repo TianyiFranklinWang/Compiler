@@ -37,9 +37,9 @@ int main()
             flag=1;
             j=i;
         }
-        
+
         i=i+1;
-       
+
     }
 
      if(flag==1)
@@ -49,7 +49,7 @@ int main()
             x = 0;
             putint(x);
         }
-        
+
 
 
     x= 10;

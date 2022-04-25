@@ -33,7 +33,7 @@ int main()
             {
                 low = mid +1;
             }
-       
+
     }
 
      if(x==a[mid])
@@ -43,7 +43,7 @@ int main()
             x = 0;
             putint(x);
         }
-    
+
     x = 10;
     putch(x);
 
