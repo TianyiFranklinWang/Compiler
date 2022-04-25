@@ -27,7 +27,7 @@ jobs:
           name: Build
           command: |
             cmake -G Ninja -S . -B ./cmake-build-debug
-            ./cmake-build-debug/Compiler ./test/test_sample/000_main.sy
+            /root/project/cmake-build-debug/Compiler /root/project/test/test_sample/000_main.sy
 
 
 # Invoke jobs via workflows
