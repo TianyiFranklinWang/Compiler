@@ -5,7 +5,7 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  build:
+  build_test:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
@@ -19,7 +19,7 @@ jobs:
           command: |
             apt-get -q update
             # https://github.com/ninja-build/ninja/wiki/Pre-built-Ninja-packages
-            apt-get -yq install ninja-build
+            apt-get -yq install ninja-build flex
       - checkout
       - run: g++ --version
       - run: cmake --version
@@ -27,7 +27,11 @@ jobs:
           name: Build
           command: |
             cmake -G Ninja -S . -B ./cmake-build-debug
-            /root/project/cmake-build-debug/Compiler /root/project/test/test_sample/000_main.sy
+            cmake --build ./cmake-build-debug --target Compiler -j$(nproc)
+      - run:
+          name: Test
+          command: |
+            python3 ./test/test_scanner_linux.py
 
 
 # Invoke jobs via workflows
@@ -35,4 +39,4 @@ jobs:
 workflows:
   build-test-workflow:
     jobs:
-      - build
+      - build_test
