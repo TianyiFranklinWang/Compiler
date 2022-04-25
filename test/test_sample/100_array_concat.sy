@@ -6,9 +6,9 @@ int concat(int a0[],int b0[],int c0[])
     while(i<3)
     {
         c0[i]=a0[i];
-      
+
         i=i+1;
-    } 
+    }
     int j;
     j=0;
     while(j<3)

@@ -6,7 +6,7 @@ int enc(int a)
    {
        a=a-15;
    }
-   
+
    return a;
 
 }
@@ -21,7 +21,7 @@ int dec(int a)
     }
 
     return a;
-    
+
 }
 
 int main()

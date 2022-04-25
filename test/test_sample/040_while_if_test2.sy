@@ -9,7 +9,7 @@ int ifWhile() {
     }
     b = b + 25;
   }
-  else 
+  else
     while (a < 5) {
       b = b * 2;
       a = a + 1;

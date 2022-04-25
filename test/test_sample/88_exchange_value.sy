@@ -20,6 +20,6 @@ int main()
     putint(j);
     temp = 10;
     putch(temp);
-    
+
     return 0;
 }

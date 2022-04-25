@@ -1,7 +1,7 @@
 int n;
 
 int gcd(int m,int n)
-{ 
+{
     int a;
     int b;
     a=m;
@@ -30,6 +30,6 @@ int main()
     //int t;
     i=getint();
     m=getint();
-    
+
     return gcd(i,m);
 }

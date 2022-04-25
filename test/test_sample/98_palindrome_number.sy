@@ -38,5 +38,5 @@ int main()
     putch(flag);
 
     return 0;
-    
+
 }
