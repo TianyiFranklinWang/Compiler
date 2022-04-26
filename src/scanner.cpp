@@ -521,10 +521,9 @@ char *yytext;
 #line 1 "/cygdrive/d/Projects/Compiler/src/scanner.l"
 #line 4 "/cygdrive/d/Projects/Compiler/src/scanner.l"
 
+#include "parser.hpp"
 #include <iostream>
 #include <string>
-
-void ret_print(std::string token_type, char *yytext, int yylineno);
 
 void yyerror(const char *message, char *yytext, int yylineno);
 
@@ -863,266 +862,270 @@ YY_DECL {
         YY_RULE_SETUP
 #line 37 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("KEYWORD_INT", yytext, yylineno);
+          return INT;
         }
         YY_BREAK
       case 8:
         YY_RULE_SETUP
 #line 38 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("KEYWORD_VOID", yytext, yylineno);
+          return VOID;
         }
         YY_BREAK
       case 9:
         YY_RULE_SETUP
 #line 39 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("KEYWORD_CONST", yytext, yylineno);
+          return CONST;
         }
         YY_BREAK
       case 10:
         YY_RULE_SETUP
 #line 40 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("KEYWORD_BREAK", yytext, yylineno);
+          return BREAK;
         }
         YY_BREAK
       case 11:
         YY_RULE_SETUP
 #line 41 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("KEYWORD_CONTINUE", yytext, yylineno);
+          return CONTINUE;
         }
         YY_BREAK
       case 12:
         YY_RULE_SETUP
 #line 42 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("KEYWORD_IF", yytext, yylineno);
+          return IF;
         }
         YY_BREAK
       case 13:
         YY_RULE_SETUP
 #line 43 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("KEYWORD_ELSE", yytext, yylineno);
+          return ELSE;
         }
         YY_BREAK
       case 14:
         YY_RULE_SETUP
 #line 44 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("KEYWORD_RETURN", yytext, yylineno);
+          return RETURN;
         }
         YY_BREAK
       case 15:
         YY_RULE_SETUP
 #line 45 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("KEYWORD_WHILE", yytext, yylineno);
+          return WHILE;
         }
         YY_BREAK
       case 16:
         YY_RULE_SETUP
 #line 47 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("ADDOP", yytext, yylineno);
+          return ADD;
         }
         YY_BREAK
       case 17:
         YY_RULE_SETUP
 #line 48 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("SUBOP", yytext, yylineno);
+          return SUB;
         }
         YY_BREAK
       case 18:
         YY_RULE_SETUP
 #line 49 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("MULOP", yytext, yylineno);
+          return MUL;
         }
         YY_BREAK
       case 19:
         YY_RULE_SETUP
 #line 50 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("DIVOP", yytext, yylineno);
+          return DIV;
         }
         YY_BREAK
       case 20:
         YY_RULE_SETUP
 #line 51 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("MODOP", yytext, yylineno);
+          return MOD;
         }
         YY_BREAK
       case 21:
         YY_RULE_SETUP
 #line 52 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("ASSIGNOP", yytext, yylineno);
+          return ASSIGN;
         }
         YY_BREAK
       case 22:
         YY_RULE_SETUP
 #line 53 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("EQOP", yytext, yylineno);
+          return EQ;
         }
         YY_BREAK
       case 23:
         YY_RULE_SETUP
 #line 54 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("NEOP", yytext, yylineno);
+          return NE;
         }
         YY_BREAK
       case 24:
         YY_RULE_SETUP
 #line 55 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("LTOP", yytext, yylineno);
+          return LT;
         }
         YY_BREAK
       case 25:
         YY_RULE_SETUP
 #line 56 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("GTOP", yytext, yylineno);
+          return GT;
         }
         YY_BREAK
       case 26:
         YY_RULE_SETUP
 #line 57 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("LEOP", yytext, yylineno);
+          return LE;
         }
         YY_BREAK
       case 27:
         YY_RULE_SETUP
 #line 58 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("GEOP", yytext, yylineno);
+          return GE;
         }
         YY_BREAK
       case 28:
         YY_RULE_SETUP
 #line 59 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("NOTOP", yytext, yylineno);
+          return NOT;
         }
         YY_BREAK
       case 29:
         YY_RULE_SETUP
 #line 60 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("ANDOP", yytext, yylineno);
+          return AND;
         }
         YY_BREAK
       case 30:
         YY_RULE_SETUP
 #line 61 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("OROP", yytext, yylineno);
+          return OR;
         }
         YY_BREAK
       case 31:
         YY_RULE_SETUP
 #line 62 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("LBRACK", yytext, yylineno);
+          return LBRACK;
         }
         YY_BREAK
       case 32:
         YY_RULE_SETUP
 #line 63 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("RBRACK", yytext, yylineno);
+          return RBRACK;
         }
         YY_BREAK
       case 33:
         YY_RULE_SETUP
 #line 64 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("LPAREN", yytext, yylineno);
+          return LPAREN;
         }
         YY_BREAK
       case 34:
         YY_RULE_SETUP
 #line 65 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("RPAREN", yytext, yylineno);
+          return RPAREN;
         }
         YY_BREAK
       case 35:
         YY_RULE_SETUP
 #line 66 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("LBRACE", yytext, yylineno);
+          return LBRACE;
         }
         YY_BREAK
       case 36:
         YY_RULE_SETUP
 #line 67 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("RBRACE", yytext, yylineno);
+          return RBRACE;
         }
         YY_BREAK
       case 37:
         YY_RULE_SETUP
 #line 68 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("COMMA", yytext, yylineno);
+          return COMMA;
         }
         YY_BREAK
       case 38:
         YY_RULE_SETUP
 #line 69 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("SEMI", yytext, yylineno);
+          return SEMI;
         }
         YY_BREAK
       case 39:
         YY_RULE_SETUP
 #line 70 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("DOT", yytext, yylineno);
+          return DOT;
         }
         YY_BREAK
       case 40:
         YY_RULE_SETUP
 #line 71 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("REFER", yytext, yylineno);
+          return REFER;
         }
         YY_BREAK
       case 41:
         YY_RULE_SETUP
 #line 73 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("DECIMAL", yytext, yylineno);
+          yylval.int_val = strtol(yytext, nullptr, 0);
+          return INT_CONST;
         }
         YY_BREAK
       case 42:
         YY_RULE_SETUP
 #line 74 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("OCTAL", yytext, yylineno);
+          yylval.int_val = strtol(yytext, nullptr, 0);
+          return INT_CONST;
         }
         YY_BREAK
       case 43:
         YY_RULE_SETUP
 #line 75 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("HEX", yytext, yylineno);
+          yylval.int_val = strtol(yytext, nullptr, 0);
+          return INT_CONST;
         }
         YY_BREAK
       case 44:
         YY_RULE_SETUP
 #line 77 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
-          ret_print("IDENTIFIER", yytext, yylineno);
+          yylval.str_val = new std::string(yytext);
+          return IDENT;
         }
         YY_BREAK
       case 45:
@@ -2053,25 +2056,8 @@ void yyfree(void *ptr) {
 
 #line 83 "/cygdrive/d/Projects/Compiler/src/scanner.l"
 
-void ret_print(std::string token_type, char *yytext, int yylineno) {
-  std::cout << "yytext: " << yytext << "\ttoken: " << token_type
-            << "\tlineno: " << yylineno << std::endl;
-}
-
 void yyerror(const char *message, char *yytext, int yylineno) {
   std::cerr << "Error: \"" << message << "\" in line " << yylineno
             << ". Token = " << yytext << std::endl;
   exit(1);
-}
-
-int main(int argc, char *argv[]) {
-  yyin = NULL;
-  yyin = fopen(argv[1], "r");
-  if (yyin == NULL) {
-    std::cerr << "File not found.";
-    exit(-1);
-  }
-  yylex();
-  fclose(yyin);
-  return 0;
 }
