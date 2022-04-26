@@ -392,28 +392,27 @@ struct yy_trans_info {
   flex_int32_t yy_verify;
   flex_int32_t yy_nxt;
 };
-static const flex_int16_t yy_accept[147] = {
-    0,  0,  0,  2,  2,  0,  0,  48, 46, 45, 45, 28, 20, 40, 33, 34, 18,
-    16, 37, 17, 39, 19, 41, 42, 38, 24, 21, 25, 44, 31, 46, 32, 44, 44,
-    44, 44, 44, 44, 44, 35, 46, 36, 2,  3,  6,  6,  6,  45, 23, 29, 4,
-    1,  41, 41, 41, 0,  41, 42, 42, 42, 42, 26, 22, 27, 44, 0,  0,  0,
-    44, 44, 44, 12, 44, 44, 44, 44, 30, 2,  6,  6,  5,  41, 41, 41, 41,
-    43, 42, 42, 42, 42, 0,  0,  0,  0,  44, 44, 44, 7,  44, 44, 44,
+static const flex_int16_t yy_accept[131] = {
+    0,  41, 41, 2,  2,  0,  0,  48, 46, 45, 45, 28, 20, 40, 33, 34, 18,
+    16, 37, 17, 39, 19, 42, 41, 38, 24, 21, 25, 44, 41, 41, 31, 32, 44,
+    44, 44, 44, 41, 44, 44, 44, 35, 46, 36, 2,  3,  6,  6,  6,  45, 23,
+    29, 4,  1,  42, 42, 42, 42, 0,  42, 41, 41, 41, 41, 41, 26, 22, 27,
+    44, 41, 41, 41, 41, 44, 44, 44, 12, 44, 44, 44, 44, 30, 2,  6,  6,
+    5,  42, 42, 42, 42, 43, 41, 41, 41, 41, 41, 44, 44, 44, 7,  44,
 
-    41, 43, 43, 43, 42, 0,  0,  0,  0,  44, 44, 44, 13, 44, 8,  44, 43,
-    43, 43, 43, 0,  0,  0,  0,  10, 9,  44, 44, 15, 43, 0,  0,  0,  44,
-    44, 14, 0,  0,  44, 0,  0,  11, 0,  0,  0,  0};
+    44, 44, 42, 43, 43, 43, 43, 41, 44, 44, 44, 13, 44, 8,  44, 43, 43,
+    43, 43, 10, 9,  44, 44, 15, 43, 44, 14, 44, 11, 0};
 
 static const YY_CHAR yy_ec[256] = {
     0,  1,  1,  1,  1,  1,  1,  1,  1,  2,  3,  1,  1,  2,  1,  1,  1,  1,  1,
     1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  2,  4,  1,  1,  1,  5,
     6,  1,  7,  8,  9,  10, 11, 12, 13, 14, 15, 16, 16, 16, 16, 16, 16, 16, 17,
     17, 1,  18, 19, 20, 21, 1,  1,  22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23,
-    24, 23, 23, 23, 23, 23, 23, 23, 23, 25, 23, 23, 26, 23, 23, 27, 28, 29, 1,
-    23, 1,  30, 31, 32, 33,
+    24, 23, 23, 23, 23, 23, 23, 23, 23, 25, 23, 23, 26, 23, 23, 27, 1,  28, 1,
+    23, 1,  29, 30, 31, 32,
 
-    34, 35, 23, 36, 37, 23, 38, 39, 23, 40, 41, 23, 23, 42, 43, 44, 45, 46, 47,
-    26, 23, 23, 48, 49, 50, 1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+    33, 34, 23, 35, 36, 23, 37, 38, 23, 39, 40, 23, 23, 41, 42, 43, 44, 45, 46,
+    26, 23, 23, 47, 48, 49, 1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
     1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
     1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
     1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
@@ -423,94 +422,81 @@ static const YY_CHAR yy_ec[256] = {
     1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
     1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1};
 
-static const YY_CHAR yy_meta[51] = {0, 1, 1, 2, 1, 1, 1, 1, 1, 3, 1, 1, 1,
-                                    1, 1, 4, 4, 4, 1, 1, 1, 1, 4, 5, 5, 5,
-                                    5, 1, 5, 1, 4, 4, 4, 4, 4, 4, 5, 5, 5,
-                                    5, 5, 5, 5, 5, 5, 5, 5, 5, 1, 1, 1};
+static const YY_CHAR yy_meta[50] = {
+    0, 1, 1, 2, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 4, 4, 4, 1, 1, 1, 1, 4, 5, 5,
+    5, 5, 1, 1, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1, 1, 1};
 
-static const flex_int16_t yy_base[175] = {
-    0,   0,   0,   259, 258, 48,  49,  260, 263, 51,  53,  239, 263, 252, 263,
-    263, 263, 263, 263, 263, 263, 50,  45,  50,  263, 237, 236, 235, 226, 263,
-    37,  263, 35,  40,  44,  45,  58,  50,  51,  263, 204, 263, 0,   263, 249,
-    248, 236, 91,  263, 263, 263, 263, 81,  74,  64,  0,   76,  92,  87,  86,
-    79,  263, 263, 263, 221, 77,  0,   0,   95,  99,  85,  220, 86,  105, 106,
-    107, 263, 0,   244, 243, 263, 111, 263, 221, 205, 116, 113, 263, 219, 203,
-    0,   0,   0,   0,   117, 120, 118, 213, 114, 129, 126,
+static const flex_int16_t yy_base[137] = {
+    0,   0,   0,   218, 217, 47,  48,  219, 222, 50,  52,  198, 222, 211, 222,
+    222, 222, 222, 222, 222, 222, 49,  44,  49,  222, 196, 195, 194, 0,   37,
+    47,  222, 222, 172, 172, 173, 33,  51,  177, 169, 173, 222, 159, 222, 0,
+    222, 203, 202, 190, 75,  222, 222, 222, 222, 75,  82,  59,  56,  0,   67,
+    93,  108, 77,  90,  91,  222, 222, 222, 0,   71,  0,   179, 164, 168, 161,
+    157, 0,   155, 154, 160, 159, 222, 0,   191, 190, 222, 97,  222, 168, 153,
+    115, 111, 222, 166, 151, 0,   157, 100, 147, 0,   121,
 
-    263, 126, 129, 135, 263, 0,   0,   0,   0,   138, 139, 141, 212, 142, 211,
-    145, 147, 263, 214, 198, 0,   0,   0,   0,   208, 207, 147, 149, 206, 263,
-    0,   0,   0,   205, 153, 204, 0,   0,   154, 0,   0,   203, 0,   0,   0,
-    263, 198, 203, 205, 210, 215, 226, 225, 224, 223, 222, 221, 220, 219, 218,
-    217, 214, 208, 193, 192, 191, 190, 189, 187, 186, 182, 181, 96,  72};
+    131, 124, 222, 135, 120, 110, 113, 222, 123, 115, 120, 0,   113, 0,   117,
+    122, 222, 125, 89,  0,   0,   73,  65,  0,   222, 42,  0,   46,  0,   222,
+    166, 171, 173, 178, 183, 71};
 
-static const flex_int16_t yy_def[175] = {
-    0,   146, 1,   147, 147, 148, 148, 146, 146, 146, 146, 146, 146, 146, 146,
-    146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 149, 146,
-    146, 146, 149, 149, 149, 149, 149, 149, 149, 146, 146, 146, 150, 146, 151,
-    151, 146, 146, 146, 146, 146, 146, 146, 146, 146, 152, 146, 146, 146, 146,
-    146, 146, 146, 146, 149, 146, 153, 154, 149, 149, 149, 149, 149, 149, 149,
-    149, 146, 150, 151, 151, 146, 146, 146, 146, 146, 152, 146, 146, 146, 146,
-    155, 156, 157, 158, 149, 149, 149, 149, 149, 149, 149,
+static const flex_int16_t yy_def[137] = {
+    0,   130, 1,   131, 131, 132, 132, 130, 130, 130, 130, 130, 130, 130, 130,
+    130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 133, 133,
+    133, 130, 130, 133, 133, 133, 133, 133, 133, 133, 133, 130, 130, 130, 134,
+    130, 135, 135, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 136, 130,
+    130, 130, 130, 130, 130, 130, 130, 130, 133, 133, 133, 133, 133, 133, 133,
+    133, 133, 133, 133, 133, 133, 130, 134, 135, 135, 130, 130, 130, 130, 130,
+    136, 130, 130, 130, 130, 133, 133, 133, 133, 133, 133,
 
-    146, 146, 146, 146, 146, 159, 160, 161, 162, 149, 149, 149, 149, 149, 149,
-    149, 146, 146, 146, 146, 163, 164, 165, 166, 149, 149, 149, 149, 149, 146,
-    167, 168, 169, 149, 149, 149, 170, 171, 149, 172, 173, 149, 174, 166, 168,
-    0,   146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146,
-    146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146};
+    133, 133, 130, 90,  130, 130, 130, 130, 133, 133, 133, 133, 133, 133, 133,
+    130, 130, 130, 130, 133, 133, 133, 133, 133, 130, 133, 133, 133, 133, 0,
+    130, 130, 130, 130, 130, 130};
 
-static const flex_int16_t yy_nxt[314] = {
+static const flex_int16_t yy_nxt[272] = {
     0,   8,   9,   10,  11,  12,  13,  14,  15,  16,  17,  18,  19,  20,  21,
-    22,  23,  23,  24,  25,  26,  27,  28,  28,  28,  28,  28,  29,  30,  31,
-    28,  32,  33,  28,  34,  28,  28,  35,  28,  28,  28,  28,  36,  28,  28,
-    28,  37,  38,  39,  40,  41,  45,  45,  47,  47,  47,  47,  46,  46,  50,
-    52,  52,  66,  65,  51,  57,  57,  57,  65,  53,  54,  55,  65,  65,  58,
-    59,  145, 68,  65,  65,  71,  69,  67,  70,  56,  72,  65,  75,  83,  60,
-    54,  74,  73,  47,  47,  59,  52,  52,  81,  82,  144,
+    22,  23,  23,  24,  25,  26,  27,  28,  28,  29,  30,  28,  31,  32,  28,
+    33,  34,  28,  35,  28,  28,  36,  28,  37,  28,  28,  38,  28,  28,  30,
+    39,  40,  41,  42,  43,  47,  47,  49,  49,  49,  49,  48,  48,  52,  54,
+    55,  69,  70,  53,  60,  61,  61,  76,  56,  57,  58,  71,  77,  62,  63,
+    90,  70,  49,  49,  129, 88,  70,  59,  86,  87,  72,  128, 64,  57,  69,
+    54,  55,  87,  63,  89,  70,  70,  54,  55,  56,  57,
 
-    82,  90,  84,  87,  53,  54,  57,  57,  57,  88,  86,  87,  65,  65,  81,
-    58,  59,  86,  82,  56,  82,  91,  65,  87,  89,  54,  65,  96,  94,  97,
-    60,  87,  65,  65,  65,  82,  59,  87,  95,  102, 103, 65,  99,  100, 65,
-    65,  110, 65,  98,  117, 118, 113, 119, 65,  104, 82,  65,  87,  114, 118,
-    103, 115, 111, 112, 116, 65,  65,  120, 65,  65,  118, 118, 65,  117, 65,
-    125, 65,  127, 129, 118, 65,  65,  126, 128, 143, 141, 135, 142, 136, 140,
-    138, 118, 64,  137, 134, 133, 132, 139, 42,  42,
+    91,  92,  87,  127, 86,  56,  57,  60,  61,  61,  87,  126, 59,  93,  70,
+    92,  62,  63,  57,  59,  92,  87,  60,  61,  61,  57,  125, 94,  91,  104,
+    64,  62,  63,  118, 92,  92,  63,  117, 105, 106, 87,  110, 111, 116, 117,
+    64,  117, 119, 125, 124, 116, 63,  107, 123, 92,  122, 117, 121, 106, 120,
+    58,  115, 114, 117, 113, 117, 44,  44,  44,  44,  44,  46,  46,  46,  46,
+    46,  68,  68,  82,  112, 82,  82,  82,  83,  83,  109, 83,  83,  108, 108,
+    103, 103, 84,  84,  102, 101, 100, 99,  98,  97,
 
-    42,  42,  42,  44,  44,  44,  44,  44,  64,  64,  77,  131, 77,  77,  77,
-    78,  78,  124, 78,  78,  123, 122, 121, 109, 108, 107, 106, 93,  92,  85,
-    65,  65,  65,  65,  65,  65,  130, 130, 65,  65,  65,  105, 105, 101, 101,
-    79,  79,  65,  65,  80,  79,  79,  76,  65,  63,  62,  61,  49,  48,  146,
-    43,  43,  7,   146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146,
-    146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146,
-    146, 146, 146, 146, 146, 146, 146, 146, 146, 146,
+    96,  95,  95,  85,  84,  84,  81,  80,  79,  78,  75,  74,  73,  67,  66,
+    65,  51,  50,  130, 45,  45,  7,   130, 130, 130, 130, 130, 130, 130, 130,
+    130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130,
+    130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130,
+    130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130};
 
-    146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146};
-
-static const flex_int16_t yy_chk[314] = {
+static const flex_int16_t yy_chk[272] = {
     0,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,
     1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,
     1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,
-    1,   1,   1,   1,   1,   1,   5,   6,   9,   9,   10,  10,  5,   6,   21,
-    22,  22,  30,  32,  21,  23,  23,  23,  33,  22,  22,  22,  34,  35,  23,
-    23,  174, 32,  37,  38,  35,  33,  30,  34,  22,  35,  36,  38,  54,  23,
-    22,  37,  36,  47,  47,  23,  52,  52,  53,  53,  173,
+    1,   1,   1,   1,   1,   5,   6,   9,   9,   10,  10,  5,   6,   21,  22,
+    22,  29,  29,  21,  23,  23,  23,  36,  22,  22,  22,  30,  36,  23,  23,
+    136, 37,  49,  49,  128, 57,  29,  22,  56,  56,  30,  126, 23,  22,  37,
+    54,  54,  59,  23,  57,  37,  69,  55,  55,  54,  54,
 
-    56,  65,  54,  60,  52,  52,  57,  57,  57,  59,  58,  58,  70,  72,  56,
-    57,  57,  60,  53,  52,  56,  65,  68,  60,  59,  52,  69,  70,  68,  72,
-    57,  58,  73,  74,  75,  81,  57,  86,  69,  85,  85,  98,  74,  75,  94,
-    96,  94,  95,  73,  102, 102, 96,  103, 100, 85,  81,  99,  86,  98,  104,
-    85,  99,  95,  95,  100, 110, 111, 103, 112, 114, 102, 117, 116, 104, 127,
-    110, 128, 112, 116, 104, 135, 139, 111, 114, 172, 171, 127, 139, 128, 170,
-    169, 117, 168, 167, 166, 165, 164, 135, 147, 147,
+    62,  62,  56,  123, 59,  55,  55,  60,  60,  60,  59,  122, 54,  63,  69,
+    64,  60,  60,  54,  55,  62,  86,  61,  61,  61,  55,  119, 63,  64,  90,
+    60,  61,  61,  106, 64,  91,  60,  107, 90,  90,  86,  97,  97,  105, 105,
+    61,  116, 106, 118, 115, 107, 61,  90,  113, 91,  111, 107, 110, 90,  109,
+    104, 102, 101, 105, 100, 116, 131, 131, 131, 131, 131, 132, 132, 132, 132,
+    132, 133, 133, 134, 98,  134, 134, 134, 135, 135, 96,  135, 135, 94,  93,
+    89,  88,  84,  83,  80,  79,  78,  77,  75,  74,
 
-    147, 147, 147, 148, 148, 148, 148, 148, 149, 149, 150, 163, 150, 150, 150,
-    151, 151, 162, 151, 151, 161, 160, 159, 158, 157, 156, 155, 154, 153, 152,
-    142, 136, 134, 129, 126, 125, 120, 119, 115, 113, 97,  89,  88,  84,  83,
-    79,  78,  71,  64,  46,  45,  44,  40,  28,  27,  26,  25,  13,  11,  7,
-    4,   3,   146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146,
-    146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146,
-    146, 146, 146, 146, 146, 146, 146, 146, 146, 146,
-
-    146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146, 146};
+    73,  72,  71,  48,  47,  46,  42,  40,  39,  38,  35,  34,  33,  27,  26,
+    25,  13,  11,  7,   4,   3,   130, 130, 130, 130, 130, 130, 130, 130, 130,
+    130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130,
+    130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130,
+    130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130};
 
 /* Table of booleans, true if rule could match eol. */
 static const flex_int32_t yy_rule_can_match_eol[48] = {
@@ -538,13 +524,14 @@ char *yytext;
 #include <iostream>
 #include <string>
 
-void ret_print(char *token_type, char *yytext, int yylineno);
+void ret_print(std::string token_type, char *yytext, int yylineno);
 
 void yyerror(const char *message, char *yytext, int yylineno);
 
-#line 601 "/cygdrive/d/Projects/Compiler/src/scanner.cpp"
+#line 581 "/cygdrive/d/Projects/Compiler/src/scanner.cpp"
 
-#line 603 "/cygdrive/d/Projects/Compiler/src/scanner.cpp"
+/*Integer Literal*/
+#line 584 "/cygdrive/d/Projects/Compiler/src/scanner.cpp"
 
 #define INITIAL 0
 #define COMMENT 1
@@ -556,7 +543,6 @@ void yyerror(const char *message, char *yytext, int yylineno);
  * The user has a chance to override it with an option.
  */
 #include <unistd.h>
-
 #endif
 
 #ifndef YY_EXTRA_TYPE
@@ -624,7 +610,6 @@ static int yy_flex_strlen(const char *);
 #ifdef __cplusplus
 
 static int yyinput(void);
-
 #else
 static int input(void);
 #endif
@@ -760,9 +745,9 @@ YY_DECL {
   }
 
   {
-#line 19 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 26 "/cygdrive/d/Projects/Compiler/src/scanner.l"
 
-#line 825 "/cygdrive/d/Projects/Compiler/src/scanner.cpp"
+#line 806 "/cygdrive/d/Projects/Compiler/src/scanner.cpp"
 
     while (/*CONSTCOND*/ 1) /* loops until end-of-file is reached */
     {
@@ -786,12 +771,12 @@ YY_DECL {
         }
         while (yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state) {
           yy_current_state = (int)yy_def[yy_current_state];
-          if (yy_current_state >= 147)
+          if (yy_current_state >= 131)
             yy_c = yy_meta[yy_c];
         }
         yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
         ++yy_cp;
-      } while (yy_base[yy_current_state] != 263);
+      } while (yy_base[yy_current_state] != 222);
 
     yy_find_action:
       yy_act = yy_accept[yy_current_state];
@@ -824,40 +809,40 @@ YY_DECL {
 
       case 1:
         YY_RULE_SETUP
-#line 21 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 28 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           BEGIN(COMMENT);
         }
         YY_BREAK
       case 2:
         YY_RULE_SETUP
-#line 22 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 29 "/cygdrive/d/Projects/Compiler/src/scanner.l"
 
         YY_BREAK
       case 3:
         /* rule 3 can match eol */
         YY_RULE_SETUP
-#line 23 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 30 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           BEGIN(INITIAL);
         }
         YY_BREAK
       case YY_STATE_EOF(COMMENT):
-#line 24 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 31 "/cygdrive/d/Projects/Compiler/src/scanner.l"
       {
         BEGIN(INITIAL);
       }
         YY_BREAK
       case 4:
         YY_RULE_SETUP
-#line 25 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 32 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           BEGIN(ML_COMMENT);
         }
         YY_BREAK
       case 5:
         YY_RULE_SETUP
-#line 26 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 33 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           BEGIN(INITIAL);
         }
@@ -865,277 +850,277 @@ YY_DECL {
       case 6:
         /* rule 6 can match eol */
         YY_RULE_SETUP
-#line 27 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 34 "/cygdrive/d/Projects/Compiler/src/scanner.l"
 
         YY_BREAK
       case YY_STATE_EOF(ML_COMMENT):
-#line 28 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 35 "/cygdrive/d/Projects/Compiler/src/scanner.l"
       {
         yyerror("Unterminated comment\n", yytext, yylineno);
       }
         YY_BREAK
       case 7:
         YY_RULE_SETUP
-#line 30 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 37 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("KEYWORD_INT", yytext, yylineno);
         }
         YY_BREAK
       case 8:
         YY_RULE_SETUP
-#line 31 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 38 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("KEYWORD_VOID", yytext, yylineno);
         }
         YY_BREAK
       case 9:
         YY_RULE_SETUP
-#line 32 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 39 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("KEYWORD_CONST", yytext, yylineno);
         }
         YY_BREAK
       case 10:
         YY_RULE_SETUP
-#line 33 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 40 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("KEYWORD_BREAK", yytext, yylineno);
         }
         YY_BREAK
       case 11:
         YY_RULE_SETUP
-#line 34 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 41 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("KEYWORD_CONTINUE", yytext, yylineno);
         }
         YY_BREAK
       case 12:
         YY_RULE_SETUP
-#line 35 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 42 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("KEYWORD_IF", yytext, yylineno);
         }
         YY_BREAK
       case 13:
         YY_RULE_SETUP
-#line 36 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 43 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("KEYWORD_ELSE", yytext, yylineno);
         }
         YY_BREAK
       case 14:
         YY_RULE_SETUP
-#line 37 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 44 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("KEYWORD_RETURN", yytext, yylineno);
         }
         YY_BREAK
       case 15:
         YY_RULE_SETUP
-#line 38 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 45 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("KEYWORD_WHILE", yytext, yylineno);
         }
         YY_BREAK
       case 16:
         YY_RULE_SETUP
-#line 40 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 47 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("ADDOP", yytext, yylineno);
         }
         YY_BREAK
       case 17:
         YY_RULE_SETUP
-#line 41 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 48 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("SUBOP", yytext, yylineno);
         }
         YY_BREAK
       case 18:
         YY_RULE_SETUP
-#line 42 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 49 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("MULOP", yytext, yylineno);
         }
         YY_BREAK
       case 19:
         YY_RULE_SETUP
-#line 43 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 50 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("DIVOP", yytext, yylineno);
         }
         YY_BREAK
       case 20:
         YY_RULE_SETUP
-#line 44 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 51 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("MODOP", yytext, yylineno);
         }
         YY_BREAK
       case 21:
         YY_RULE_SETUP
-#line 45 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 52 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("ASSIGNOP", yytext, yylineno);
         }
         YY_BREAK
       case 22:
         YY_RULE_SETUP
-#line 46 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 53 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("EQOP", yytext, yylineno);
         }
         YY_BREAK
       case 23:
         YY_RULE_SETUP
-#line 47 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 54 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("NEOP", yytext, yylineno);
         }
         YY_BREAK
       case 24:
         YY_RULE_SETUP
-#line 48 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 55 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("LTOP", yytext, yylineno);
         }
         YY_BREAK
       case 25:
         YY_RULE_SETUP
-#line 49 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 56 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("GTOP", yytext, yylineno);
         }
         YY_BREAK
       case 26:
         YY_RULE_SETUP
-#line 50 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 57 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("LEOP", yytext, yylineno);
         }
         YY_BREAK
       case 27:
         YY_RULE_SETUP
-#line 51 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 58 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("GEOP", yytext, yylineno);
         }
         YY_BREAK
       case 28:
         YY_RULE_SETUP
-#line 52 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 59 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("NOTOP", yytext, yylineno);
         }
         YY_BREAK
       case 29:
         YY_RULE_SETUP
-#line 53 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 60 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("ANDOP", yytext, yylineno);
         }
         YY_BREAK
       case 30:
         YY_RULE_SETUP
-#line 54 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 61 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("OROP", yytext, yylineno);
         }
         YY_BREAK
       case 31:
         YY_RULE_SETUP
-#line 55 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 62 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("LBRACK", yytext, yylineno);
         }
         YY_BREAK
       case 32:
         YY_RULE_SETUP
-#line 56 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 63 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("RBRACK", yytext, yylineno);
         }
         YY_BREAK
       case 33:
         YY_RULE_SETUP
-#line 57 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 64 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("LPAREN", yytext, yylineno);
         }
         YY_BREAK
       case 34:
         YY_RULE_SETUP
-#line 58 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 65 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("RPAREN", yytext, yylineno);
         }
         YY_BREAK
       case 35:
         YY_RULE_SETUP
-#line 59 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 66 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("LBRACE", yytext, yylineno);
         }
         YY_BREAK
       case 36:
         YY_RULE_SETUP
-#line 60 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 67 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("RBRACE", yytext, yylineno);
         }
         YY_BREAK
       case 37:
         YY_RULE_SETUP
-#line 61 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 68 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("COMMA", yytext, yylineno);
         }
         YY_BREAK
       case 38:
         YY_RULE_SETUP
-#line 62 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 69 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("SEMI", yytext, yylineno);
         }
         YY_BREAK
       case 39:
         YY_RULE_SETUP
-#line 63 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 70 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("DOT", yytext, yylineno);
         }
         YY_BREAK
       case 40:
         YY_RULE_SETUP
-#line 64 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 71 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("REFER", yytext, yylineno);
         }
         YY_BREAK
       case 41:
         YY_RULE_SETUP
-#line 66 "/cygdrive/d/Projects/Compiler/src/scanner.l"
-        {
-          ret_print("OCTAL", yytext, yylineno);
-        }
-        YY_BREAK
-      case 42:
-        YY_RULE_SETUP
-#line 67 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 73 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("DECIMAL", yytext, yylineno);
         }
         YY_BREAK
+      case 42:
+        YY_RULE_SETUP
+#line 74 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+        {
+          ret_print("OCTAL", yytext, yylineno);
+        }
+        YY_BREAK
       case 43:
         YY_RULE_SETUP
-#line 68 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 75 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("HEX", yytext, yylineno);
         }
         YY_BREAK
       case 44:
         YY_RULE_SETUP
-#line 70 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 77 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           ret_print("IDENTIFIER", yytext, yylineno);
         }
@@ -1143,23 +1128,23 @@ YY_DECL {
       case 45:
         /* rule 45 can match eol */
         YY_RULE_SETUP
-#line 72 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 79 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         { /*Ignore*/
         }
         YY_BREAK
       case 46:
         YY_RULE_SETUP
-#line 74 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 81 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         {
           yyerror("Unknown character(s)", yytext, yylineno);
         }
         YY_BREAK
       case 47:
         YY_RULE_SETUP
-#line 76 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 83 "/cygdrive/d/Projects/Compiler/src/scanner.l"
         YY_FATAL_ERROR("flex scanner jammed");
         YY_BREAK
-#line 1138 "/cygdrive/d/Projects/Compiler/src/scanner.cpp"
+#line 1119 "/cygdrive/d/Projects/Compiler/src/scanner.cpp"
       case YY_STATE_EOF(INITIAL):
         yyterminate();
 
@@ -1414,7 +1399,7 @@ static yy_state_type yy_get_previous_state(void) {
     }
     while (yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state) {
       yy_current_state = (int)yy_def[yy_current_state];
-      if (yy_current_state >= 147)
+      if (yy_current_state >= 131)
         yy_c = yy_meta[yy_c];
     }
     yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1439,11 +1424,11 @@ static yy_state_type yy_try_NUL_trans(yy_state_type yy_current_state) {
   }
   while (yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state) {
     yy_current_state = (int)yy_def[yy_current_state];
-    if (yy_current_state >= 147)
+    if (yy_current_state >= 131)
       yy_c = yy_meta[yy_c];
   }
   yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-  yy_is_jam = (yy_current_state == 146);
+  yy_is_jam = (yy_current_state == 130);
 
   return yy_is_jam ? 0 : yy_current_state;
 }
@@ -2066,9 +2051,9 @@ void yyfree(void *ptr) {
 
 #define YYTABLES_NAME "yytables"
 
-#line 76 "/cygdrive/d/Projects/Compiler/src/scanner.l"
+#line 83 "/cygdrive/d/Projects/Compiler/src/scanner.l"
 
-void ret_print(char *token_type, char *yytext, int yylineno) {
+void ret_print(std::string token_type, char *yytext, int yylineno) {
   std::cout << "yytext: " << yytext << "\ttoken: " << token_type
             << "\tlineno: " << yylineno << std::endl;
 }

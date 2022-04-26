@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 
-void ret_print(char *token_type, char *yytext, int yylineno);
+void ret_print(std::string token_type, char *yytext, int yylineno);
 void yyerror(const char *message, char *yytext, int yylineno);
 
 %}
@@ -13,7 +13,14 @@ void yyerror(const char *message, char *yytext, int yylineno);
 %x COMMENT
 %x ML_COMMENT
 
-UCN (\\u[0-9a-fA-F]{4}|\\U[0-9a-fA-F]{8})
+WhiteSpace [ \t\n\r]+
+
+Identifier [a-zA-Z_][a-zA-Z0-9_]*
+
+/*Integer Literal*/
+Decimal [1-9][0-9]*
+Octal 0[0-7]*
+Hexadecimal 0[xX][0-9a-fA-F]+
 POSTFIX ([Uu](L|l|LL|ll)?|(L|l|LL|ll)[Uu]?)
 
 %%
@@ -63,19 +70,19 @@ while		{ ret_print("KEYWORD_WHILE", yytext, yylineno); }
 "."         { ret_print("DOT", yytext, yylineno); }
 "&"         { ret_print("REFER", yytext, yylineno); }
 
-0[0-7]*{POSTFIX}?				{ ret_print("OCTAL", yytext, yylineno); }
-[1-9][0-9]*{POSTFIX}?			{ ret_print("DECIMAL", yytext, yylineno); }
-0[Xx][0-9a-fA-F]+{POSTFIX}?	    { ret_print("HEX", yytext, yylineno); }
+{Decimal}*{POSTFIX}?			{ ret_print("DECIMAL", yytext, yylineno); }
+{Octal}*{POSTFIX}?				{ ret_print("OCTAL", yytext, yylineno); }
+{Hexadecimal}+{POSTFIX}?	    { ret_print("HEX", yytext, yylineno); }
 
-([_a-zA-Z]|{UCN})([_a-zA-Z0-9]|{UCN})* { ret_print("IDENTIFIER", yytext, yylineno); }
+{Identifier} { ret_print("IDENTIFIER", yytext, yylineno); }
 
-[ \t\n\r]+ 	{ /*Ignore*/ }
+{WhiteSpace} { /*Ignore*/ }
 
 .   { yyerror("Unknown character(s)", yytext, yylineno); }
 
 %%
 
-void ret_print(char *token_type, char *yytext, int yylineno) {
+void ret_print(std::string token_type, char *yytext, int yylineno) {
     std::cout << "yytext: " << yytext << "\ttoken: "<< token_type << "\tlineno: "<< yylineno << std::endl;
 }
 
