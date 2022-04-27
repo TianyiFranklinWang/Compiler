@@ -6,16 +6,19 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(ENTRY_POINT ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
 
+set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
 set(BISON_INPUT ${CMAKE_CURRENT_SOURCE_DIR}/src/parser.y)
 set(BISON_OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/src/parser.cpp)
 set(BISON_OUTPUT_HEAD ${CMAKE_CURRENT_SOURCE_DIR}/src/parser.hpp)
+set(BISON_OUTPUT_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/include/parser.hpp)
 
 set(FLEX_INPUT ${CMAKE_CURRENT_SOURCE_DIR}/src/scanner.l)
 set(FLEX_OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/src/scanner.cpp)
 
 add_custom_command(
-        OUTPUT ${BISON_OUTPUT} ${BISON_OUTPUT_HEAD}
-        COMMAND bison -d -o ${BISON_OUTPUT} ${BISON_INPUT}
+        OUTPUT ${BISON_OUTPUT} ${BISON_OUTPUT_INCLUDE}
+        COMMAND bison -d -o ${BISON_OUTPUT} ${BISON_INPUT} && mv ${BISON_OUTPUT_HEAD} ${BISON_OUTPUT_INCLUDE}
         DEPENDS ${BISON_INPUT}
 )
 
@@ -24,5 +27,7 @@ add_custom_command(
         COMMAND flex -o ${FLEX_OUTPUT} ${FLEX_INPUT}
         DEPENDS ${FLEX_INPUT}
 )
+
+include_directories(${INCLUDE_DIR})
 
 add_executable(Compiler ${BISON_OUTPUT} ${FLEX_OUTPUT} ${ENTRY_POINT})
