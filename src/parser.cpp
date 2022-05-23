@@ -370,7 +370,7 @@ typedef int yy_state_fast_t;
 #    define YYSTACK_ALLOC alloca
 #    if ! defined _ALLOCA_H && ! defined EXIT_SUCCESS
 #     include <stdlib.h> /* INFRINGES ON USER NAME SPACE */
-      /* Use EXIT_SUCCESS as a witness for stdlib.h.  */
+/* Use EXIT_SUCCESS as a witness for stdlib.h.  */
 #     ifndef EXIT_SUCCESS
 #      define EXIT_SUCCESS 0
 #     endif
@@ -383,10 +383,10 @@ typedef int yy_state_fast_t;
 /* Pacify GCC's 'empty if-body' warning.  */
 #  define YYSTACK_FREE(Ptr) do { /* empty */; } while (0)
 #  ifndef YYSTACK_ALLOC_MAXIMUM
- /* The OS might guarantee only one guard page at the bottom of the stack,
-    and a page size can be as small as 4096 bytes.  So we cannot safely
-    invoke alloca (N) if N exceeds 4096.  Use a slightly smaller number
-    to allow for a few compiler-allocated temporary stack slots.  */
+/* The OS might guarantee only one guard page at the bottom of the stack,
+   and a page size can be as small as 4096 bytes.  So we cannot safely
+   invoke alloca (N) if N exceeds 4096.  Use a slightly smaller number
+   to allow for a few compiler-allocated temporary stack slots.  */
 #   define YYSTACK_ALLOC_MAXIMUM 4032 /* reasonable circa 2006 */
 #  endif
 # else
@@ -505,44 +505,44 @@ union yyalloc {
 /* YYTRANSLATE[TOKEN-NUM] -- Symbol number corresponding to TOKEN-NUM
    as returned by yylex.  */
 static const yytype_int8 yytranslate[] =
-        {
-                0, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-                2, 2, 2, 2, 2, 2, 1, 2, 3, 4,
-                5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
-                15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
-                25, 26, 27, 28, 29, 30, 31, 32, 33, 34,
-                35, 36, 37, 38
-        };
+{
+    0, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 1, 2, 3, 4,
+    5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
+    15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
+    25, 26, 27, 28, 29, 30, 31, 32, 33, 34,
+    35, 36, 37, 38
+};
 
 #if YYDEBUG
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    46,    46,    54,    64,    72,    80,    88
+    0,    46,    46,    54,    64,    72,    80,    88
 };
 #endif
 
@@ -558,18 +558,18 @@ static const char *yysymbol_name (yysymbol_kind_t yysymbol) YY_ATTRIBUTE_UNUSED;
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
 {
-  "\"end of file\"", "error", "\"invalid token\"", "INT", "VOID", "CONST",
-  "BREAK", "CONTINUE", "IF", "ELSE", "RETURN", "WHILE", "ADD", "SUB",
-  "MUL", "DIV", "MOD", "ASSIGN", "EQ", "NE", "LT", "GT", "LE", "GE", "NOT",
-  "AND", "OR", "LBRACK", "RBRACK", "LPAREN", "RPAREN", "LBRACE", "RBRACE",
-  "COMMA", "SEMI", "DOT", "REFER", "IDENT", "INT_CONST", "$accept",
-  "CompUnit", "FuncDef", "FuncType", "Block", "Stmt", "Number", YY_NULLPTR
+    "\"end of file\"", "error", "\"invalid token\"", "INT", "VOID", "CONST",
+    "BREAK", "CONTINUE", "IF", "ELSE", "RETURN", "WHILE", "ADD", "SUB",
+    "MUL", "DIV", "MOD", "ASSIGN", "EQ", "NE", "LT", "GT", "LE", "GE", "NOT",
+    "AND", "OR", "LBRACK", "RBRACK", "LPAREN", "RPAREN", "LBRACE", "RBRACE",
+    "COMMA", "SEMI", "DOT", "REFER", "IDENT", "INT_CONST", "$accept",
+    "CompUnit", "FuncDef", "FuncType", "Block", "Stmt", "Number", YY_NULLPTR
 };
 
 static const char *
 yysymbol_name (yysymbol_kind_t yysymbol)
 {
-  return yytname[yysymbol];
+    return yytname[yysymbol];
 }
 #endif
 
@@ -586,66 +586,66 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
-        {
-                -3, -36, 1, -36, -35, -36, -26, -25, -27, -4,
-                -36, -31, -24, -36, -23, -36, -36
-        };
+{
+    -3, -36, 1, -36, -35, -36, -26, -25, -27, -4,
+        -36, -31, -24, -36, -23, -36, -36
+    };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
    Performed when YYTABLE does not specify something else to do.  Zero
    means the default is an error.  */
 static const yytype_int8 yydefact[] =
-        {
-                0, 4, 0, 2, 0, 1, 0, 0, 0, 0,
-                3, 0, 0, 7, 0, 5, 6
-        };
+{
+    0, 4, 0, 2, 0, 1, 0, 0, 0, 0,
+    3, 0, 0, 7, 0, 5, 6
+};
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
-        {
-                -36, -36, -36, -36, -36, -36, -36
-        };
+{
+    -36, -36, -36, -36, -36, -36, -36
+    };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
-        {
-                0, 2, 3, 4, 10, 12, 14
-        };
+{
+    0, 2, 3, 4, 10, 12, 14
+};
 
 /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
    positive, shift that token.  If negative, reduce the rule whose
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
-        {
-                1, 5, 6, 7, 9, 8, 11, 13, 15, 0,
-                0, 16
-        };
+{
+    1, 5, 6, 7, 9, 8, 11, 13, 15, 0,
+    0, 16
+};
 
 static const yytype_int8 yycheck[] =
-        {
-                3, 0, 37, 29, 31, 30, 10, 38, 32, -1,
-                -1, 34
-        };
+{
+    3, 0, 37, 29, 31, 30, 10, 38, 32, -1,
+    -1, 34
+};
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
    state STATE-NUM.  */
 static const yytype_int8 yystos[] =
-        {
-                0, 3, 40, 41, 42, 0, 37, 29, 30, 31,
-                43, 10, 44, 38, 45, 32, 34
-        };
+{
+    0, 3, 40, 41, 42, 0, 37, 29, 30, 31,
+    43, 10, 44, 38, 45, 32, 34
+};
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
-        {
-                0, 39, 40, 41, 42, 43, 44, 45
-        };
+{
+    0, 39, 40, 41, 42, 43, 44, 45
+};
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr2[] =
-        {
-                0, 2, 1, 5, 1, 3, 3, 1
-        };
+{
+    0, 2, 1, 5, 1, 3, 3, 1
+};
 
 
 enum {
@@ -722,14 +722,14 @@ static void
 yy_symbol_value_print (FILE *yyo,
                        yysymbol_kind_t yykind, YYSTYPE const * const yyvaluep, std::unique_ptr<ast::BaseAST> &ast)
 {
-  FILE *yyoutput = yyo;
-  YY_USE (yyoutput);
-  YY_USE (ast);
-  if (!yyvaluep)
-    return;
-  YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
-  YY_USE (yykind);
-  YY_IGNORE_MAYBE_UNINITIALIZED_END
+    FILE *yyoutput = yyo;
+    YY_USE (yyoutput);
+    YY_USE (ast);
+    if (!yyvaluep)
+        return;
+    YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
+    YY_USE (yykind);
+    YY_IGNORE_MAYBE_UNINITIALIZED_END
 }
 
 
@@ -741,11 +741,11 @@ static void
 yy_symbol_print (FILE *yyo,
                  yysymbol_kind_t yykind, YYSTYPE const * const yyvaluep, std::unique_ptr<ast::BaseAST> &ast)
 {
-  YYFPRINTF (yyo, "%s %s (",
-             yykind < YYNTOKENS ? "token" : "nterm", yysymbol_name (yykind));
+    YYFPRINTF (yyo, "%s %s (",
+               yykind < YYNTOKENS ? "token" : "nterm", yysymbol_name (yykind));
 
-  yy_symbol_value_print (yyo, yykind, yyvaluep, ast);
-  YYFPRINTF (yyo, ")");
+    yy_symbol_value_print (yyo, yykind, yyvaluep, ast);
+    YYFPRINTF (yyo, ")");
 }
 
 /*------------------------------------------------------------------.
@@ -756,13 +756,13 @@ yy_symbol_print (FILE *yyo,
 static void
 yy_stack_print (yy_state_t *yybottom, yy_state_t *yytop)
 {
-  YYFPRINTF (stderr, "Stack now");
-  for (; yybottom <= yytop; yybottom++)
+    YYFPRINTF (stderr, "Stack now");
+    for (; yybottom <= yytop; yybottom++)
     {
-      int yybot = *yybottom;
-      YYFPRINTF (stderr, " %d", yybot);
+        int yybot = *yybottom;
+        YYFPRINTF (stderr, " %d", yybot);
     }
-  YYFPRINTF (stderr, "\n");
+    YYFPRINTF (stderr, "\n");
 }
 
 # define YY_STACK_PRINT(Bottom, Top)                            \
@@ -780,19 +780,19 @@ static void
 yy_reduce_print (yy_state_t *yyssp, YYSTYPE *yyvsp,
                  int yyrule, std::unique_ptr<ast::BaseAST> &ast)
 {
-  int yylno = yyrline[yyrule];
-  int yynrhs = yyr2[yyrule];
-  int yyi;
-  YYFPRINTF (stderr, "Reducing stack by rule %d (line %d):\n",
-             yyrule - 1, yylno);
-  /* The symbols being reduced.  */
-  for (yyi = 0; yyi < yynrhs; yyi++)
+    int yylno = yyrline[yyrule];
+    int yynrhs = yyr2[yyrule];
+    int yyi;
+    YYFPRINTF (stderr, "Reducing stack by rule %d (line %d):\n",
+               yyrule - 1, yylno);
+    /* The symbols being reduced.  */
+    for (yyi = 0; yyi < yynrhs; yyi++)
     {
-      YYFPRINTF (stderr, "   $%d = ", yyi + 1);
-      yy_symbol_print (stderr,
-                       YY_ACCESSING_SYMBOL (+yyssp[yyi + 1 - yynrhs]),
-                       &yyvsp[(yyi + 1) - (yynrhs)], ast);
-      YYFPRINTF (stderr, "\n");
+        YYFPRINTF (stderr, "   $%d = ", yyi + 1);
+        yy_symbol_print (stderr,
+                         YY_ACCESSING_SYMBOL (+yyssp[yyi + 1 - yynrhs]),
+                         &yyvsp[(yyi + 1) - (yynrhs)], ast);
+        YYFPRINTF (stderr, "\n");
     }
 }
 
@@ -907,19 +907,19 @@ yyparse(std::unique_ptr<ast::BaseAST> &ast) {
     goto yysetstate;
 
 
-/*------------------------------------------------------------.
-| yynewstate -- push a new state, which is found in yystate.  |
-`------------------------------------------------------------*/
-    yynewstate:
+    /*------------------------------------------------------------.
+    | yynewstate -- push a new state, which is found in yystate.  |
+    `------------------------------------------------------------*/
+yynewstate:
     /* In all cases, when you get here, the value and location stacks
        have just been pushed.  So pushing a state here evens the stacks.  */
     yyssp++;
 
 
-/*--------------------------------------------------------------------.
-| yysetstate -- set current state (the top of the stack) to yystate.  |
-`--------------------------------------------------------------------*/
-    yysetstate:
+    /*--------------------------------------------------------------------.
+    | yysetstate -- set current state (the top of the stack) to yystate.  |
+    `--------------------------------------------------------------------*/
+yysetstate:
     YYDPRINTF ((stderr, "Entering state %d\n", yystate));
     YY_ASSERT (0 <= yystate && yystate < YYNSTATES);
     YY_IGNORE_USELESS_CAST_BEGIN
@@ -937,22 +937,22 @@ yyparse(std::unique_ptr<ast::BaseAST> &ast) {
 
 # if defined yyoverflow
         {
-          /* Give user a chance to reallocate the stack.  Use copies of
-             these so that the &'s don't force the real ones into
-             memory.  */
-          yy_state_t *yyss1 = yyss;
-          YYSTYPE *yyvs1 = yyvs;
+            /* Give user a chance to reallocate the stack.  Use copies of
+               these so that the &'s don't force the real ones into
+               memory.  */
+            yy_state_t *yyss1 = yyss;
+            YYSTYPE *yyvs1 = yyvs;
 
-          /* Each stack pointer address is followed by the size of the
-             data in use in that stack, in bytes.  This used to be a
-             conditional around just the two extra args, but that might
-             be undefined if yyoverflow is a macro.  */
-          yyoverflow (YY_("memory exhausted"),
-                      &yyss1, yysize * YYSIZEOF (*yyssp),
-                      &yyvs1, yysize * YYSIZEOF (*yyvsp),
-                      &yystacksize);
-          yyss = yyss1;
-          yyvs = yyvs1;
+            /* Each stack pointer address is followed by the size of the
+               data in use in that stack, in bytes.  This used to be a
+               conditional around just the two extra args, but that might
+               be undefined if yyoverflow is a macro.  */
+            yyoverflow (YY_("memory exhausted"),
+                        &yyss1, yysize * YYSIZEOF (*yyssp),
+                        &yyvs1, yysize * YYSIZEOF (*yyvsp),
+                        &yystacksize);
+            yyss = yyss1;
+            yyvs = yyvs1;
         }
 # else /* defined YYSTACK_RELOCATE */
         /* Extend the stack our own way.  */
@@ -982,7 +982,7 @@ yyparse(std::unique_ptr<ast::BaseAST> &ast) {
 
         YY_IGNORE_USELESS_CAST_BEGIN
         YYDPRINTF ((stderr, "Stack size increased to %ld\n",
-                YY_CAST(long, yystacksize)));
+                    YY_CAST(long, yystacksize)));
         YY_IGNORE_USELESS_CAST_END
 
         if (yyss + yystacksize - 1 <= yyssp)
@@ -997,10 +997,10 @@ yyparse(std::unique_ptr<ast::BaseAST> &ast) {
     goto yybackup;
 
 
-/*-----------.
-| yybackup.  |
-`-----------*/
-    yybackup:
+    /*-----------.
+    | yybackup.  |
+    `-----------*/
+yybackup:
     /* Do appropriate processing given the current state.  Read a
        lookahead token if we need one and don't already have one.  */
 
@@ -1064,20 +1064,20 @@ yyparse(std::unique_ptr<ast::BaseAST> &ast) {
     goto yynewstate;
 
 
-/*-----------------------------------------------------------.
-| yydefault -- do the default action for the current state.  |
-`-----------------------------------------------------------*/
-    yydefault:
+    /*-----------------------------------------------------------.
+    | yydefault -- do the default action for the current state.  |
+    `-----------------------------------------------------------*/
+yydefault:
     yyn = yydefact[yystate];
     if (yyn == 0)
         goto yyerrlab;
     goto yyreduce;
 
 
-/*-----------------------------.
-| yyreduce -- do a reduction.  |
-`-----------------------------*/
-    yyreduce:
+    /*-----------------------------.
+    | yyreduce -- do a reduction.  |
+    `-----------------------------*/
+yyreduce:
     /* yyn is the number of a rule to reduce with.  */
     yylen = yyr2[yyn];
 
@@ -1094,7 +1094,7 @@ yyparse(std::unique_ptr<ast::BaseAST> &ast) {
 
     YY_REDUCE_PRINT (yyn);
     switch (yyn) {
-        case 2: /* CompUnit: FuncDef  */
+    case 2: /* CompUnit: FuncDef  */
 #line 46 "/cygdrive/d/Projects/Compiler/src/parser.y"
         {
             auto comp_unit = make_unique<ast::CompUnitAST>();
@@ -1102,9 +1102,9 @@ yyparse(std::unique_ptr<ast::BaseAST> &ast) {
             ast = move(comp_unit);
         }
 #line 1124 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
-            break;
+        break;
 
-        case 3: /* FuncDef: FuncType IDENT LPAREN RPAREN Block  */
+    case 3: /* FuncDef: FuncType IDENT LPAREN RPAREN Block  */
 #line 54 "/cygdrive/d/Projects/Compiler/src/parser.y"
         {
             auto ast = new ast::FuncDefAST();
@@ -1114,9 +1114,9 @@ yyparse(std::unique_ptr<ast::BaseAST> &ast) {
             (yyval.ast_val) = ast;
         }
 #line 1136 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
-            break;
+        break;
 
-        case 4: /* FuncType: INT  */
+    case 4: /* FuncType: INT  */
 #line 64 "/cygdrive/d/Projects/Compiler/src/parser.y"
         {
             auto ast = new ast::FuncTypeAST();
@@ -1124,9 +1124,9 @@ yyparse(std::unique_ptr<ast::BaseAST> &ast) {
             (yyval.ast_val) = ast;
         }
 #line 1146 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
-            break;
+        break;
 
-        case 5: /* Block: LBRACE Stmt RBRACE  */
+    case 5: /* Block: LBRACE Stmt RBRACE  */
 #line 72 "/cygdrive/d/Projects/Compiler/src/parser.y"
         {
             auto ast = new ast::BlockAST();
@@ -1134,9 +1134,9 @@ yyparse(std::unique_ptr<ast::BaseAST> &ast) {
             (yyval.ast_val) = ast;
         }
 #line 1156 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
-            break;
+        break;
 
-        case 6: /* Stmt: RETURN Number SEMI  */
+    case 6: /* Stmt: RETURN Number SEMI  */
 #line 80 "/cygdrive/d/Projects/Compiler/src/parser.y"
         {
             auto ast = new ast::StmtAST();
@@ -1144,9 +1144,9 @@ yyparse(std::unique_ptr<ast::BaseAST> &ast) {
             (yyval.ast_val) = ast;
         }
 #line 1166 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
-            break;
+        break;
 
-        case 7: /* Number: INT_CONST  */
+    case 7: /* Number: INT_CONST  */
 #line 88 "/cygdrive/d/Projects/Compiler/src/parser.y"
         {
             auto ast = new ast::NumberAST();
@@ -1154,13 +1154,13 @@ yyparse(std::unique_ptr<ast::BaseAST> &ast) {
             (yyval.ast_val) = ast;
         }
 #line 1176 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
-            break;
+        break;
 
 
 #line 1180 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
 
-        default:
-            break;
+    default:
+        break;
     }
     /* User semantic actions sometimes alter yychar, and that requires
        that yytoken be updated with the new translation.  We take the
@@ -1194,10 +1194,10 @@ yyparse(std::unique_ptr<ast::BaseAST> &ast) {
     goto yynewstate;
 
 
-/*--------------------------------------.
-| yyerrlab -- here on detecting error.  |
-`--------------------------------------*/
-    yyerrlab:
+    /*--------------------------------------.
+    | yyerrlab -- here on detecting error.  |
+    `--------------------------------------*/
+yyerrlab:
     /* Make sure we have latest lookahead translation.  See comments at
        user semantic actions for why this is necessary.  */
     yytoken = yychar == YYEMPTY ? YYSYMBOL_YYEMPTY : YYTRANSLATE (yychar);
@@ -1227,10 +1227,10 @@ yyparse(std::unique_ptr<ast::BaseAST> &ast) {
     goto yyerrlab1;
 
 
-/*---------------------------------------------------.
-| yyerrorlab -- error raised explicitly by YYERROR.  |
-`---------------------------------------------------*/
-    yyerrorlab:
+    /*---------------------------------------------------.
+    | yyerrorlab -- error raised explicitly by YYERROR.  |
+    `---------------------------------------------------*/
+yyerrorlab:
     /* Pacify compilers when the user code never invokes YYERROR and the
        label yyerrorlab therefore never appears in user code.  */
     if (0)
@@ -1246,10 +1246,10 @@ yyparse(std::unique_ptr<ast::BaseAST> &ast) {
     goto yyerrlab1;
 
 
-/*-------------------------------------------------------------.
-| yyerrlab1 -- common code for both syntax error and YYERROR.  |
-`-------------------------------------------------------------*/
-    yyerrlab1:
+    /*-------------------------------------------------------------.
+    | yyerrlab1 -- common code for both syntax error and YYERROR.  |
+    `-------------------------------------------------------------*/
+yyerrlab1:
     yyerrstatus = 3;      /* Each real token shifted decrements this.  */
 
     /* Pop stack until we find a state that shifts the error token.  */
@@ -1288,35 +1288,35 @@ yyparse(std::unique_ptr<ast::BaseAST> &ast) {
     goto yynewstate;
 
 
-/*-------------------------------------.
-| yyacceptlab -- YYACCEPT comes here.  |
-`-------------------------------------*/
-    yyacceptlab:
+    /*-------------------------------------.
+    | yyacceptlab -- YYACCEPT comes here.  |
+    `-------------------------------------*/
+yyacceptlab:
     yyresult = 0;
     goto yyreturnlab;
 
 
-/*-----------------------------------.
-| yyabortlab -- YYABORT comes here.  |
-`-----------------------------------*/
-    yyabortlab:
+    /*-----------------------------------.
+    | yyabortlab -- YYABORT comes here.  |
+    `-----------------------------------*/
+yyabortlab:
     yyresult = 1;
     goto yyreturnlab;
 
 
-/*-----------------------------------------------------------.
-| yyexhaustedlab -- YYNOMEM (memory exhaustion) comes here.  |
-`-----------------------------------------------------------*/
-    yyexhaustedlab:
+    /*-----------------------------------------------------------.
+    | yyexhaustedlab -- YYNOMEM (memory exhaustion) comes here.  |
+    `-----------------------------------------------------------*/
+yyexhaustedlab:
     yyerror(ast, YY_("memory exhausted"));
     yyresult = 2;
     goto yyreturnlab;
 
 
-/*----------------------------------------------------------.
-| yyreturnlab -- parsing is finished, clean up and return.  |
-`----------------------------------------------------------*/
-    yyreturnlab:
+    /*----------------------------------------------------------.
+    | yyreturnlab -- parsing is finished, clean up and return.  |
+    `----------------------------------------------------------*/
+yyreturnlab:
     if (yychar != YYEMPTY) {
         /* Make sure we have latest lookahead translation.  See comments at
            user semantic actions for why this is necessary.  */
