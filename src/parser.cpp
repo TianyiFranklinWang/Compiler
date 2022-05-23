@@ -67,24 +67,23 @@
 
 
 /* First part of user prologue.  */
-#line 8 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 9 "/cygdrive/d/Projects/Compiler/src/parser.y"
 
 #include <iostream>
 #include <memory>
 #include <string>
+#include "ast.h"
 
 int yylex();
-
 int yylex_destroy();
-
 int yyget_lineno();
 
-void yyerror(std::unique_ptr<std::string> &ast, const char *s);
+void yyerror(std::unique_ptr<ast::BaseAST> &ast, const char *s);
 
 using namespace std;
 
 
-#line 86 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
+#line 87 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -108,48 +107,47 @@ using namespace std;
 # endif
 
 #include "parser.hpp"
-
 /* Symbol kind.  */
 enum yysymbol_kind_t {
     YYSYMBOL_YYEMPTY = -2,
     YYSYMBOL_YYEOF = 0,                      /* "end of file"  */
     YYSYMBOL_YYerror = 1,                    /* error  */
     YYSYMBOL_YYUNDEF = 2,                    /* "invalid token"  */
-    YYSYMBOL_INT = 3,                        /* INT  */
-    YYSYMBOL_VOID = 4,                       /* VOID  */
-    YYSYMBOL_CONST = 5,                      /* CONST  */
-    YYSYMBOL_BREAK = 6,                      /* BREAK  */
-    YYSYMBOL_CONTINUE = 7,                   /* CONTINUE  */
-    YYSYMBOL_IF = 8,                         /* IF  */
-    YYSYMBOL_ELSE = 9,                       /* ELSE  */
-    YYSYMBOL_RETURN = 10,                    /* RETURN  */
-    YYSYMBOL_WHILE = 11,                     /* WHILE  */
-    YYSYMBOL_ADD = 12,                       /* ADD  */
-    YYSYMBOL_SUB = 13,                       /* SUB  */
-    YYSYMBOL_MUL = 14,                       /* MUL  */
-    YYSYMBOL_DIV = 15,                       /* DIV  */
-    YYSYMBOL_MOD = 16,                       /* MOD  */
-    YYSYMBOL_ASSIGN = 17,                    /* ASSIGN  */
-    YYSYMBOL_EQ = 18,                        /* EQ  */
-    YYSYMBOL_NE = 19,                        /* NE  */
-    YYSYMBOL_LT = 20,                        /* LT  */
-    YYSYMBOL_GT = 21,                        /* GT  */
-    YYSYMBOL_LE = 22,                        /* LE  */
-    YYSYMBOL_GE = 23,                        /* GE  */
-    YYSYMBOL_NOT = 24,                       /* NOT  */
-    YYSYMBOL_AND = 25,                       /* AND  */
-    YYSYMBOL_OR = 26,                        /* OR  */
-    YYSYMBOL_LBRACK = 27,                    /* LBRACK  */
-    YYSYMBOL_RBRACK = 28,                    /* RBRACK  */
-    YYSYMBOL_LPAREN = 29,                    /* LPAREN  */
-    YYSYMBOL_RPAREN = 30,                    /* RPAREN  */
-    YYSYMBOL_LBRACE = 31,                    /* LBRACE  */
-    YYSYMBOL_RBRACE = 32,                    /* RBRACE  */
-    YYSYMBOL_COMMA = 33,                     /* COMMA  */
-    YYSYMBOL_SEMI = 34,                      /* SEMI  */
-    YYSYMBOL_DOT = 35,                       /* DOT  */
-    YYSYMBOL_REFER = 36,                     /* REFER  */
-    YYSYMBOL_IDENT = 37,                     /* IDENT  */
+    YYSYMBOL_VOID = 3,                       /* VOID  */
+    YYSYMBOL_CONST = 4,                      /* CONST  */
+    YYSYMBOL_BREAK = 5,                      /* BREAK  */
+    YYSYMBOL_CONTINUE = 6,                   /* CONTINUE  */
+    YYSYMBOL_IF = 7,                         /* IF  */
+    YYSYMBOL_ELSE = 8,                       /* ELSE  */
+    YYSYMBOL_RETURN = 9,                     /* RETURN  */
+    YYSYMBOL_WHILE = 10,                     /* WHILE  */
+    YYSYMBOL_ADD = 11,                       /* ADD  */
+    YYSYMBOL_SUB = 12,                       /* SUB  */
+    YYSYMBOL_MUL = 13,                       /* MUL  */
+    YYSYMBOL_DIV = 14,                       /* DIV  */
+    YYSYMBOL_MOD = 15,                       /* MOD  */
+    YYSYMBOL_ASSIGN = 16,                    /* ASSIGN  */
+    YYSYMBOL_EQ = 17,                        /* EQ  */
+    YYSYMBOL_NE = 18,                        /* NE  */
+    YYSYMBOL_LT = 19,                        /* LT  */
+    YYSYMBOL_GT = 20,                        /* GT  */
+    YYSYMBOL_LE = 21,                        /* LE  */
+    YYSYMBOL_GE = 22,                        /* GE  */
+    YYSYMBOL_NOT = 23,                       /* NOT  */
+    YYSYMBOL_AND = 24,                       /* AND  */
+    YYSYMBOL_OR = 25,                        /* OR  */
+    YYSYMBOL_LBRACK = 26,                    /* LBRACK  */
+    YYSYMBOL_RBRACK = 27,                    /* RBRACK  */
+    YYSYMBOL_LPAREN = 28,                    /* LPAREN  */
+    YYSYMBOL_RPAREN = 29,                    /* RPAREN  */
+    YYSYMBOL_LBRACE = 30,                    /* LBRACE  */
+    YYSYMBOL_RBRACE = 31,                    /* RBRACE  */
+    YYSYMBOL_COMMA = 32,                     /* COMMA  */
+    YYSYMBOL_SEMI = 33,                      /* SEMI  */
+    YYSYMBOL_DOT = 34,                       /* DOT  */
+    YYSYMBOL_REFER = 35,                     /* REFER  */
+    YYSYMBOL_IDENT = 36,                     /* IDENT  */
+    YYSYMBOL_INT = 37,                       /* INT  */
     YYSYMBOL_INT_CONST = 38,                 /* INT_CONST  */
     YYSYMBOL_YYACCEPT = 39,                  /* $accept  */
     YYSYMBOL_CompUnit = 40,                  /* CompUnit  */
@@ -372,7 +370,7 @@ typedef int yy_state_fast_t;
 #    define YYSTACK_ALLOC alloca
 #    if ! defined _ALLOCA_H && ! defined EXIT_SUCCESS
 #     include <stdlib.h> /* INFRINGES ON USER NAME SPACE */
-/* Use EXIT_SUCCESS as a witness for stdlib.h.  */
+      /* Use EXIT_SUCCESS as a witness for stdlib.h.  */
 #     ifndef EXIT_SUCCESS
 #      define EXIT_SUCCESS 0
 #     endif
@@ -544,7 +542,7 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    43,    43,    49,    58,    64,    71,    78
+       0,    46,    46,    54,    64,    72,    80,    88
 };
 #endif
 
@@ -560,11 +558,11 @@ static const char *yysymbol_name (yysymbol_kind_t yysymbol) YY_ATTRIBUTE_UNUSED;
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
 {
-  "\"end of file\"", "error", "\"invalid token\"", "INT", "VOID", "CONST",
+  "\"end of file\"", "error", "\"invalid token\"", "VOID", "CONST",
   "BREAK", "CONTINUE", "IF", "ELSE", "RETURN", "WHILE", "ADD", "SUB",
   "MUL", "DIV", "MOD", "ASSIGN", "EQ", "NE", "LT", "GT", "LE", "GE", "NOT",
   "AND", "OR", "LBRACK", "RBRACK", "LPAREN", "RPAREN", "LBRACE", "RBRACE",
-  "COMMA", "SEMI", "DOT", "REFER", "IDENT", "INT_CONST", "$accept",
+  "COMMA", "SEMI", "DOT", "REFER", "IDENT", "INT", "INT_CONST", "$accept",
   "CompUnit", "FuncDef", "FuncType", "Block", "Stmt", "Number", YY_NULLPTR
 };
 
@@ -575,7 +573,7 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 }
 #endif
 
-#define YYPACT_NINF (-36)
+#define YYPACT_NINF (-38)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -589,8 +587,8 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
         {
-                -3, -36, 1, -36, -35, -36, -26, -25, -27, -4,
-                -36, -31, -24, -36, -23, -36, -36
+                -37, -38, 1, -38, -34, -38, -25, -24, -26, -3,
+                -38, -31, -23, -38, -22, -38, -38
         };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -605,7 +603,7 @@ static const yytype_int8 yydefact[] =
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
         {
-                -36, -36, -36, -36, -36, -36, -36
+                -38, -38, -38, -38, -38, -38, -38
         };
 
 /* YYDEFGOTO[NTERM-NUM].  */
@@ -625,16 +623,16 @@ static const yytype_int8 yytable[] =
 
 static const yytype_int8 yycheck[] =
         {
-                3, 0, 37, 29, 31, 30, 10, 38, 32, -1,
-                -1, 34
+                37, 0, 36, 28, 30, 29, 9, 38, 31, -1,
+                -1, 33
         };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
    state STATE-NUM.  */
 static const yytype_int8 yystos[] =
         {
-                0, 3, 40, 41, 42, 0, 37, 29, 30, 31,
-                43, 10, 44, 38, 45, 32, 34
+                0, 37, 40, 41, 42, 0, 36, 28, 29, 30,
+                43, 9, 44, 38, 45, 31, 33
         };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
@@ -722,7 +720,7 @@ do {                                                                      \
 
 static void
 yy_symbol_value_print (FILE *yyo,
-                       yysymbol_kind_t yykind, YYSTYPE const * const yyvaluep, std::unique_ptr<std::string> &ast)
+                       yysymbol_kind_t yykind, YYSTYPE const * const yyvaluep, std::unique_ptr<ast::BaseAST> &ast)
 {
   FILE *yyoutput = yyo;
   YY_USE (yyoutput);
@@ -741,7 +739,7 @@ yy_symbol_value_print (FILE *yyo,
 
 static void
 yy_symbol_print (FILE *yyo,
-                 yysymbol_kind_t yykind, YYSTYPE const * const yyvaluep, std::unique_ptr<std::string> &ast)
+                 yysymbol_kind_t yykind, YYSTYPE const * const yyvaluep, std::unique_ptr<ast::BaseAST> &ast)
 {
   YYFPRINTF (yyo, "%s %s (",
              yykind < YYNTOKENS ? "token" : "nterm", yysymbol_name (yykind));
@@ -780,7 +778,7 @@ do {                                                            \
 
 static void
 yy_reduce_print (yy_state_t *yyssp, YYSTYPE *yyvsp,
-                 int yyrule, std::unique_ptr<std::string> &ast)
+                 int yyrule, std::unique_ptr<ast::BaseAST> &ast)
 {
   int yylno = yyrline[yyrule];
   int yynrhs = yyr2[yyrule];
@@ -838,7 +836,7 @@ int yydebug;
 
 static void
 yydestruct(const char *yymsg,
-           yysymbol_kind_t yykind, YYSTYPE *yyvaluep, std::unique_ptr<std::string> &ast) {
+           yysymbol_kind_t yykind, YYSTYPE *yyvaluep, std::unique_ptr<ast::BaseAST> &ast) {
     YY_USE (yyvaluep);
     YY_USE (ast);
     if (!yymsg)
@@ -865,7 +863,7 @@ int yynerrs;
 `----------*/
 
 int
-yyparse(std::unique_ptr<std::string> &ast) {
+yyparse(std::unique_ptr<ast::BaseAST> &ast) {
     yy_state_fast_t yystate = 0;
     /* Number of tokens to shift before error messages enabled.  */
     int yyerrstatus = 0;
@@ -1097,60 +1095,69 @@ yyparse(std::unique_ptr<std::string> &ast) {
     YY_REDUCE_PRINT (yyn);
     switch (yyn) {
         case 2: /* CompUnit: FuncDef  */
-#line 43 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 46 "/cygdrive/d/Projects/Compiler/src/parser.y"
         {
-            ast = unique_ptr<string>((yyvsp[0].str_val));
+            auto comp_unit = make_unique<ast::CompUnitAST>();
+            comp_unit->func_def = unique_ptr<ast::BaseAST>((yyvsp[0].ast_val));
+            ast = move(comp_unit);
         }
-#line 1121 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
+#line 1124 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
             break;
 
         case 3: /* FuncDef: FuncType IDENT LPAREN RPAREN Block  */
-#line 49 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 54 "/cygdrive/d/Projects/Compiler/src/parser.y"
         {
-            auto type = unique_ptr<string>((yyvsp[-4].str_val));
-            auto ident = unique_ptr<string>((yyvsp[-3].str_val));
-            auto block = unique_ptr<string>((yyvsp[0].str_val));
-            (yyval.str_val) = new string(*type + " " + *ident + "()" + *block);
+            auto ast = new ast::FuncDefAST();
+            ast->func_type = unique_ptr<ast::BaseAST>((yyvsp[-4].ast_val));
+            ast->ident = *unique_ptr<std::string>((yyvsp[-3].str_val));
+            ast->block = unique_ptr<ast::BaseAST>((yyvsp[0].ast_val));
+            (yyval.ast_val) = ast;
         }
-#line 1132 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
+#line 1136 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
             break;
 
         case 4: /* FuncType: INT  */
-#line 58 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 64 "/cygdrive/d/Projects/Compiler/src/parser.y"
         {
-            (yyval.str_val) = new string("int");
+            auto ast = new ast::FuncTypeAST();
+            ast->type = *unique_ptr<std::string>((yyvsp[0].str_val));
+            (yyval.ast_val) = ast;
         }
-#line 1140 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
+#line 1146 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
             break;
 
         case 5: /* Block: LBRACE Stmt RBRACE  */
-#line 64 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 72 "/cygdrive/d/Projects/Compiler/src/parser.y"
         {
-            auto stmt = unique_ptr<string>((yyvsp[-1].str_val));
-            (yyval.str_val) = new string("{ " + *stmt + " }");
+            auto ast = new ast::BlockAST();
+            ast->stmt = unique_ptr<ast::BaseAST>((yyvsp[-1].ast_val));
+            (yyval.ast_val) = ast;
         }
-#line 1149 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
+#line 1156 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
             break;
 
         case 6: /* Stmt: RETURN Number SEMI  */
-#line 71 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 80 "/cygdrive/d/Projects/Compiler/src/parser.y"
         {
-            auto number = unique_ptr<string>((yyvsp[-1].str_val));
-            (yyval.str_val) = new string("return " + *number + ";");
-        }
-#line 1158 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
-            break;
-
-        case 7: /* Number: INT_CONST  */
-#line 78 "/cygdrive/d/Projects/Compiler/src/parser.y"
-        {
-            (yyval.str_val) = new string(to_string((yyvsp[0].int_val)));
+            auto ast = new ast::StmtAST();
+            ast->number = unique_ptr<ast::BaseAST>((yyvsp[-1].ast_val));
+            (yyval.ast_val) = ast;
         }
 #line 1166 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
             break;
 
+        case 7: /* Number: INT_CONST  */
+#line 88 "/cygdrive/d/Projects/Compiler/src/parser.y"
+        {
+            auto ast = new ast::NumberAST();
+            ast->value = int((yyvsp[0].int_val));
+            (yyval.ast_val) = ast;
+        }
+#line 1176 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
+            break;
 
-#line 1170 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
+
+#line 1180 "/cygdrive/d/Projects/Compiler/src/parser.cpp"
 
         default:
             break;
@@ -1334,11 +1341,11 @@ yyparse(std::unique_ptr<std::string> &ast) {
     return yyresult;
 }
 
-#line 83 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 95 "/cygdrive/d/Projects/Compiler/src/parser.y"
 
 
 // Error handling func
-void yyerror(unique_ptr<string> &ast, const char *s) {
+void yyerror(unique_ptr<ast::BaseAST> &ast, const char *s) {
     cerr << "error: " << s << " at line: " << yyget_lineno() << endl;
     yylex_destroy();
     exit(1);

@@ -5,24 +5,26 @@
 #include <cassert>
 #include <iostream>
 #include <memory>
+#include "ast.h"
 
 using namespace std;
 
 extern FILE *yyin;
 
-extern int yyparse(unique_ptr<string> &ast);
+extern int yyparse(unique_ptr<ast::BaseAST> &ast);
 
 int main(int argc, const char *argv[]) {
-  assert(argc == 2);
-  auto input = argv[1];
+    assert(argc == 2);
+    auto input = argv[1];
 
-  yyin = fopen(input, "r");
-  assert(yyin);
+    yyin = fopen(input, "r");
+    assert(yyin);
 
-  unique_ptr<string> ast;
-  auto ret = yyparse(ast);
-  assert(!ret);
-  cout << *ast << endl;
+    unique_ptr<ast::BaseAST> ast;
+    auto ret = yyparse(ast);
+    assert(!ret);
+    ast->Dump();
+    cout << endl;
 
-  return 0;
+    return 0;
 }

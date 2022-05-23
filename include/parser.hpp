@@ -49,8 +49,9 @@ extern int yydebug;
 
 #include <memory>
 #include <string>
+#include "ast.h"
 
-#line 54 "/cygdrive/d/Projects/Compiler/src/parser.hpp"
+#line 55 "/cygdrive/d/Projects/Compiler/src/parser.hpp"
 
 /* Token kinds.  */
 #ifndef YYTOKENTYPE
@@ -60,41 +61,41 @@ enum yytokentype {
     YYEOF = 0,                     /* "end of file"  */
     YYerror = 256,                 /* error  */
     YYUNDEF = 257,                 /* "invalid token"  */
-    INT = 258,                     /* INT  */
-    VOID = 259,                    /* VOID  */
-    CONST = 260,                   /* CONST  */
-    BREAK = 261,                   /* BREAK  */
-    CONTINUE = 262,                /* CONTINUE  */
-    IF = 263,                      /* IF  */
-    ELSE = 264,                    /* ELSE  */
-    RETURN = 265,                  /* RETURN  */
-    WHILE = 266,                   /* WHILE  */
-    ADD = 267,                     /* ADD  */
-    SUB = 268,                     /* SUB  */
-    MUL = 269,                     /* MUL  */
-    DIV = 270,                     /* DIV  */
-    MOD = 271,                     /* MOD  */
-    ASSIGN = 272,                  /* ASSIGN  */
-    EQ = 273,                      /* EQ  */
-    NE = 274,                      /* NE  */
-    LT = 275,                      /* LT  */
-    GT = 276,                      /* GT  */
-    LE = 277,                      /* LE  */
-    GE = 278,                      /* GE  */
-    NOT = 279,                     /* NOT  */
-    AND = 280,                     /* AND  */
-    OR = 281,                      /* OR  */
-    LBRACK = 282,                  /* LBRACK  */
-    RBRACK = 283,                  /* RBRACK  */
-    LPAREN = 284,                  /* LPAREN  */
-    RPAREN = 285,                  /* RPAREN  */
-    LBRACE = 286,                  /* LBRACE  */
-    RBRACE = 287,                  /* RBRACE  */
-    COMMA = 288,                   /* COMMA  */
-    SEMI = 289,                    /* SEMI  */
-    DOT = 290,                     /* DOT  */
-    REFER = 291,                   /* REFER  */
-    IDENT = 292,                   /* IDENT  */
+    VOID = 258,                    /* VOID  */
+    CONST = 259,                   /* CONST  */
+    BREAK = 260,                   /* BREAK  */
+    CONTINUE = 261,                /* CONTINUE  */
+    IF = 262,                      /* IF  */
+    ELSE = 263,                    /* ELSE  */
+    RETURN = 264,                  /* RETURN  */
+    WHILE = 265,                   /* WHILE  */
+    ADD = 266,                     /* ADD  */
+    SUB = 267,                     /* SUB  */
+    MUL = 268,                     /* MUL  */
+    DIV = 269,                     /* DIV  */
+    MOD = 270,                     /* MOD  */
+    ASSIGN = 271,                  /* ASSIGN  */
+    EQ = 272,                      /* EQ  */
+    NE = 273,                      /* NE  */
+    LT = 274,                      /* LT  */
+    GT = 275,                      /* GT  */
+    LE = 276,                      /* LE  */
+    GE = 277,                      /* GE  */
+    NOT = 278,                     /* NOT  */
+    AND = 279,                     /* AND  */
+    OR = 280,                      /* OR  */
+    LBRACK = 281,                  /* LBRACK  */
+    RBRACK = 282,                  /* RBRACK  */
+    LPAREN = 283,                  /* LPAREN  */
+    RPAREN = 284,                  /* RPAREN  */
+    LBRACE = 285,                  /* LBRACE  */
+    RBRACE = 286,                  /* RBRACE  */
+    COMMA = 287,                   /* COMMA  */
+    SEMI = 288,                    /* SEMI  */
+    DOT = 289,                     /* DOT  */
+    REFER = 290,                   /* REFER  */
+    IDENT = 291,                   /* IDENT  */
+    INT = 292,                     /* INT  */
     INT_CONST = 293                /* INT_CONST  */
 };
 typedef enum yytokentype yytoken_kind_t;
@@ -103,12 +104,13 @@ typedef enum yytokentype yytoken_kind_t;
 /* Value type.  */
 #if !defined YYSTYPE && !defined YYSTYPE_IS_DECLARED
 union YYSTYPE {
-#line 25 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 27 "/cygdrive/d/Projects/Compiler/src/parser.y"
 
     std::string *str_val;
     int int_val;
+    ast::BaseAST *ast_val;
 
-#line 114 "/cygdrive/d/Projects/Compiler/src/parser.hpp"
+#line 116 "/cygdrive/d/Projects/Compiler/src/parser.hpp"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -120,7 +122,7 @@ typedef union YYSTYPE YYSTYPE;
 extern YYSTYPE yylval;
 
 
-int yyparse(std::unique_ptr<std::string> &ast);
+int yyparse(std::unique_ptr<ast::BaseAST> &ast);
 
 
 #endif /* !YY_YY_CYGDRIVE_D_PROJECTS_COMPILER_SRC_PARSER_HPP_INCLUDED  */
