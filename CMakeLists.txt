@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(ENTRY_POINT ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
+set(AST_FILE ${CMAKE_CURRENT_SOURCE_DIR}/src/ast.cpp)
 
 set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
@@ -30,4 +31,4 @@ add_custom_command(
 
 include_directories(${INCLUDE_DIR})
 
-add_executable(Compiler ${BISON_OUTPUT} ${FLEX_OUTPUT} ${ENTRY_POINT})
+add_executable(Compiler ${BISON_OUTPUT} ${FLEX_OUTPUT} ${AST_FILE} ${ENTRY_POINT})
