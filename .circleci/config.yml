@@ -18,9 +18,9 @@ jobs:
           # https://fossies.org/linux/ldc/.circleci/config.yml
           name: Install prerequisites
           command: |
-            apt-get -q update
+            sudo apt-get -q update
             # https://github.com/ninja-build/ninja/wiki/Pre-built-Ninja-packages
-            apt-get -yq install gcc g++ cmake ninja-build flex bison
+            sudo apt-get -q --allow install gcc g++ cmake ninja-build flex bison
       - checkout
       - run: g++ --version
       - run: cmake --version
