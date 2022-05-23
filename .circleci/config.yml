@@ -33,7 +33,7 @@ jobs:
       - run:
           name: Test
           command: |
-            python3 ./test/test_parser_linux.py
+            sudo python3 ./test/test_parser_linux.py
 
 
 # Invoke jobs via workflows
