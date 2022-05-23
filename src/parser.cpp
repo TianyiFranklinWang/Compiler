@@ -113,41 +113,41 @@ enum yysymbol_kind_t {
     YYSYMBOL_YYEOF = 0,                      /* "end of file"  */
     YYSYMBOL_YYerror = 1,                    /* error  */
     YYSYMBOL_YYUNDEF = 2,                    /* "invalid token"  */
-    YYSYMBOL_VOID = 3,                       /* VOID  */
-    YYSYMBOL_CONST = 4,                      /* CONST  */
-    YYSYMBOL_BREAK = 5,                      /* BREAK  */
-    YYSYMBOL_CONTINUE = 6,                   /* CONTINUE  */
-    YYSYMBOL_IF = 7,                         /* IF  */
-    YYSYMBOL_ELSE = 8,                       /* ELSE  */
-    YYSYMBOL_RETURN = 9,                     /* RETURN  */
-    YYSYMBOL_WHILE = 10,                     /* WHILE  */
-    YYSYMBOL_ADD = 11,                       /* ADD  */
-    YYSYMBOL_SUB = 12,                       /* SUB  */
-    YYSYMBOL_MUL = 13,                       /* MUL  */
-    YYSYMBOL_DIV = 14,                       /* DIV  */
-    YYSYMBOL_MOD = 15,                       /* MOD  */
-    YYSYMBOL_ASSIGN = 16,                    /* ASSIGN  */
-    YYSYMBOL_EQ = 17,                        /* EQ  */
-    YYSYMBOL_NE = 18,                        /* NE  */
-    YYSYMBOL_LT = 19,                        /* LT  */
-    YYSYMBOL_GT = 20,                        /* GT  */
-    YYSYMBOL_LE = 21,                        /* LE  */
-    YYSYMBOL_GE = 22,                        /* GE  */
-    YYSYMBOL_NOT = 23,                       /* NOT  */
-    YYSYMBOL_AND = 24,                       /* AND  */
-    YYSYMBOL_OR = 25,                        /* OR  */
-    YYSYMBOL_LBRACK = 26,                    /* LBRACK  */
-    YYSYMBOL_RBRACK = 27,                    /* RBRACK  */
-    YYSYMBOL_LPAREN = 28,                    /* LPAREN  */
-    YYSYMBOL_RPAREN = 29,                    /* RPAREN  */
-    YYSYMBOL_LBRACE = 30,                    /* LBRACE  */
-    YYSYMBOL_RBRACE = 31,                    /* RBRACE  */
-    YYSYMBOL_COMMA = 32,                     /* COMMA  */
-    YYSYMBOL_SEMI = 33,                      /* SEMI  */
-    YYSYMBOL_DOT = 34,                       /* DOT  */
-    YYSYMBOL_REFER = 35,                     /* REFER  */
-    YYSYMBOL_IDENT = 36,                     /* IDENT  */
-    YYSYMBOL_INT = 37,                       /* INT  */
+    YYSYMBOL_INT = 3,                        /* INT  */
+    YYSYMBOL_VOID = 4,                       /* VOID  */
+    YYSYMBOL_CONST = 5,                      /* CONST  */
+    YYSYMBOL_BREAK = 6,                      /* BREAK  */
+    YYSYMBOL_CONTINUE = 7,                   /* CONTINUE  */
+    YYSYMBOL_IF = 8,                         /* IF  */
+    YYSYMBOL_ELSE = 9,                       /* ELSE  */
+    YYSYMBOL_RETURN = 10,                    /* RETURN  */
+    YYSYMBOL_WHILE = 11,                     /* WHILE  */
+    YYSYMBOL_ADD = 12,                       /* ADD  */
+    YYSYMBOL_SUB = 13,                       /* SUB  */
+    YYSYMBOL_MUL = 14,                       /* MUL  */
+    YYSYMBOL_DIV = 15,                       /* DIV  */
+    YYSYMBOL_MOD = 16,                       /* MOD  */
+    YYSYMBOL_ASSIGN = 17,                    /* ASSIGN  */
+    YYSYMBOL_EQ = 18,                        /* EQ  */
+    YYSYMBOL_NE = 19,                        /* NE  */
+    YYSYMBOL_LT = 20,                        /* LT  */
+    YYSYMBOL_GT = 21,                        /* GT  */
+    YYSYMBOL_LE = 22,                        /* LE  */
+    YYSYMBOL_GE = 23,                        /* GE  */
+    YYSYMBOL_NOT = 24,                       /* NOT  */
+    YYSYMBOL_AND = 25,                       /* AND  */
+    YYSYMBOL_OR = 26,                        /* OR  */
+    YYSYMBOL_LBRACK = 27,                    /* LBRACK  */
+    YYSYMBOL_RBRACK = 28,                    /* RBRACK  */
+    YYSYMBOL_LPAREN = 29,                    /* LPAREN  */
+    YYSYMBOL_RPAREN = 30,                    /* RPAREN  */
+    YYSYMBOL_LBRACE = 31,                    /* LBRACE  */
+    YYSYMBOL_RBRACE = 32,                    /* RBRACE  */
+    YYSYMBOL_COMMA = 33,                     /* COMMA  */
+    YYSYMBOL_SEMI = 34,                      /* SEMI  */
+    YYSYMBOL_DOT = 35,                       /* DOT  */
+    YYSYMBOL_REFER = 36,                     /* REFER  */
+    YYSYMBOL_IDENT = 37,                     /* IDENT  */
     YYSYMBOL_INT_CONST = 38,                 /* INT_CONST  */
     YYSYMBOL_YYACCEPT = 39,                  /* $accept  */
     YYSYMBOL_CompUnit = 40,                  /* CompUnit  */
@@ -558,11 +558,11 @@ static const char *yysymbol_name (yysymbol_kind_t yysymbol) YY_ATTRIBUTE_UNUSED;
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
 {
-  "\"end of file\"", "error", "\"invalid token\"", "VOID", "CONST",
+  "\"end of file\"", "error", "\"invalid token\"", "INT", "VOID", "CONST",
   "BREAK", "CONTINUE", "IF", "ELSE", "RETURN", "WHILE", "ADD", "SUB",
   "MUL", "DIV", "MOD", "ASSIGN", "EQ", "NE", "LT", "GT", "LE", "GE", "NOT",
   "AND", "OR", "LBRACK", "RBRACK", "LPAREN", "RPAREN", "LBRACE", "RBRACE",
-  "COMMA", "SEMI", "DOT", "REFER", "IDENT", "INT", "INT_CONST", "$accept",
+  "COMMA", "SEMI", "DOT", "REFER", "IDENT", "INT_CONST", "$accept",
   "CompUnit", "FuncDef", "FuncType", "Block", "Stmt", "Number", YY_NULLPTR
 };
 
@@ -573,7 +573,7 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 }
 #endif
 
-#define YYPACT_NINF (-38)
+#define YYPACT_NINF (-36)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -587,8 +587,8 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
         {
-                -37, -38, 1, -38, -34, -38, -25, -24, -26, -3,
-                -38, -31, -23, -38, -22, -38, -38
+                -3, -36, 1, -36, -35, -36, -26, -25, -27, -4,
+                -36, -31, -24, -36, -23, -36, -36
         };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -603,7 +603,7 @@ static const yytype_int8 yydefact[] =
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
         {
-                -38, -38, -38, -38, -38, -38, -38
+                -36, -36, -36, -36, -36, -36, -36
         };
 
 /* YYDEFGOTO[NTERM-NUM].  */
@@ -623,16 +623,16 @@ static const yytype_int8 yytable[] =
 
 static const yytype_int8 yycheck[] =
         {
-                37, 0, 36, 28, 30, 29, 9, 38, 31, -1,
-                -1, 33
+                3, 0, 37, 29, 31, 30, 10, 38, 32, -1,
+                -1, 34
         };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
    state STATE-NUM.  */
 static const yytype_int8 yystos[] =
         {
-                0, 37, 40, 41, 42, 0, 36, 28, 29, 30,
-                43, 9, 44, 38, 45, 31, 33
+                0, 3, 40, 41, 42, 0, 37, 29, 30, 31,
+                43, 10, 44, 38, 45, 32, 34
         };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
@@ -1120,7 +1120,7 @@ yyparse(std::unique_ptr<ast::BaseAST> &ast) {
 #line 64 "/cygdrive/d/Projects/Compiler/src/parser.y"
         {
             auto ast = new ast::FuncTypeAST();
-            ast->type = *unique_ptr<std::string>((yyvsp[0].str_val));
+            ast->type = "int";
             (yyval.ast_val) = ast;
         }
 #line 1146 "/cygdrive/d/Projects/Compiler/src/parser.cpp"

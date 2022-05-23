@@ -30,12 +30,12 @@ using namespace std;
     ast::BaseAST *ast_val;
 }
 
-%token VOID CONST BREAK CONTINUE IF ELSE RETURN WHILE
+%token INT VOID CONST BREAK CONTINUE IF ELSE RETURN WHILE
 %token ADD SUB MUL DIV MOD
 %token ASSIGN
 %token EQ NE LT GT LE GE NOT AND OR
 %token LBRACK RBRACK LPAREN RPAREN LBRACE RBRACE COMMA SEMI DOT REFER
-%token <str_val> IDENT INT
+%token <str_val> IDENT
 %token <int_val> INT_CONST
 
 %type <ast_val> FuncDef FuncType Block Stmt Number
@@ -63,7 +63,7 @@ FuncDef
 FuncType
     : INT {
         auto ast = new ast::FuncTypeAST();
-        ast -> type = *unique_ptr<std::string>($1);
+        ast -> type = "int";
         $$ = ast;
     }
     ;
