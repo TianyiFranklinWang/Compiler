@@ -20,7 +20,7 @@ jobs:
           command: |
             sudo apt-get -q update
             # https://github.com/ninja-build/ninja/wiki/Pre-built-Ninja-packages
-            sudo apt-get -q --allow install gcc g++ cmake ninja-build flex bison
+            sudo apt-get -q --allow-change-held-packages install gcc g++ cmake ninja-build flex bison
       - checkout
       - run: g++ --version
       - run: cmake --version
