@@ -24,6 +24,7 @@ jobs:
       - checkout
       - run: g++ --version
       - run: cmake --version
+      - run: uname -m
       - run:
           name: Build
           command: |
