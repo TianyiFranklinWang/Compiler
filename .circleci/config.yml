@@ -33,6 +33,7 @@ jobs:
       - run:
           name: Test
           command: |
+            sudo ls -al /root/project/cmake-build-debug
             sudo python3 ./test/test_parser_linux.py
 
 
