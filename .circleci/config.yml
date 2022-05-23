@@ -8,8 +8,9 @@ jobs:
   build_test:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: rikorose/gcc-cmake:latest
+    machine:
+      image: ubuntu-2004:current
+    resource_class: arm.medium
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
@@ -17,12 +18,13 @@ jobs:
           # https://fossies.org/linux/ldc/.circleci/config.yml
           name: Install prerequisites
           command: |
-            apt-get -q update
+            sudo apt-get -q update
             # https://github.com/ninja-build/ninja/wiki/Pre-built-Ninja-packages
-            apt-get -yq install ninja-build flex bison
+            sudo apt-get -q --allow-change-held-packages install gcc g++ cmake ninja-build flex bison
       - checkout
       - run: g++ --version
       - run: cmake --version
+      - run: uname -m
       - run:
           name: Build
           command: |
