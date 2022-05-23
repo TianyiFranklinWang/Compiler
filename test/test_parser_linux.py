@@ -1,7 +1,7 @@
 import subprocess
 
-TEST_SAMPLE_ABS = "/root/project/test/test_sample/000_main.sy"
-ELF_DIR_ABS = "/root/project/cmake-build-debug/Compiler"
+TEST_SAMPLE_ABS = "/home/circleci/project/test/test_sample/000_main.sy"
+ELF_DIR_ABS = "/home/circleci/project/cmake-build-debug"
 
 if __name__ == "__main__":
     print(f"Running on sample 000_main.sy...")
