@@ -1,24 +1,23 @@
 cmake_minimum_required(VERSION 3.16)
-project(Compiler VERSION 0.1 LANGUAGES CXX)
+project(Compiler VERSION 1.0 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-set(ENTRY_POINT ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
-set(AST_FILE ${CMAKE_CURRENT_SOURCE_DIR}/src/ast.cpp)
+set(ENTRY_POINT ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
 
-set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
+set(FRONT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 set(BISON_INPUT ${CMAKE_CURRENT_SOURCE_DIR}/src/parser.y)
-set(BISON_OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/src/parser.cpp)
-set(BISON_OUTPUT_HEAD ${CMAKE_CURRENT_SOURCE_DIR}/src/parser.hpp)
-set(BISON_OUTPUT_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/include/parser.hpp)
+set(BISON_OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/src/parser.tab.cpp)
+set(BISON_OUTPUT_HEAD ${CMAKE_CURRENT_SOURCE_DIR}/src/parser.tab.hpp)
+set(BISON_OUTPUT_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/include/parser.tab.hpp)
 
-set(FLEX_INPUT ${CMAKE_CURRENT_SOURCE_DIR}/src/scanner.l)
-set(FLEX_OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/src/scanner.cpp)
+set(FLEX_INPUT ${CMAKE_CURRENT_SOURCE_DIR}/src/lex.l)
+set(FLEX_OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/src/lex.yy.cpp)
 
 add_custom_command(
-        OUTPUT ${BISON_OUTPUT} ${BISON_OUTPUT_INCLUDE}
+        OUTPUT ${BISON_OUTPUT} ${BISON_OUTPUT_HEAD}
         COMMAND bison -d -o ${BISON_OUTPUT} ${BISON_INPUT} && mv ${BISON_OUTPUT_HEAD} ${BISON_OUTPUT_INCLUDE}
         DEPENDS ${BISON_INPUT}
 )
@@ -29,6 +28,9 @@ add_custom_command(
         DEPENDS ${FLEX_INPUT}
 )
 
-include_directories(${INCLUDE_DIR})
+file(GLOB_RECURSE SOURCE_LIST "src/*.cpp")
+message(STATUS "SOURCE_LIST = ${SOURCE_LIST}")
 
-add_executable(Compiler ${BISON_OUTPUT} ${FLEX_OUTPUT} ${AST_FILE} ${ENTRY_POINT})
+include_directories(${FRONT_DIR} ${BACK_DIR})
+
+add_executable(Compiler ${ENTRY_POINT} ${SOURCE_LIST} ${BISON_OUTPUT} ${FLEX_OUTPUT})

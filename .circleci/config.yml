@@ -9,8 +9,7 @@ jobs:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     machine:
-      image: ubuntu-2004:current
-    resource_class: arm.medium
+      image: ubuntu-2004:202010-01
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
@@ -28,13 +27,8 @@ jobs:
       - run:
           name: Build
           command: |
-            cmake -G Ninja -S . -B ./cmake-build-debug
-            cmake --build ./cmake-build-debug --target Compiler -j$(nproc)
-      - run:
-          name: Test
-          command: |
-            sudo python3 ./test/test_parser_linux.py
-
+            cmake -D CMAKE_BUILD_TYPE=Release -G Ninja -S . -B ./cmake-build-release
+            cmake --build ./cmake-build-release --target Compiler -j$(nproc)
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
