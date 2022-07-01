@@ -77,7 +77,7 @@ typedef enum yytokentype yytoken_kind_t;
 /* Value type.  */
 #if !defined YYSTYPE && !defined YYSTYPE_IS_DECLARED
 union YYSTYPE {
-#line 53 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 15 "/cygdrive/d/Projects/Compiler/src/parser.y"
 
     TKptr tkptr;
     ASTptr astptr;

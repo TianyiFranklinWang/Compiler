@@ -512,7 +512,6 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "/cygdrive/d/Projects/Compiler/src/lex.l"
 #line 2 "/cygdrive/d/Projects/Compiler/src/lex.l"
-// #define DEBUG_LEXER_L_DR_
 #define UPDATE_LINEPOS_ {tokenpos += yyleng; tokenwidth = yyleng;}
 
 #include <sstream>
@@ -526,19 +525,12 @@ static int Convert2int(const char *);
 
 static int Countlines();
 
-
-#ifdef DEBUG_LEXER_L_DR_
-static void Testandprint(const char *);
-YYSTYPE yylval;
-#endif
-
-
-#line 521 "/cygdrive/d/Projects/Compiler/src/lex.yy.cpp"
-/*** Regular Definitions ***/
+#line 512 "/cygdrive/d/Projects/Compiler/src/lex.yy.cpp"
+/* Element Definitions */
 /* Identifier */
 /* Integer Constant */
-/* Line Comment & Block Comment */
-#line 526 "/cygdrive/d/Projects/Compiler/src/lex.yy.cpp"
+/* Comment */
+#line 517 "/cygdrive/d/Projects/Compiler/src/lex.yy.cpp"
 
 #define INITIAL 0
 
@@ -616,7 +608,6 @@ static int yy_flex_strlen ( const char * );
 #ifdef __cplusplus
 
 static int yyinput(void);
-
 #else
 static int input ( void );
 #endif
@@ -756,10 +747,10 @@ YY_DECL {
     }
 
     {
-#line 49 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 40 "/cygdrive/d/Projects/Compiler/src/lex.l"
 
 
-#line 746 "/cygdrive/d/Projects/Compiler/src/lex.yy.cpp"
+#line 737 "/cygdrive/d/Projects/Compiler/src/lex.yy.cpp"
 
         while ( /*CONSTCOND*/1)        /* loops until end-of-file is reached */
         {
@@ -813,7 +804,7 @@ YY_DECL {
                 case 1:
 /* rule 1 can match eol */
                     YY_RULE_SETUP
-#line 51 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 42 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     lineno += 1;
                     tokenpos = 1;
@@ -821,14 +812,14 @@ YY_DECL {
                     YY_BREAK
                 case 2:
                     YY_RULE_SETUP
-#line 52 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 43 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                 }
                     YY_BREAK
                 case 3:
                     YY_RULE_SETUP
-#line 53 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 44 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                     yylval.tkptr = new Token(*yytext);
@@ -837,7 +828,7 @@ YY_DECL {
                     YY_BREAK
                 case 4:
                     YY_RULE_SETUP
-#line 58 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 49 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                     yylval.tkptr = new Token(*yytext);
@@ -846,7 +837,7 @@ YY_DECL {
                     YY_BREAK
                 case 5:
                     YY_RULE_SETUP
-#line 63 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 54 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                     yylval.tkptr = new Token(CONST);
@@ -855,7 +846,7 @@ YY_DECL {
                     YY_BREAK
                 case 6:
                     YY_RULE_SETUP
-#line 68 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 59 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                     yylval.tkptr = new Token(INT);
@@ -864,7 +855,7 @@ YY_DECL {
                     YY_BREAK
                 case 7:
                     YY_RULE_SETUP
-#line 73 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 64 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                     yylval.tkptr = new Token(VOID);
@@ -873,7 +864,7 @@ YY_DECL {
                     YY_BREAK
                 case 8:
                     YY_RULE_SETUP
-#line 78 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 69 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                     yylval.tkptr = new Token(IF);
@@ -882,7 +873,7 @@ YY_DECL {
                     YY_BREAK
                 case 9:
                     YY_RULE_SETUP
-#line 83 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 74 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                     yylval.tkptr = new Token(ELSE);
@@ -891,7 +882,7 @@ YY_DECL {
                     YY_BREAK
                 case 10:
                     YY_RULE_SETUP
-#line 88 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 79 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                     yylval.tkptr = new Token(WHILE);
@@ -900,7 +891,7 @@ YY_DECL {
                     YY_BREAK
                 case 11:
                     YY_RULE_SETUP
-#line 93 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 84 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                     yylval.tkptr = new Token(BREAK);
@@ -909,7 +900,7 @@ YY_DECL {
                     YY_BREAK
                 case 12:
                     YY_RULE_SETUP
-#line 98 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 89 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                     yylval.tkptr = new Token(CONTINUE);
@@ -918,7 +909,7 @@ YY_DECL {
                     YY_BREAK
                 case 13:
                     YY_RULE_SETUP
-#line 103 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 94 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                     yylval.tkptr = new Token(RETURN);
@@ -927,7 +918,7 @@ YY_DECL {
                     YY_BREAK
                 case 14:
                     YY_RULE_SETUP
-#line 108 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 99 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                     yylval.tkptr = new Token(LE);
@@ -936,7 +927,7 @@ YY_DECL {
                     YY_BREAK
                 case 15:
                     YY_RULE_SETUP
-#line 113 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 104 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                     yylval.tkptr = new Token(GE);
@@ -945,7 +936,7 @@ YY_DECL {
                     YY_BREAK
                 case 16:
                     YY_RULE_SETUP
-#line 118 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 109 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                     yylval.tkptr = new Token(EQ);
@@ -954,7 +945,7 @@ YY_DECL {
                     YY_BREAK
                 case 17:
                     YY_RULE_SETUP
-#line 123 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 114 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                     yylval.tkptr = new Token(NE);
@@ -963,7 +954,7 @@ YY_DECL {
                     YY_BREAK
                 case 18:
                     YY_RULE_SETUP
-#line 128 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 119 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                     yylval.tkptr = new Token(AND);
@@ -972,7 +963,7 @@ YY_DECL {
                     YY_BREAK
                 case 19:
                     YY_RULE_SETUP
-#line 133 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 124 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                     yylval.tkptr = new Token(OR);
@@ -981,7 +972,7 @@ YY_DECL {
                     YY_BREAK
                 case 20:
                     YY_RULE_SETUP
-#line 138 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 129 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                     if (yyleng > MAXIDENTLENGTH) {
@@ -996,7 +987,7 @@ YY_DECL {
                     YY_BREAK
                 case 21:
                     YY_RULE_SETUP
-#line 149 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 140 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                     yylval.tkptr = new Token(Convert2int(yytext), INT_CONST);
@@ -1005,7 +996,7 @@ YY_DECL {
                     YY_BREAK
                 case 22:
                     YY_RULE_SETUP
-#line 154 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 145 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                 }
@@ -1013,7 +1004,7 @@ YY_DECL {
                 case 23:
 /* rule 23 can match eol */
                     YY_RULE_SETUP
-#line 155 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 146 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     int lines = Countlines();
                     lineno += lines;
@@ -1022,7 +1013,7 @@ YY_DECL {
                     YY_BREAK
                 case 24:
                     YY_RULE_SETUP
-#line 160 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 151 "/cygdrive/d/Projects/Compiler/src/lex.l"
                 {
                     UPDATE_LINEPOS_
                     errptr = new BaseAST(lineno, tokenpos - tokenwidth, lineno, tokenpos);
@@ -1033,10 +1024,10 @@ YY_DECL {
                     YY_BREAK
                 case 25:
                     YY_RULE_SETUP
-#line 168 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 159 "/cygdrive/d/Projects/Compiler/src/lex.l"
                     ECHO;
                     YY_BREAK
-#line 1022 "/cygdrive/d/Projects/Compiler/src/lex.yy.cpp"
+#line 1013 "/cygdrive/d/Projects/Compiler/src/lex.yy.cpp"
                 case YY_STATE_EOF(INITIAL):
                     yyterminate();
 
@@ -1968,12 +1959,12 @@ void yyfree(void *ptr) {
 
 #define YYTABLES_NAME "yytables"
 
-#line 168 "/cygdrive/d/Projects/Compiler/src/lex.l"
+#line 159 "/cygdrive/d/Projects/Compiler/src/lex.l"
 
 
-/*** Auxiliary Functions ***/
+/* Support Funcs */
 
-// Count the lines within a block comment
+/* Count the lines within a block comment */
 int Countlines() {
     int lines = 0;
     yyleng = 0;
@@ -1981,13 +1972,14 @@ int Countlines() {
         if (*yytext == '\n') {
             lines += 1;
             yyleng = 0;
-        } else { yyleng += 1; }
+        }
+        else { yyleng += 1; }
         yytext++;
     }
     return lines;
 }
 
-// Convert a string to int. Base 8, 10, 16 are supported.
+/* Convert a string to int base 10 */
 int Convert2int(const char *yytext) {
     using std::stringstream;
     using std::hex;
@@ -2009,89 +2001,3 @@ int Convert2int(const char *yytext) {
     }
     return result & 0x7FFFFFFF;
 }
-
-#ifdef DEBUG_LEXER_L_DR_
-void Testandprint(const char *ptr){
-    using std::strcmp;
-    using std::fprintf;
-    if(yyleng != yylval.tkptr->end - yylval.tkptr->bgn || tokenpos != yylval.tkptr->end) fprintf(yyout, RED("ERROR!\n"));
-    if(!strcmp(ptr, "integer")) fprintf(yyout, "%d:%d: %s, %s = %d\n", lineno, tokenpos - tokenwidth, ptr, yytext, yylval.tkptr->val);
-    else if(!strcmp(ptr, "identifier")) fprintf(yyout, "%d:%d: %s, %s\n", lineno, tokenpos - tokenwidth, ptr, yylval.tkptr->name);
-    else fprintf(yyout, "%d:%d: %s, %s\n", lineno, tokenpos - tokenwidth, ptr, yytext);
-}
-#endif
-
-#ifdef DEBUG_LEXER_L_DR_
-// Debugging.
-// Print the result of lexer verbatim.
-void Debug(){
-    int token;
-    while(token = yylex()){
-        switch(token){
-            case IDENT:	Testandprint("identifier"); break;
-            case INT_CONST: Testandprint("integer"); break;
-            case CONST:
-            case INT:
-            case VOID:
-            case IF:
-            case ELSE:
-            case WHILE:
-            case BREAK:
-            case CONTINUE:
-            case RETURN: Testandprint("keyword"); break;
-            case '+':
-            case '-':
-            case '*':
-            case '/':
-            case '!':
-            case '%':
-            case '>':
-            case '<':
-            case GE:
-            case LE:
-            case EQ:
-            case NE:
-            case AND:
-            case OR: Testandprint("op"); break;
-            case ';':
-            case ',':
-            case '[':
-            case ']':
-            case '=':
-            case '{':
-            case '}':
-            case '(':
-            case ')': Testandprint("delimiter"); break;
-            default: Testandprint("error\n");
-        }
-        if(yylval.tkptr) delete yylval.tkptr;
-    }
-}
-#endif
-
-#ifdef DEBUG_LEXER_L_DR_
-int main(int argc, char *argv[]){
-    using std::string;
-    if(argc == 1) Reporterror(Error::Noinputfile);
-
-    FILE *file;
-    file = fopen(argv[1], "r");
-    if(!file){ /* open failed */
-        Reporterror(Error::Filenotfound, string(argv[1]));
-    }
-
-    yyin = file;
-    Filepreread(argv[1]);
-
-    if(argc > 2){
-        FILE *file;
-        file = fopen(argv[2], "w");
-        if(!file){ /* open failed */
-            Reporterror(Error::Filenotfound, string(argv[2]));
-        }
-        yyout = file;
-    }
-
-    Debug();
-}
-#endif

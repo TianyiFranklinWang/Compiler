@@ -1,38 +1,3 @@
-/*    I extend the SysY grammar in the following sense:
- *  1. Support ';' after declarations. No effect.
- */
-
-
-/*    The grammar production provided below is left with 1 shift/reduce 
- *  reduction intentionally, which always groups "else" to the nearest
- *  "then" if we always choose shift rather than reduce. This greatly
- *  alleviate the burden on us to assign SDD to it. Below we provide 
- *  a set of productions which is LR and is equivalent to the non-
- *  terminal Stmt in the grammar we implement.
- *
- * Stmt		:	OpenStmt
- * 			|	CloseStmt
- * 			;
- * OpenStmt	:	IF '(' Cond ')' Stmt
- * 			|	IF '(' Cond ')' CloseStmt ELSE OpenStmt
- * 			|	WHILE '(' Cond ')' OpenStmt
- * 			;
- * CloseStmt	:	IF '(' Cond ')' CloseStmt ELSE CloseStmt
- * 				|	WHILE '(' Cond ')' CloseStmt
- * 				|	SimpleStmt
- * 				;
- * SimpleStmt	:	';'
- * 				|	LVal '=' Exp ';'
- * 				|	Exp ';'
- * 				|	Block
- * 				|	BREAK ';'
- * 				|	CONTINUE ';'
- * 				|	RETURN ';'
- * 				|	RETURN Exp ';'
- * 				;
- */
-
-
 %{
 #include "ast.hpp"
 #include "error.hpp"
@@ -42,12 +7,9 @@
 #include <vector>
 #include <algorithm>
 
-// These are intricacies when putting lex and yacc together.
-// Just neglect these minor points, or nasty here.
 extern FILE *yyin, *yyout;
 int yylex(void);
 void yyerror(ASTptr *, const char *);
-
 %}
 
 %union{
@@ -70,7 +32,7 @@ void yyerror(ASTptr *, const char *);
 %type <astptr> Decl ConstDefArr ConstDecl VarDefArr VarDecl FuncFParams BlockItemArr ExpArr FuncRParams ConstArr
 %type <astptr> ConstInitValArr ConstInitVal InitValArr InitVal FuncDefHead BlockStart FuncDefproto WhileHead CompHead
 %%
-CompUnit	:	CompUnit Decl
+CompUnit    :	CompUnit Decl
 	{
 		/* CompUnit: BlockAST */
 		BlockAST *p = dynamic_cast<BlockAST *>($1);

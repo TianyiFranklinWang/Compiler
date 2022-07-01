@@ -1,5 +1,4 @@
 %{
-// #define DEBUG_LEXER_L_DR_
 #define UPDATE_LINEPOS_ {tokenpos += yyleng; tokenwidth = yyleng;}
 
 #include <sstream>
@@ -11,19 +10,11 @@
 
 static int Convert2int(const char *);
 static int Countlines();
-
-
-#ifdef DEBUG_LEXER_L_DR_
-static void Testandprint(const char *);
-YYSTYPE yylval;
-#endif
-
-
 %}
 
 %option noyywrap
 
-/*** Regular Definitions ***/
+/* Element Definitions */
 nondigit	[_a-zA-Z]
 decdigit	[0-9]
 hexdigit	[0-9a-fA-F]
@@ -42,7 +33,7 @@ hexadecimal	0[xX]{hexdigit}+
 octal		0{octdigit}*
 integer		({decimal}|{hexadecimal}|{octal})
 
-/* Line Comment & Block Comment */
+/* Comment */
 lcomment	\/\/.*
 bcomment	\/\*([^\*]|(\*)*[^\*/])*(\*)*\*\/
 
@@ -167,9 +158,9 @@ bcomment	\/\*([^\*]|(\*)*[^\*/])*(\*)*\*\/
 
 %%
 
-/*** Auxiliary Functions ***/
+/* Support Funcs */
 
-// Count the lines within a block comment
+/* Count the lines within a block comment */
 int Countlines(){
 	int lines = 0;
 	yyleng = 0;
@@ -181,7 +172,7 @@ int Countlines(){
 	return lines;
 }
 
-// Convert a string to int. Base 8, 10, 16 are supported.
+/* Convert a string to int base 10 */
 int Convert2int(const char *yytext){
 	using std::stringstream;
 	using std::hex;
@@ -203,89 +194,3 @@ int Convert2int(const char *yytext){
 	}
 	return result & 0x7FFFFFFF;
 }
-
-#ifdef DEBUG_LEXER_L_DR_
-void Testandprint(const char *ptr){
-	using std::strcmp;
-	using std::fprintf;
-	if(yyleng != yylval.tkptr->end - yylval.tkptr->bgn || tokenpos != yylval.tkptr->end) fprintf(yyout, RED("ERROR!\n"));
-	if(!strcmp(ptr, "integer")) fprintf(yyout, "%d:%d: %s, %s = %d\n", lineno, tokenpos - tokenwidth, ptr, yytext, yylval.tkptr->val);
-	else if(!strcmp(ptr, "identifier")) fprintf(yyout, "%d:%d: %s, %s\n", lineno, tokenpos - tokenwidth, ptr, yylval.tkptr->name);
-	else fprintf(yyout, "%d:%d: %s, %s\n", lineno, tokenpos - tokenwidth, ptr, yytext);
-}
-#endif
-
-#ifdef DEBUG_LEXER_L_DR_
-// Debugging.
-// Print the result of lexer verbatim.
-void Debug(){
-	int token;
-	while(token = yylex()){
-		switch(token){
-			case IDENT:	Testandprint("identifier"); break;
-			case INT_CONST: Testandprint("integer"); break;
-			case CONST:
-			case INT:
-			case VOID:
-			case IF:
-			case ELSE:
-			case WHILE:
-			case BREAK:
-			case CONTINUE:
-			case RETURN: Testandprint("keyword"); break;
-			case '+':
-			case '-':
-			case '*':
-			case '/':
-			case '!':
-			case '%':
-			case '>':
-			case '<':
-			case GE:
-			case LE:
-			case EQ:
-			case NE:
-			case AND:
-			case OR: Testandprint("op"); break;
-			case ';':
-			case ',':
-			case '[':
-			case ']':
-			case '=':
-			case '{':
-			case '}':
-			case '(':
-			case ')': Testandprint("delimiter"); break;
-			default: Testandprint("error\n");
-		}
-		if(yylval.tkptr) delete yylval.tkptr;
-	}
-}
-#endif
-
-#ifdef DEBUG_LEXER_L_DR_
-int main(int argc, char *argv[]){
-	using std::string;
-	if(argc == 1) Reporterror(Error::Noinputfile);
-	
-	FILE *file;
-	file = fopen(argv[1], "r");
-	if(!file){ /* open failed */
-		Reporterror(Error::Filenotfound, string(argv[1]));
-	}
-
-	yyin = file;
-	Filepreread(argv[1]);
-
-	if(argc > 2){
-		FILE *file;
-		file = fopen(argv[2], "w");
-		if(!file){ /* open failed */
-			Reporterror(Error::Filenotfound, string(argv[2]));
-		}
-		yyout = file;
-	}
-	
-	Debug();
-}
-#endif
