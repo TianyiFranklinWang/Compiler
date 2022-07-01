@@ -38,7 +38,6 @@ public:
 
     int Cval() { return cval; }
 
-    // Side Effect: On error, it modifies errptr
     bool Isanumber();
 
     ASTptr Lexp() { return lexp; }
@@ -49,10 +48,10 @@ public:
 
     void Generator();
 
-    bool isconst; // Does the tree stand for a const expression?
-    bool isevaled; // Has the node been evaled?
+    bool isconst;
+    bool isevaled;
     int op;
-    int cval; // Evaluation
+    int cval;
     ASTptr lexp, rexp;
 };
 
@@ -78,10 +77,10 @@ public:
 
     void Generator();
 
-    bool isconst; // Does the tree stand for a const expression?
-    bool isevaled; // Has the node been evaled?
-    int op; // Any sequence of + - and ! can be reduced to one that has no more than 3 unary ops
-    int cval; // Evaluation
+    bool isconst;
+    bool isevaled;
+    int op;
+    int cval;
     ASTptr exp;
 };
 
@@ -89,10 +88,9 @@ class FunCallAST : public BaseAST {
 public:
     FunCallAST(TKptr);
 
-    ~FunCallAST(); // Destroy all the real params
+    ~FunCallAST();
 
     // Check whether the param list match
-    // Side Effect: On error, it modifies errptr
     bool Checkparamlistsize();
 
     void Verifyfuncall();
