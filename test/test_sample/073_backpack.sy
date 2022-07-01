@@ -22,13 +22,13 @@ int KnapSack(int n, int w[], int v[], int x[], int C)
 				{
 					V[i][j] = tmp2;
 				}
-
+            	
 			}
     		j=j+1;
 		}
 		i=i+1;
 	}
-
+    
     j = C;
     i=n;
     while(i>=1)
@@ -40,9 +40,9 @@ int KnapSack(int n, int w[], int v[], int x[], int C)
         }
         else
         {
-
+		 
             x[i] = 0;
-        }
+        } 
         i=i-1;
 	}
     return V[n][C];

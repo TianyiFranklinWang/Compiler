@@ -9,7 +9,7 @@ int whileIf() {
       b = 25;
     }
     else if (a == 10) {
-      b = 42;
+      b = 42;  
     }
     else {
       b = a * 2;

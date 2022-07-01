@@ -1,11 +1,11 @@
 int fun(int m,int n){
-	int rem;
+	int rem;			
 	while(n > 0){
 		rem = m % n;
 		m = n;
 		n = rem;
 	}
-	return m;
+	return m;				
 }
 int main(){
 	int n,m;
@@ -15,5 +15,5 @@ int main(){
 	num=fun(m,n);
 	putint(num);
 
-	return 0;
+	return 0; 
 }

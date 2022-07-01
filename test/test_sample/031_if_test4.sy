@@ -5,9 +5,9 @@ int if_ifElse_() {
   int b;
   b = 10;
   if(a == 5){
-    if (b == 10)
+    if (b == 10) 
       a = 25;
-    else
+    else 
       a = a + 15;
   }
   return (a);

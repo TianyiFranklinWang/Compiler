@@ -54,7 +54,7 @@ int main()
     {
         x = c1[i];
         putint(x);
-
+       
         i=i+1;
     }
     x = 10;
@@ -64,7 +64,7 @@ int main()
     {
         x = c2[i];
         putint(x);
-
+       
         i=i+1;
     }
     x = 10;
