@@ -4,60 +4,57 @@
 #include "parser.tab.hpp"
 #include "optimee.hpp"
 #include "eerep.hpp"
-
 #include "gentg.hpp"
 #include "optimtg.hpp"
-
 
 #include <iostream>
 #include <fstream>
 #include <cstring>
 
-#define EEMODE 0
-#define TGMODE 1
-#define RVMODE 2
+enum class WorkingMode {
+    EEMODE = 0,
+    TGMODE = 1,
+    RVMODE = 2,
+};
+
 extern FILE *yyin, *yyout;
 
-static inline void Helper(const char *p) {
-    std::cerr << "usage: " << p << " -S [-e <INPUT> | -t <INPUT>] -o <OUTPUT>" << std::endl;
-}
+static inline void PrintHelpInfo(const char *p);
 
 int main(int argc, char *argv[]) {
-    using std::string;
-
     if (argc < 2) {
-        Helper(argv[0]);
+        PrintHelpInfo(argv[0]);
         exit(-1);
     }
 
-    // parsing command line parameters
-    int opt, mode;
+    // parse params
+    WorkingMode mode;
     char *infile = nullptr, *outfile = nullptr;
     for (int i = 1; i < argc; ++i) {
         if (!strcmp(argv[i], "-S")) {
             if (i == argc - 1) break;
             if (argv[i + 1][0] != '-') {
                 infile = argv[i + 1];
-                mode = RVMODE;
+                mode = WorkingMode::RVMODE;
             }
         } else if (!strcmp(argv[i], "-t")) {
             if (i == argc - 1) break;
             if (argv[i + 1][0] != '-') {
                 infile = argv[i + 1];
-                mode = TGMODE;
+                mode = WorkingMode::TGMODE;
             }
         } else if (!strcmp(argv[i], "-e")) {
             if (i == argc - 1) break;
             if (argv[i + 1][0] != '-') {
                 infile = argv[i + 1];
-                mode = EEMODE;
+                mode = WorkingMode::EEMODE;
             }
         } else if (!strcmp(argv[i], "-o")) {
             if (i == argc - 1) break;
             if (argv[i + 1][0] != '-')
                 outfile = argv[i + 1];
         } else if (!strcmp(argv[i], "-h")) {
-            Helper(argv[0]);
+            PrintHelpInfo(argv[0]);
             exit(-1);
         }
     }
@@ -67,52 +64,43 @@ int main(int argc, char *argv[]) {
 
     FILE *file;
     file = fopen(infile, "r");
-    if (!file) { /* open failed */
-        Reporterror(Error::Filenotfound, string(infile));
+    if (!file) {
+        Reporterror(Error::Filenotfound, std::string(infile));
     }
     yyin = file;
     Filepreread(infile);
 
-    // output file
     if (!outfile) Reporterror(Error::Nooutputfile);
 
     file = fopen(outfile, "w");
-    if (!file) { /* open failed */
-        Reporterror(Error::Filenotfound, string(outfile));
+    if (!file) {
+        Reporterror(Error::Filenotfound, std::string(outfile));
     }
     yyout = file;
     std::ofstream fout(outfile);
     std::streambuf *oldbuf = std::cout.rdbuf(fout.rdbuf());
 
-    // parser
+    // parse
     ASTptr root;
     yyparse(&root);
-
     if (!mainptr)
         Reporterror(Error::Nomain);
-
     Errornummessage();
-
-    // Debugsymtab(glbst);
-    // root->Debug(0);
-
-    // eeyore generator
+    // generate Eeyore ir
     Treatmain(root);
     TraverseAST(root);
-
-    // Naive Opt (EE-level)
+    // Optimization on Eeyore
     NaiveEEOpt();
-    // Eliminate redundant Basic Block (Eeyore-level)
+    // Eliminate redundant Basic Blocks
     RedundantBBEE();
-
-    if (mode == EEMODE)
+    if (mode == WorkingMode::EEMODE)
         DumpEE2file();
     else {
+        // generate Tiger ir
         TranslateEE2TG();
-
-        // Naive Opt (TG-level)
+        // Optimization on Tiger
         EliminateSTLDTG();
-        if (mode == TGMODE)
+        if (mode == WorkingMode::TGMODE)
             DumpTG2file();
         else
             DumpRV2file();
@@ -121,4 +109,8 @@ int main(int argc, char *argv[]) {
     // release resources
     std::cout.rdbuf(oldbuf);
     fout.close();
+}
+
+static inline void PrintHelpInfo(const char *p) {
+    std::cerr << "usage: " << p << " -S [-e <INPUT> | -t <INPUT>] -o <OUTPUT>" << std::endl;
 }
