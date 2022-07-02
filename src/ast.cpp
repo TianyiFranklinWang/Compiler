@@ -95,9 +95,9 @@ static int Dobinaryop(ASTptr lop, ASTptr rop, int op) {
         case NE:
             return a != b;
         case AND:
-            return a && b; // Note that evaluating const exp will not defy short circuit rule.
+            return a && b;
         case OR:
-            return a || b; // Note that evaluating const exp will not defy short circuit rule.
+            return a || b;
 #ifdef DEBUG_AST_CPP_DR_
         default:
             Reportexception(Exception::Unexpectedop, Tokentostring(op));
@@ -258,10 +258,6 @@ void BaseAST::Debug(int depth) {
     }
 }
 
-// BinaryAST
-// used to represent + - * / < > <= >= == != && ||
-
-// INT_CONST
 BinaryAST::BinaryAST(TKptr p) : BaseAST(p->lno, p->bgn, p->lno, p->end, ASTType::Binary), \
     isconst(true), cval(p->val), lexp(nullptr), rexp(nullptr), op(0), isevaled(false) {
 #ifdef DEBUG_AST_CPP_DR_
@@ -269,7 +265,6 @@ BinaryAST::BinaryAST(TKptr p) : BaseAST(p->lno, p->bgn, p->lno, p->end, ASTType:
 #endif
 };
 
-// Binary expression
 BinaryAST::BinaryAST(ASTptr lch, ASTptr rch, TKptr op) : BaseAST(lch->bgnlno, lch->bgnpos, rch->endlno, rch->endpos,
                                                                  ASTType::Binary), \
     isconst(false), cval(0), lexp(lch), rexp(rch), op(op->type), isevaled(false) {
@@ -323,9 +318,6 @@ bool BinaryAST::Isanumber() {
     if (rexp && !rexp->Isanumber()) return false;
     return true;
 }
-
-// UnaryAST
-// used to represent + - !
 
 UnaryAST::UnaryAST(ASTptr ch, TKptr op) : BaseAST(op->lno, op->bgn, ch->endlno, ch->endpos, ASTType::Unary), \
     isconst(false), cval(0), exp(ch), op(op->type), isevaled(false) {}
@@ -425,17 +417,13 @@ bool UnaryAST::Isanumber() {
     return true;
 }
 
-// FunCallAST
-
 FunCallAST::FunCallAST(TKptr p) : BaseAST(p->lno, p->bgn, p->lno, p->end, ASTType::Funcall) {
     SYMptr ptr = Lookupstring(p->strptr);
-    /* Declared? */
     if (!ptr) {
         errptr = this;
         Reporterror(Error::Identnotdeclared, *(p->strptr));
         errptr = nullptr;
     }
-    /* Erroreously call a varaible? */
     if (ptr->type == SYMType::Var) {
         errptr = this;
         ASTptr n = new BaseAST(ptr->lno, ptr->bgn, ptr->lno, ptr->end);
@@ -475,7 +463,6 @@ void FunCallAST::Verifyfuncall() {
         errptr = nullptr;
         return;
     }
-    // Empty parameter list!
     if (!rlen) return;
 
     const int size = rparams.size();
@@ -529,8 +516,6 @@ void FunCallAST::Verifyfuncall() {
     }
 }
 
-// LvalAST
-
 LvalAST::LvalAST(TKptr p, ASTptr q) : BaseAST(p->lno, p->bgn, q->endlno, q->endpos, ASTType::Lval), \
 isconst(false), cval(0), isleft(false), isevaled(false) {
     SYMptr ptr = Lookupstring(p->strptr);
@@ -552,7 +537,6 @@ isconst(false), cval(0), isleft(false), isevaled(false) {
     sym = ptr;
     indices = dynamic_cast<Vecptr>(q)->Getindices(); // Move constructor
 
-    /* Too many indices given? */
     if (Checkiftoomanyindices()) {
         errptr = q;
         ASTptr n = new BaseAST(ptr->lno, ptr->bgn, ptr->lno, ptr->end);
@@ -561,14 +545,11 @@ isconst(false), cval(0), isleft(false), isevaled(false) {
         errptr = nullptr;
     }
 
-    /* Valid Range? */
     if (Checknegindex()) {
-        // Side Effect
         Reporterror(Error::Arraynegindex, Encodemessage(errptr->Cval()));
         errptr = nullptr;
     }
     if (Checkbigindex()) {
-        // Side Effect
         Reporterror(Error::Arraybigindex, Encodemessage(errptr->Cval()));
         errptr = nullptr;
     }
@@ -627,7 +608,6 @@ void LvalAST::Eval() {
     std::vector<int> index;
     for (auto i: indices) {
         index.push_back(i->Cval());
-        // Is the index valid?
     }
 
     for (auto i: indices) delete i;
@@ -650,9 +630,6 @@ bool LvalAST::Isanumber() {
     return false;
 }
 
-// DeclAST
-// Record a declaration, either within a statement or a formal parameter table
-
 DeclAST::~DeclAST() { for (auto i: init) delete i.second; }
 
 ASTptr DeclAST::Getinitvalue(int index) {
@@ -661,16 +638,10 @@ ASTptr DeclAST::Getinitvalue(int index) {
     else return k->second;
 }
 
-// FunDefAST
-// Record a function definition
-
 FunDefAST::~FunDefAST() {
     for (auto i: fparams) delete i;
     delete body;
 }
-
-// VecAST
-// Store a vector of ASTptr
 
 void VecAST::Insertastlist(ASTptr p) {
     astlist.push_back(p);
@@ -711,9 +682,6 @@ std::vector<ASTptr> VecAST::Getindices() {
     return std::move(astlist);
 }
 
-// ListTree
-// Dedicated data structure to represent list initialization
-
 void ListTree::Insertsublist(ASTptr p) {
     sublist.push_back(p);
 }
@@ -738,9 +706,7 @@ bool ListTree::_Checkform_(std::vector<int> &dim_pro) {
         else goto _Fail;
     }
 
-    // {} could generate everything
     if (_Isnulllist_()) return true;
-    // On a leaf node, error
     if (_Isleaf_()) goto _Fail;
 
     const int tot = dim_pro.back();
@@ -751,16 +717,13 @@ bool ListTree::_Checkform_(std::vector<int> &dim_pro) {
 
     for (auto p: sublist) {
         if (!dynamic_cast<LTptr>(p)->_Isleaf_()) {
-            // Within a pair of brace,
-            // the number of exps must be a multiple of the rest dimension
             if (acc % no) goto _Fail;
             if (!dynamic_cast<LTptr>(p)->_Checkform_(dim_pro)) goto _Fail;
             tmp += 1;
         } else acc += 1;
     }
 
-    // Allow padding 0 by default
-    tmp += ((acc + no - 1) / no); // ceiling
+    tmp += ((acc + no - 1) / no);
     if (tmp > tot / no) goto _Fail;
     dim_pro.push_back(tot);
     return true;
@@ -771,7 +734,7 @@ LTTable ListTree::Flatten(const std::vector<int> &dim_pro) {
 #ifdef DEBUG_LTREE_CPP_DR_
     if (!dim_pro.size() || dim_pro[0] != 1) Reportexception(Exception::Arraytypeexp);
 #endif
-    LTTable ret; // The reference to map will always remain valid however insertions and deletions are carried out
+    LTTable ret;
     std::vector<int> savedim = dim_pro; // Copy constructor
     _Flatten_(savedim, ret, 0, savedim.back());
     return ret;
@@ -781,7 +744,7 @@ LTTable ListTree::Flatten(const std::vector<int> &dim_pro) {
 void ListTree::_Flatten_(std::vector<int> &dim, LTTable &res, int ind, int upper) {
     if (_Isnulllist_()) return;
     if (dim.size() == 1) {
-        if (ind >= upper) return; // Too many entries!
+        if (ind >= upper) return;
         if (astptr) res[ind] = astptr;
         return;
     }
@@ -794,9 +757,9 @@ void ListTree::_Flatten_(std::vector<int> &dim, LTTable &res, int ind, int upper
         if (!dynamic_cast<LTptr>(p)->_Isleaf_()) {
             dynamic_cast<LTptr>(p)->_Flatten_(dim, res, ind, upper);
             ind += no;
-            if (ind >= upper) return; // Too many entries!
+            if (ind >= upper) return;
         } else {
-            if (ind >= upper) return; // Too many entries!
+            if (ind >= upper) return;
             res[ind] = dynamic_cast<LTptr>(p)->astptr;
             ind += 1;
         }
@@ -815,7 +778,6 @@ void ListTree::Debug(int dep) {
 
 void Verifyanumber(ASTptr p) {
     if (!p->Isanumber()) {
-        // Side Effect: Isanumber() will modify errptr
         if (errptr->type == ASTType::Funcall) {
             FunCallAST *r = dynamic_cast<FunCallAST *>(errptr);
             Reporterror(Error::Notanumber, *(r->sym->strptr), r->sym->astptr);

@@ -29,7 +29,6 @@ void Filepreread(const string &str) {
 }
 
 // Array Dimension
-// e.g. given [2][3][5], it returns <1, 5, 15, 30>
 vector<int> Arraydimprocess(const vector<int> &p) {
     if (!p.size()) return vector<int>(1, 1);
     vector<int> tmp(1, 1);
@@ -44,9 +43,6 @@ vector<int> Arraydimprocess(const vector<int> &p) {
 }
 
 // From array index to a single number, do the convolution
-// e.g. Given <1, 5, 15, 30> and <1, 2, 3>, it returns 1 * 15 + 2 * 5 + 3 * 1 = 28;
-// e.g. Given <1, 5, 15, 30> and <1, 2>, it returns 1 * 15 + 2 * 5 = 25.
-// e.g. Given <1, 5, 15, 30, 0> and <5, 1, 2, 4> it returns 5 * 30 + 1 * 15 + 2 * 5 + 4 * 1 = 179;
 int Arraylinearno(const std::vector<int> &arr, const std::vector<int> &ind) {
     int ret = 0;
     const int len = arr.size(), indlen = ind.size();
@@ -62,7 +58,6 @@ int Arraylinearno(const std::vector<int> &arr, const std::vector<int> &ind) {
 }
 
 // Encode error message
-// e.g. Given <1, 5, 15, 30>, it generates "int [2][3][5]"
 string Encodemessage(const vector<int> &p) {
     int size = p.size();
     if (size == 1) return "int";
@@ -86,7 +81,6 @@ string Encodemessage(const vector<int> &p) {
 }
 
 // Encode error message
-// e.g. Given 30, it generates "30"
 string Encodemessage(int p) {
     string ret;
     stringstream sin;

@@ -9,18 +9,49 @@ extern ASTptr errptr;
 
 // Error Type
 enum class Error {
-    Unknowntoken, Emptyfile, Noinputfile, Filenotfound, Invalidsyntax, Devidebyzero, \
-Notconstexp, Arrayinitmismatch, Arraynegindex, Identdeclared, Identnotdeclared, Toomanyindices, \
-Unexpectedfuncall, Varnotcallable, Rparamsnomismatch, Nowhiletoescape, Returnavalue, Assignarray, Arraybigindex, \
-Notanumber, Assignconstant, Notapointer, Pointerdimmismatch, Voidmain, Parammain, Nomain, Constarrtoptr, Nooutputfile, \
-Noreturnvalue, _Final
+    Unknowntoken,
+    Emptyfile,
+    Noinputfile,
+    Filenotfound,
+    Invalidsyntax,
+    Devidebyzero,
+    Notconstexp,
+    Arrayinitmismatch,
+    Arraynegindex,
+    Identdeclared,
+    Identnotdeclared,
+    Toomanyindices,
+    Unexpectedfuncall,
+    Varnotcallable,
+    Rparamsnomismatch,
+    Nowhiletoescape,
+    Returnavalue,
+    Assignarray,
+    Arraybigindex,
+    Notanumber,
+    Assignconstant,
+    Notapointer,
+    Pointerdimmismatch,
+    Voidmain,
+    Parammain,
+    Nomain,
+    Constarrtoptr,
+    Nooutputfile,
+    Noreturnvalue,
+    _Final
 };
 enum class Warning {
     Intoverflow, Identtoolong, _Final
 };
 enum class Exception {
-    Binarynullchild, Unexpectedop, Unexpectedbasecall, Arraytypeexp, Scopingexp, \
-Unexpectednonconstexp, Unexpectedgencall, _Final
+    Binarynullchild,
+    Unexpectedop,
+    Unexpectedbasecall,
+    Arraytypeexp,
+    Scopingexp,
+    Unexpectednonconstexp,
+    Unexpectedgencall,
+    _Final
 };
 
 // Error Handler

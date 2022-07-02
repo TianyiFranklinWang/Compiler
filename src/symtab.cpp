@@ -22,20 +22,18 @@ SYMTab::~SYMTab() {
 }
 
 // VarSYM
-VarSYM::VarSYM(bool isconst_, TKptr p, ASTptr astptr_) : \
-BaseSYM(p->strptr, SYMType::Var, astptr_, blockno, p->lno, p->bgn, p->end), isconst(isconst_) {};
+VarSYM::VarSYM(bool isconst_, TKptr p, ASTptr astptr_) : BaseSYM(p->strptr, SYMType::Var, astptr_, blockno, p->lno,
+                                                                 p->bgn, p->end), isconst(isconst_) {};
 
 void VarSYM::Setarraytype(std::vector<int> &&a) { dim_pro = a; }
 
 // FunSYM
-FunSYM::FunSYM(bool isvoid_, TKptr p, ASTptr astptr_) : \
-BaseSYM(p->strptr, SYMType::Fun, astptr_, blockno, p->lno, p->bgn, p->end), isvoid(isvoid_) {};
+FunSYM::FunSYM(bool isvoid_, TKptr p, ASTptr astptr_) : BaseSYM(p->strptr, SYMType::Fun, astptr_, blockno, p->lno,
+                                                                p->bgn, p->end), isvoid(isvoid_) {};
 
 void FunSYM::Insertfparams(SYMptr p) {
     fparams.push_back(p);
 }
-
-// Symtab managements
 
 void Pushsymtab() {
     blockno += 1;

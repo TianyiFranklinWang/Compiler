@@ -90,9 +90,9 @@ int main(int argc, char *argv[]) {
     Treatmain(root);
     TraverseAST(root);
     // Optimization on Eeyore
-    NaiveEEOpt();
+    SSAOptim();
     // Eliminate redundant Basic Blocks
-    RedundantBBEE();
+    RemoveRedundantBaseBlock();
     if (mode == WorkingMode::EEMODE)
         DumpEE2file();
     else {

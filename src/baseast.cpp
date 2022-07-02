@@ -2,8 +2,6 @@
 #include "error.hpp"
 
 
-// BaseAST
-
 void BaseAST::Eval() { Reportexception(Exception::Unexpectedbasecall); }
 
 bool BaseAST::Isconst() {

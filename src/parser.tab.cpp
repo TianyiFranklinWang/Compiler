@@ -88,7 +88,7 @@ void yyerror(ASTptr *, const char *);
 #   define YY_CAST(Type, Val) static_cast<Type> (Val)
 #   define YY_REINTERPRET_CAST(Type, Val) reinterpret_cast<Type> (Val)
 #  else
-                                                                                                                        #   define YY_CAST(Type, Val) ((Type) (Val))
+#   define YY_CAST(Type, Val) ((Type) (Val))
 #   define YY_REINTERPRET_CAST(Type, Val) ((Type) (Val))
 #  endif
 # endif

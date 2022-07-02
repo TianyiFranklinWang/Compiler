@@ -9,14 +9,16 @@ class BaseAST;
 using ASTptr = BaseAST *;
 
 enum class ASTType {
-    Base, Binary, Unary, Funcall, Lval, Block, Decl, Fundef, Assign, \
-If, While, Break, Continue, Return, LT, Vec
+    Base, Binary, Unary, Funcall, Lval, Block, Decl, Fundef, Assign, If, While, Break, Continue, Return, LT, Vec
 };
 
 class BaseAST {
 public:
-    BaseAST(int bgnlno_, int bgnpos_, int endlno_, int endpos_, ASTType def = ASTType::Base) : \
-    bgnlno(bgnlno_), bgnpos(bgnpos_), endlno(endlno_), endpos(endpos_), type(def) {}
+    BaseAST(int bgnlno_, int bgnpos_, int endlno_, int endpos_, ASTType def = ASTType::Base) : bgnlno(bgnlno_),
+                                                                                               bgnpos(bgnpos_),
+                                                                                               endlno(endlno_),
+                                                                                               endpos(endpos_),
+                                                                                               type(def) {}
 
     void Setrange(int bgnlno_, int bgnpos_, int endlno_, int endpos_) {
         bgnlno = bgnlno_;
@@ -76,13 +78,11 @@ public:
     ASTType type;
     int bgnlno, endlno;
     int bgnpos, endpos;
-    std::string addr; // addr in eeyore
+    std::string addr;
 
-    /* eeyore: flow of control */
     std::string truebranch;
     std::string falsebranch;
 
-    /* eeyore: flow of control */
     std::string next;
     std::string begin;
 };

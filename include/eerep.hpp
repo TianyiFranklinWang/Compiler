@@ -23,9 +23,7 @@
 // Ret:			RV
 
 enum class EERecord {
-    Decl, Header, End, \
-Binary, Unary, Copy, LArr, RArr, Cond, Uncond, Label, Param, \
-Voidcall, Asscall, Voidret, Ret
+    Decl, Header, End, Binary, Unary, Copy, LArr, RArr, Cond, Uncond, Label, Param, Voidcall, Asscall, Voidret, Ret
 };
 
 class EELine {
@@ -33,8 +31,7 @@ public:
     EELine(EERecord t) : type(t) {}
 
     EELine(EERecord t, std::string &&p) : type(t) {
-        if (t == EERecord::Ret || t == EERecord::Param \
- || t == EERecord::Voidcall || t == EERecord::End)
+        if (t == EERecord::Ret || t == EERecord::Param || t == EERecord::Voidcall || t == EERecord::End)
             sym[0] = p;
         else if (t == EERecord::Uncond || t == EERecord::Label) label = p;
         else if (t == EERecord::Decl) sym[0] = p;

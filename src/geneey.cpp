@@ -134,24 +134,14 @@ void BinaryAST::Generator() {
         case '>':
             lexp->Generator();
             rexp->Generator();
-            /* make use of logic op, save tmp label in label */
-            funclines.emplace_back(EERecord::Binary, \
-                std::string(addr), std::move(lexp->addr), std::move(rexp->addr), Tokentostring(op));
+            funclines.emplace_back(EERecord::Binary, std::string(addr), std::move(lexp->addr), std::move(rexp->addr),
+                                   Tokentostring(op));
             funclines.back().label = std::move(*Newlabel());
             funclines.back().num = std::move(*Newlabel());
-            /*
-            auto tt = Newlabel(), next = Newlabel();
-            funclines.emplace_back(EERecord::Cond, std::move(lexp->addr), std::move(rexp->addr), Tokentostring(op), std::string(*tt));
-            funclines.emplace_back(EERecord::Copy, std::string(addr), std::string("0"));
-            funclines.emplace_back(EERecord::Uncond, std::string(*next));
-            funclines.emplace_back(EERecord::Label, std::move(*tt));
-            funclines.emplace_back(EERecord::Copy, std::string(addr), std::string("1"));
-            funclines.emplace_back(EERecord::Label, std::move(*next));
-            */
             endpoint = tmpsave;
             if (endpoint) {
-                funclines.emplace_back(EERecord::Cond, \
-                    std::string(addr), std::string("0"), std::string("!="), std::move(truebranch));
+                funclines.emplace_back(EERecord::Cond, std::string(addr), std::string("0"), std::string("!="),
+                                       std::move(truebranch));
                 funclines.emplace_back(EERecord::Uncond, std::move(falsebranch));
             }
             return;
@@ -226,7 +216,6 @@ void UnaryAST::Generator() {
 }
 
 void FunCallAST::Generator() {
-    /* special treatment for starttime & stoptime */
     if (*(sym->strptr) == "starttime") {
         funclines.emplace_back(EERecord::Param, Encodemessage(bgnlno));
         funclines.emplace_back(EERecord::Voidcall, std::string("f__sysy_starttime"));
@@ -296,39 +285,37 @@ void LvalAST::Generator() {
     list<string>::iterator p1, p2, p3;
     p1 = Newtemp();
     indices[0]->Generator();
-    funclines.emplace_back(EERecord::Binary, \
-        std::string(*p1), std::move(indices[0]->addr), Encodemessage(symp->dim_pro[fsize - 2]), std::string("*"));
+    funclines.emplace_back(EERecord::Binary, std::string(*p1), std::move(indices[0]->addr),
+                           Encodemessage(symp->dim_pro[fsize - 2]), std::string("*"));
     for (int i = 1; i < rsize; ++i) {
         p2 = Newtemp();
         p3 = Newtemp();
         indices[i]->Generator();
-        funclines.emplace_back(EERecord::Binary, \
-            std::string(*p2), std::move(indices[i]->addr), Encodemessage(symp->dim_pro[fsize - 2 - i]),
+        funclines.emplace_back(EERecord::Binary, std::string(*p2), std::move(indices[i]->addr),
+                               Encodemessage(symp->dim_pro[fsize - 2 - i]),
                                std::string("*"));
         funclines.emplace_back(EERecord::Binary, std::string(*p3), std::move(*p1), std::move(*p2), std::string("+"));
         p1 = p3;
     }
 
     p2 = Newtemp();
-    funclines.emplace_back(EERecord::Binary, \
-        std::string(*p2), std::move(*p1), std::string("4"), std::string("*"));
+    funclines.emplace_back(EERecord::Binary, std::string(*p2), std::move(*p1), std::string("4"), std::string("*"));
 
     if (!isleft) {
         addr = *Newtemp();
         // a scalar
         if (fsize == rsize + 1) {
-            funclines.emplace_back(EERecord::RArr, \
-                std::string(addr), std::string(symp->astptr->addr), std::move(*p2));
+            funclines.emplace_back(EERecord::RArr, std::string(addr), std::string(symp->astptr->addr), std::move(*p2));
         }
             // a pointer
         else
-            funclines.emplace_back(EERecord::Binary, \
-                std::string(addr), std::string(symp->astptr->addr), std::move(*p2), std::string("+"));
+            funclines.emplace_back(EERecord::Binary, std::string(addr), std::string(symp->astptr->addr), std::move(*p2),
+                                   std::string("+"));
 
         endpoint = tmpsave;
         if (endpoint) {
-            funclines.emplace_back(EERecord::Cond, \
-                std::string(addr), std::string("0"), std::string("!="), std::move(truebranch));
+            funclines.emplace_back(EERecord::Cond, std::string(addr), std::string("0"), std::string("!="),
+                                   std::move(truebranch));
             funclines.emplace_back(EERecord::Uncond, std::move(falsebranch));
         }
 
@@ -341,14 +328,12 @@ void LvalAST::Generator() {
 }
 
 // BlockAST
-
 void BlockAST::Generator() {
     for (auto i: clauses)
         i->Generator();
 }
 
 // DeclAST
-
 void DeclAST::Generator() {
     endovars.emplace_back(this);
     auto symp = dynamic_cast<VarSYM *>(sym);
@@ -365,7 +350,6 @@ void DeclAST::Generator() {
 
     // an array
     for (auto i: init) {
-        /* initialize */
         i.second->Generator();
         funclines.emplace_back(EERecord::LArr, std::string(addr), Encodemessage(i.first * 4),
                                std::move(i.second->addr));
@@ -434,8 +418,8 @@ void AssignAST::Generator() {
     exp->Generator();
     if (lval->addr.back() == ']') {
         int t = lval->addr.find("["), len = lval->addr.size();
-        funclines.emplace_back(EERecord::LArr, \
-            lval->addr.substr(0, t), lval->addr.substr(t + 1, len - t - 2), std::move(exp->addr));
+        funclines.emplace_back(EERecord::LArr, lval->addr.substr(0, t), lval->addr.substr(t + 1, len - t - 2),
+                               std::move(exp->addr));
     } else
         funclines.emplace_back(EERecord::Copy, std::move(lval->addr), std::move(exp->addr));
 }

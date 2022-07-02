@@ -97,7 +97,7 @@ void EE2TG(EEptr p) {
                     tglines.emplace_back(TGRecord::Decl, "v" + Encodemessage(ee_glbcnt));
                 ee_offset += 4;
             }
-                // An array
+            // An array
             else {
                 int tmp;
                 sscanf(p->num.c_str(), "%d", &tmp);

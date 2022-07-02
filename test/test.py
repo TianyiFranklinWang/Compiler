@@ -1,3 +1,4 @@
+import datetime
 import os
 import sys
 import time
@@ -15,10 +16,16 @@ TG_DIR = os.path.join(PROJECT_DIR, "test", "out", "tiger")
 ELF_DIR = os.path.join(PROJECT_DIR, "test", "out", "elf")
 
 
-def read_file(file_path):
+def read_file(file_path: str) -> list:
     with open(file_path, 'r') as f:
         content = f.readlines()
     return content
+
+
+def create_dirs(paths: list) -> None:
+    for path in paths:
+        if not os.path.exists(path):
+            os.makedirs(path)
 
 
 if __name__ == "__main__":
@@ -44,14 +51,7 @@ if __name__ == "__main__":
     test_samples = os.listdir(TEST_SAMPLE_DIR)
     input_files = [_ for _ in os.listdir(IO_DIR) if _.endswith(".in")]
 
-    if not os.path.exists(AS_DIR):
-        os.makedirs(AS_DIR)
-    if not os.path.exists(EE_DIR):
-        os.makedirs(EE_DIR)
-    if not os.path.exists(TG_DIR):
-        os.makedirs(TG_DIR)
-    if not os.path.exists(ELF_DIR):
-        os.makedirs(ELF_DIR)
+    create_dirs([AS_DIR, EE_DIR, TG_DIR, ELF_DIR])
 
     start_time = time.time()
     for no, test_sample in enumerate(test_samples):
@@ -128,6 +128,7 @@ if __name__ == "__main__":
         print("\n")
     print(f"Finish all tests in {time.time() - start_time}s\n")
     print("--------------------Report--------------------")
+    print(f"Running at {datetime.datetime.now()}")
     print(
         f"Passed samples: {pass_counter}/{len(test_samples)}\t Failed samples: {failed_counter}/{len(test_samples)}\t ",
         end="")

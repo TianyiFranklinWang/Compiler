@@ -16,7 +16,7 @@ public:
     int bno; // block no [into bblist]
     EEptr bgn, end;
     int nbno[2]; // child block no
-    bool visited; // used in function VisitBBEE
+    bool visited; // used in function VisitBaseBlackEE
 };
 
 // List of basic block (EE-level)
@@ -27,23 +27,15 @@ static std::unordered_map<std::string, EEptr> eerec;
 static std::unordered_map<std::string, std::string> eeval;
 
 
-static void VisitBBEE(BBEE &p) {
+static void VisitBaseBlackEE(BBEE &p) {
     if (p.visited) return;
     p.visited = true;
-    if (p.nbno[0] != EDBB) VisitBBEE(bblist[p.nbno[0]]);
-    if (p.nbno[1] != EDBB) VisitBBEE(bblist[p.nbno[1]]);
+    if (p.nbno[0] != EDBB) VisitBaseBlackEE(bblist[p.nbno[0]]);
+    if (p.nbno[1] != EDBB) VisitBaseBlackEE(bblist[p.nbno[1]]);
 }
-
-// Common subexpression (EE-level)
-static void CommonsubexpBBEE(BBEE &p) {
-    // std::unordered_map<
-}
-
 
 // Build up basic block (EE-level)
-static EEptr InFuncBBEE(EEptr p) {
-    // assert(p->type == EERecord::Header);
-
+static EEptr BuildBaseBlackEE(EEptr p) {
     // Record Label
     std::unordered_map<std::string, int> tmp_label;
 
@@ -55,8 +47,8 @@ static EEptr InFuncBBEE(EEptr p) {
     auto q = p;
     while (true) {
         // End of a basic block
-        if (q->type == EERecord::Ret || q->type == EERecord::Voidret\
- || q->type == EERecord::Uncond || q->type == EERecord::Cond) {
+        if (q->type == EERecord::Ret || q->type == EERecord::Voidret || q->type == EERecord::Uncond ||
+            q->type == EERecord::Cond) {
             q->opt_bno = bno;
             bblist.emplace_back(bno, p, ++q);
             bno += 1;
@@ -68,7 +60,6 @@ static EEptr InFuncBBEE(EEptr p) {
                 tmp_label.emplace(p->label, bno);
                 continue;
             }
-            // End of a basic block
             bblist.emplace_back(bno, p, q);
             bno += 1;
             p = q;
@@ -100,7 +91,7 @@ static EEptr InFuncBBEE(EEptr p) {
                 if (i != size - 1) bblist[i].nbno[0] = bblist[i].bno + 1;
                 bblist[i].nbno[1] = tmp_label[t->label];
             }
-                // The only reason here why a basic block ends is due to a following label or function endmark
+                // following label or function endmark
             else if (bblist[i].end->type == EERecord::Label) {
                 bblist[i].nbno[0] = bblist[i].bno + 1;
             }
@@ -108,7 +99,7 @@ static EEptr InFuncBBEE(EEptr p) {
     }
 
     // Scan
-    VisitBBEE(bblist[0]);
+    VisitBaseBlackEE(bblist[0]);
 
     // Eliminate Inaccessible BB
     int last = 0;
@@ -118,17 +109,16 @@ static EEptr InFuncBBEE(EEptr p) {
             eelines.erase(bblist[i].bgn, bblist[i].end);
         } else last = i;
 
-    // End of function
     return p;
 }
 
-// Remove dead BB (EE-level)
-void RedundantBBEE() {
+// Remove dead BB
+void RemoveRedundantBaseBlock() {
     EEptr i = eelines.begin();
     while (i->type != EERecord::Header) i++;
 
     while (true) {
-        i = InFuncBBEE(i);
+        i = BuildBaseBlackEE(i);
         i++;
         if (i == eelines.end()) break;
     }
@@ -159,18 +149,14 @@ static inline std::string CalculateEE(std::string &p, std::string &q, std::strin
     return a;
 }
 
-// Label absorption
-// 1-stride boolean exp absorption
-// 1-stride assignment absorption
-// Arithmetic eliminations
-void NaiveEEOpt() {
+void SSAOptim() {
     for (auto i = eelines.begin(); i != eelines.end(); ++i) {
         if (i->type == EERecord::Decl) {
             eerec.emplace(i->sym[0], i);
             continue;
         }
 
-        // This first line may be of use in a Cond EERecord
+        // Constant Replacement
         if (eeval.count(i->sym[0])) i->sym[0] = eeval[i->sym[0]];
         if (eeval.count(i->sym[1])) i->sym[1] = eeval[i->sym[1]];
         if (eeval.count(i->sym[2])) i->sym[2] = eeval[i->sym[2]];
@@ -189,13 +175,12 @@ void NaiveEEOpt() {
         }
 
         if (i->type == EERecord::Binary) {
-            // The op must be logical
             if (i->op[0] == '<' || i->op[0] == '>' || i->op.back() == '=') {
                 auto p = i;
                 p++;
-                // 1-stride boolean exp absorption
-                if (p->type == EERecord::Cond && i->sym[0][0] == 't' && \
-                p->sym[0] == i->sym[0] && p->sym[1] == "0" && p->op == "!=") {
+                //boolean exp absorption
+                if (p->type == EERecord::Cond && i->sym[0][0] == 't' && p->sym[0] == i->sym[0] && p->sym[1] == "0" &&
+                    p->op == "!=") {
                     p->sym[0] = i->sym[1];
                     p->sym[1] = i->sym[2];
                     p->op = i->op;
@@ -207,13 +192,12 @@ void NaiveEEOpt() {
             }
         }
 
-        if (i->type == EERecord::Binary || i->type == EERecord::Unary \
- || i->type == EERecord::Asscall || i->type == EERecord::RArr) {
+        if (i->type == EERecord::Binary || i->type == EERecord::Unary || i->type == EERecord::Asscall ||
+            i->type == EERecord::RArr) {
             EEptr q = i;
             ++q;
-            // 1-stride assignment absorption
-            if (i->sym[0][0] == 't' && q->type == EERecord::Copy \
- && q->sym[1] == i->sym[0]) {
+            // assignment absorption
+            if (i->sym[0][0] == 't' && q->type == EERecord::Copy && q->sym[1] == i->sym[0]) {
                 i->sym[0] = q->sym[0];
                 eelines.erase(eerec[q->sym[1]]);
                 eelines.erase(q);
@@ -221,12 +205,10 @@ void NaiveEEOpt() {
         }
         // Arithmetic Elimination
         if (i->type == EERecord::Binary) {
-            // Compiling time calculation (many have already be performed at the front end)
             if (!IsEEVar(i->sym[1]) && !IsEEVar(i->sym[2])) {
                 i->type = EERecord::Copy;
                 i->sym[1] = CalculateEE(i->sym[1], i->sym[2], i->op);
             }
-                // Arithmetic identities
             else if (i->sym[2] == "0") {
                 if (i->op == "+" || i->op == "-")
                     i->type = EERecord::Copy;
@@ -244,8 +226,6 @@ void NaiveEEOpt() {
             }
         }
         if (i->type == EERecord::Copy) {
-            // source code is ganruateed to be SSA with respect to tempos
-            // substitute tempos whose value is compiling-time constant
             if (i->sym[0][0] == 't' && !IsEEVar(i->sym[1])) {
                 eeval[i->sym[0]] = i->sym[1];
                 eelines.erase(eerec[i->sym[0]]);

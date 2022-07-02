@@ -35,8 +35,7 @@ extern std::vector<std::string> args;
 // LDAS:	REG  NUM
 
 enum class TGRecord {
-    Decl, Header, End, \
-Binary, Unary, Copy, Ass, LArr, RArr, Cond, Uncond, Label, Call, Ret, ST, LDH, LDS, LDAH, LDAS
+    Decl, Header, End, Binary, Unary, Copy, Ass, LArr, RArr, Cond, Uncond, Label, Call, Ret, ST, LDH, LDS, LDAH, LDAS
 };
 
 extern bool ee_global;
@@ -59,8 +58,7 @@ public:
     }
 
     TGLine(TGRecord t, int _reg, int _num) : type(t) {
-        if (t == TGRecord::LDAS || t == TGRecord::LDS \
- || t == TGRecord::ST || t == TGRecord::Ass) {
+        if (t == TGRecord::LDAS || t == TGRecord::LDS || t == TGRecord::ST || t == TGRecord::Ass) {
             reg[0] = _reg;
             num[0] = _num;
         } else if (t == TGRecord::Copy) {

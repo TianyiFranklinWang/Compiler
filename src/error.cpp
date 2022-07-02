@@ -18,9 +18,6 @@ static int warnnum = 0;
 
 static void Errorline();
 
-// All these functions should not modify errptr.
-// Each function should at least guarantee that on return the errptr is the same as it is invoked.
-
 static void Unknowntoken(const string &, ASTptr);
 
 static void Emptyfile(const string &, ASTptr);
@@ -82,20 +79,17 @@ static void Unexpectednonconstexp(const string &, ASTptr); // must leave
 static void Unexpectedgencall(const string &, ASTptr); // must leave
 
 static Handler ErrorHandler[(int) Error::_Final]{Unknowntoken, Emptyfile, Noinputfile, Filenotfound, Invalidsyntax,
-                                                 Devidebyzero, \
-Notconstexp, Arrayinitmismatch, Arraynegindex, Identdeclared, Identnotdeclared, Toomanyindices, \
-Unexpectedfuncall, Varnotcallable, Rparamsnomismatch, Nowhiletoescape, Returnavalue, Assignarray, Arraybigindex, \
-Notanumber, Assignconstant, Notapointer, Pointerdimmismatch, Voidmain, Parammain, Nomain, Constarrtoptr, Nooutputfile, \
-Noreturnvalue};
+                                                 Devidebyzero, Notconstexp, Arrayinitmismatch, Arraynegindex,
+                                                 Identdeclared, Identnotdeclared, Toomanyindices, Unexpectedfuncall,
+                                                 Varnotcallable, Rparamsnomismatch, Nowhiletoescape, Returnavalue,
+                                                 Assignarray, Arraybigindex, Notanumber, Assignconstant, Notapointer,
+                                                 Pointerdimmismatch, Voidmain, Parammain, Nomain, Constarrtoptr,
+                                                 Nooutputfile, Noreturnvalue};
 static Handler WarningHandler[(int) Warning::_Final]{Intoverflow, Identtoolong};
 static Handler ExceptionHandler[(int) Exception::_Final]{Binarynullchild, Unexpectedop, Unexpectedbasecall,
-                                                         Arraytypeexp, Scopingexp, \
-Unexpectednonconstexp, Unexpectedgencall};
+                                                         Arraytypeexp, Scopingexp, Unexpectednonconstexp,
+                                                         Unexpectedgencall};
 
-
-/*** Handlers Implementation ***/
-
-// Print Error Lines
 void Errorline() {
     cerr << filecontent[errptr->bgnlno - 1] << endl;
     cerr << string(errptr->bgnpos - 1, ' ') << GREEN("^");
@@ -127,10 +121,6 @@ void Reportexception(Exception e, const string &p, ASTptr q) {
 #endif
 }
 
-/*** User Handlers ***/
-
-// Error Part
-
 void Unknowntoken(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << RED("error:") << " unrecognized token" << endl;
@@ -156,7 +146,6 @@ void Filenotfound(const string &p, ASTptr q) {
     std::exit(-1);
 }
 
-// must leave
 void Invalidsyntax(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << RED("error: ") << p << endl;
@@ -164,7 +153,6 @@ void Invalidsyntax(const string &p, ASTptr q) {
     std::exit(-1);
 }
 
-// must leave
 void Devidebyzero(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << RED("error: ") << "devide by zero" << endl;
@@ -172,7 +160,6 @@ void Devidebyzero(const string &p, ASTptr q) {
     std::exit(-1);
 }
 
-// must leave
 void Notconstexp(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << RED("error: ") << "constant expression is expected, but got a non-const one" << endl;
@@ -180,7 +167,6 @@ void Notconstexp(const string &p, ASTptr q) {
     std::exit(-1);
 }
 
-// .
 void Arrayinitmismatch(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << RED("error: ") << " type mismatch, expected type: " << p << endl;
@@ -194,7 +180,6 @@ void Arraynegindex(const string &p, ASTptr q) {
     if (errptr) Errorline();
 }
 
-// must leave
 void Identdeclared(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << RED("error: ") << " redeclaration";
@@ -212,7 +197,6 @@ void Identdeclared(const string &p, ASTptr q) {
     std::exit(-1);
 }
 
-// must leave
 void Identnotdeclared(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << RED("error:") << " undefined symbol '" << p << "'" << endl;
@@ -220,7 +204,6 @@ void Identnotdeclared(const string &p, ASTptr q) {
     std::exit(-1);
 }
 
-// must leave
 void Toomanyindices(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << RED("error: ") << " Too many indices here:" << endl;
@@ -236,7 +219,6 @@ void Toomanyindices(const string &p, ASTptr q) {
     std::exit(-1);
 }
 
-// must leave
 void Unexpectedfuncall(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << RED("error: ") << " Variable is perferred, but a function is called" << endl;
@@ -252,7 +234,6 @@ void Unexpectedfuncall(const string &p, ASTptr q) {
     std::exit(-1);
 }
 
-// must leave
 void Varnotcallable(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << RED("error: ") << "Variable is not callable" << endl;
@@ -268,7 +249,6 @@ void Varnotcallable(const string &p, ASTptr q) {
     std::exit(-1);
 }
 
-// must leave
 void Rparamsnomismatch(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << RED("error: ") << " no matching function for call to '" << p << "'" << endl;
@@ -318,7 +298,6 @@ void Assignarray(const string &p, ASTptr q) {
     }
 }
 
-// must leave
 void Arraybigindex(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << RED("error: ") << " Too big the index '" << p << "' is" << endl;
@@ -326,7 +305,6 @@ void Arraybigindex(const string &p, ASTptr q) {
     std::exit(-1);
 }
 
-// .
 void Notanumber(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << RED("error:") << " non-scalar value is provided where a scalar expression is wanted" << endl;
@@ -345,7 +323,6 @@ void Notanumber(const string &p, ASTptr q) {
     // std::exit(-1);
 }
 
-// .
 void Assignconstant(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << RED("error:") << " constant '" << p << "' is not assignable" << endl;
@@ -361,7 +338,6 @@ void Assignconstant(const string &p, ASTptr q) {
     // std::exit(-1);
 }
 
-// must leave
 void Notapointer(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << RED("error:") << " only pointers can be assigned to a pointer" << endl;
@@ -377,7 +353,6 @@ void Notapointer(const string &p, ASTptr q) {
     std::exit(-1);
 }
 
-// must leave
 void Pointerdimmismatch(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << RED("error:") << " pointer type mismatch" << endl;
@@ -393,26 +368,22 @@ void Pointerdimmismatch(const string &p, ASTptr q) {
     std::exit(-1);
 }
 
-// .
 void Voidmain(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << RED("error:") << " function 'main' should be non-void" << endl;
     if (errptr) Errorline();
 }
 
-// .
 void Parammain(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << RED("error:") << " function 'main' should have no arguments" << endl;
     if (errptr) Errorline();
 }
 
-// .
 void Nomain(const string &p, ASTptr q) {
     cerr << RED("error:") << " No main function found in the file" << endl;
 }
 
-// .
 void Constarrtoptr(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << RED("error:") << " non-const pointer '" << p << "' is pointing to a const array" << endl;
@@ -427,7 +398,6 @@ void Constarrtoptr(const string &p, ASTptr q) {
     }
 }
 
-// must leave
 void Nooutputfile(const string &, ASTptr q) {
     cerr << RED("fatal error:") << " no output file " << endl;
 }
@@ -446,8 +416,6 @@ void Noreturnvalue(const string &p, ASTptr q) {
     }
 }
 
-// Warning Part
-
 void Intoverflow(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << PINK("warning:") << " integer overflow" << endl;
@@ -459,8 +427,6 @@ void Identtoolong(const string &p, ASTptr q) {
     cerr << PINK("warning:") << " identidier too long" << endl;
     if (errptr) Errorline();
 }
-
-// Exception Part
 
 void Binarynullchild(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
@@ -488,7 +454,6 @@ void Arraytypeexp(const string &p, ASTptr q) {
     std::exit(-1);
 }
 
-// must leave
 void Scopingexp(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << YELLOW("exception:") << " scoping error" << endl;
@@ -496,7 +461,6 @@ void Scopingexp(const string &p, ASTptr q) {
     std::exit(-1);
 }
 
-// must leave
 void Unexpectednonconstexp(const string &p, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << YELLOW("exception:") << " constant expression expected. Compiler failed to examine it in advance." << endl;
@@ -504,7 +468,6 @@ void Unexpectednonconstexp(const string &p, ASTptr q) {
     std::exit(-1);
 }
 
-// must leave
 void Unexpectedgencall(const string &, ASTptr q) {
     if (errptr) cerr << errptr->bgnlno << ":" << errptr->bgnpos << ": ";
     cerr << YELLOW("exception:") << " Errorneously call generator with incompatible AST type." << endl;
