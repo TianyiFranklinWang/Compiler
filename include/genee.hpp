@@ -51,7 +51,7 @@ inline void Increaselabelno() {
     labelno += 1;
 }
 
-void Treatmain(ASTptr);
+void TreatMain(ASTptr root);
 
 void TraverseAST(ASTptr);
 

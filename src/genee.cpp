@@ -6,8 +6,8 @@
 #include <unordered_map>
 #include "ast.hpp"
 #include "error.hpp"
-#include "geneey.hpp"
-#include "eerep.hpp"
+#include "genee.hpp"
+#include "eeast.hpp"
 #include "parser.tab.hpp"
 
 using std::list;
@@ -477,7 +477,7 @@ void RetAST::Generator() {
     } else funclines.emplace_back(EERecord::Voidret);
 }
 
-void Treatmain(ASTptr root) {
+void TreatMain(ASTptr root) {
     for (auto i: dynamic_cast<BlockAST *>(root)->clauses) {
         if (i->type != ASTType::Decl) continue;
         auto p = dynamic_cast<DeclAST *>(i);

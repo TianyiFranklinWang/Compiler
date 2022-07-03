@@ -475,7 +475,7 @@ void Unexpectedgencall(const string &, ASTptr q) {
     std::exit(-1);
 }
 
-void Errornummessage() {
+void NumErrorMessage() {
     if (errnum) {
         cerr << "SysY compiler: " << errnum << " errors";
         if (warnnum) cerr << " and " << warnnum << " warnings";

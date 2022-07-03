@@ -348,6 +348,6 @@ public:
 };
 
 
-void Verifyanumber(ASTptr p);
+void VerifyNumber(ASTptr p);
 
 #endif

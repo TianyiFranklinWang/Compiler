@@ -71,7 +71,7 @@
 
 #include "ast.hpp"
 #include "error.hpp"
-#include "geneey.hpp"
+#include "genee.hpp"
 #include <iostream>
 #include <string>
 #include <vector>

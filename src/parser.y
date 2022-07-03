@@ -437,7 +437,7 @@ InitVal		:	Exp
 	{
 		/* InitVal: ListTree */
 		$$ = new ListTree($1);
-		Verifyanumber($1);
+		VerifyNumber($1);
 	}
 			|	'{' '}'
 	{
@@ -722,7 +722,7 @@ Stmt		:	';'
 		}
 
 		/* Check that exp is a single element */
-		Verifyanumber($3);
+		VerifyNumber($3);
 
 		p->lval = $1;
 		p->exp = $3;
@@ -735,7 +735,7 @@ Stmt		:	';'
 	{
 		/* Stmt: polymorphism */
 		if($1->type != ASTType::Funcall)
-			Verifyanumber($1);
+			VerifyNumber($1);
 		$$ = $1;
 
 		delete $2;
@@ -913,7 +913,7 @@ Cond		:	LOrExp
 		/* Cond: polymorphism */
 		$1->Eval();
 		$$ = $1;
-		Verifyanumber($1);
+		VerifyNumber($1);
 	}
 			;
 ExpArr		:	ExpArr '[' Exp ']'

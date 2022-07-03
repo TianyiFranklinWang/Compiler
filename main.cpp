@@ -1,9 +1,9 @@
 #include "ast.hpp"
 #include "error.hpp"
-#include "geneey.hpp"
+#include "genee.hpp"
 #include "parser.tab.hpp"
 #include "optimee.hpp"
-#include "eerep.hpp"
+#include "eeast.hpp"
 #include "gentg.hpp"
 #include "optimtg.hpp"
 
@@ -80,25 +80,21 @@ int main(int argc, char *argv[]) {
     std::ofstream fout(outfile);
     std::streambuf *oldbuf = std::cout.rdbuf(fout.rdbuf());
 
-    // parse
     ASTptr root;
     yyparse(&root);
     if (!mainptr)
         Reporterror(Error::Nomain);
-    Errornummessage();
-    // generate Eeyore ir
-    Treatmain(root);
+    NumErrorMessage();
+
+    TreatMain(root);
     TraverseAST(root);
-    // Optimization on Eeyore
     SSAOptim();
-    // Eliminate redundant Basic Blocks
     RemoveRedundantBaseBlock();
+
     if (mode == WorkingMode::EEMODE)
         DumpEE2file();
     else {
-        // generate Tiger ir
         TranslateEE2TG();
-        // Optimization on Tiger
         EliminateSTLDTG();
         if (mode == WorkingMode::TGMODE)
             DumpTG2file();
@@ -106,7 +102,6 @@ int main(int argc, char *argv[]) {
             DumpRV2file();
     }
 
-    // release resources
     std::cout.rdbuf(oldbuf);
     fout.close();
 }

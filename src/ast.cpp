@@ -471,7 +471,7 @@ void FunCallAST::Verifyfuncall() {
         ASTptr rp = rparams[i];
         // rparam should be a scalar
         if (dynamic_cast<VarSYM *>(fp)->dim_pro.size() == 1) {
-            Verifyanumber(rp);
+            VerifyNumber(rp);
             continue;
         }
         // Pointer
@@ -502,7 +502,7 @@ void FunCallAST::Verifyfuncall() {
                 continue;
             }
             // each index should be a scalar
-            for (auto j: r) Verifyanumber(j);
+            for (auto j: r) VerifyNumber(j);
             int size = fvec.size();
             // dimension-wise matching
             for (int k = 0; k < size - 1; ++k)
@@ -776,7 +776,7 @@ void ListTree::Debug(int dep) {
 #endif
 }
 
-void Verifyanumber(ASTptr p) {
+void VerifyNumber(ASTptr p) {
     if (!p->Isanumber()) {
         if (errptr->type == ASTType::Funcall) {
             FunCallAST *r = dynamic_cast<FunCallAST *>(errptr);

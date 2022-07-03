@@ -61,6 +61,6 @@ void Reportwarning(Warning, const std::string & = std::string(), ASTptr = nullpt
 
 void Reportexception(Exception, const std::string & = std::string(), ASTptr = nullptr);
 
-void Errornummessage();
+void NumErrorMessage();
 
 #endif
