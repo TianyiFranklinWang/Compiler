@@ -178,7 +178,7 @@ void SSAOptim() {
             if (i->op[0] == '<' || i->op[0] == '>' || i->op.back() == '=') {
                 auto p = i;
                 p++;
-                //boolean exp absorption
+                // Boolean exp absorption
                 if (p->type == EERecord::Cond && i->sym[0][0] == 't' && p->sym[0] == i->sym[0] && p->sym[1] == "0" &&
                     p->op == "!=") {
                     p->sym[0] = i->sym[1];
@@ -196,7 +196,7 @@ void SSAOptim() {
             i->type == EERecord::RArr) {
             EEptr q = i;
             ++q;
-            // assignment absorption
+            // Assignment absorption
             if (i->sym[0][0] == 't' && q->type == EERecord::Copy && q->sym[1] == i->sym[0]) {
                 i->sym[0] = q->sym[0];
                 eelines.erase(eerec[q->sym[1]]);

@@ -650,6 +650,7 @@ void VecAST::Insertastlist(ASTptr p) {
 std::vector<int> VecAST::Getrawarraytype() {
     std::vector<int> tmp;
     for (auto p: astlist) {
+
 #ifdef DEBUG_LTREE_CPP_DR_
         if (!p->Isconst()) {
             errptr = this;
@@ -657,6 +658,7 @@ std::vector<int> VecAST::Getrawarraytype() {
             errptr = nullptr;
         }
 #endif
+
         if (p->Cval() <= 0) {
             errptr = p;
             Reporterror(Error::Arraynegindex, Encodemessage(p->Cval()));

@@ -1,7 +1,7 @@
 %{
 #include "ast.hpp"
 #include "error.hpp"
-#include "geneey.hpp"
+#include "genee.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -565,7 +565,6 @@ FuncDef		:	FuncDefproto '{' BlockItemArr '}'
 FuncDefproto	:	FuncDefHead ')'
 	{
 		/* FuncDefproto: FunDefAST */
-		//$1->Setrange($1, $2);
 		$$ = $1;
 
 		delete $2;
@@ -573,7 +572,6 @@ FuncDefproto	:	FuncDefHead ')'
 				|	FuncDefHead FuncFParams ')'
 	{
 		/* FuncDefproto: FunDefAST */
-		//$1->Setrange($1, $3);
 		FunDefAST *p = dynamic_cast<FunDefAST *>($1);
 		p->fparams = dynamic_cast<Vecptr>($2)->Getfparams(); // Move assignment
 

@@ -403,7 +403,9 @@ typedef int yy_state_fast_t;
 #  if (defined __cplusplus && !defined EXIT_SUCCESS \
        && !((defined YYMALLOC || defined malloc) \
  && (defined YYFREE || defined free)))
-                                                                                                                        #   include <stdlib.h> /* INFRINGES ON USER NAME SPACE */
+
+#   include <stdlib.h> /* INFRINGES ON USER NAME SPACE */
+
 #   ifndef EXIT_SUCCESS
 #    define EXIT_SUCCESS 0
 #   endif
@@ -549,13 +551,13 @@ static const yytype_int16 yyrline[] =
        0,    35,    35,    45,    52,    58,    69,    79,    90,   185,
      186,   188,   198,   207,   217,   232,   237,   278,   288,   297,
      302,   310,   320,   330,   341,   351,   379,   418,   427,   436,
-     442,   449,   459,   468,   477,   500,   532,   565,   573,   589,
-     617,   647,   660,   674,   679,   692,   698,   703,   734,   743,
-     748,   764,   782,   800,   819,   840,   866,   890,   904,   911,
-     919,   933,   938,   949,   958,   959,   966,   974,   983,   984,
-    1000,  1018,  1034,  1035,  1036,  1038,  1039,  1045,  1051,  1058,
-    1059,  1065,  1072,  1073,  1079,  1085,  1091,  1098,  1099,  1105,
-    1112,  1113,  1120,  1121,  1128
+     442,   449,   459,   468,   477,   500,   532,   565,   572,   587,
+     615,   645,   658,   672,   677,   690,   696,   701,   732,   741,
+     746,   762,   780,   798,   817,   838,   864,   888,   902,   909,
+     917,   931,   936,   947,   956,   957,   964,   972,   981,   982,
+     998,  1016,  1032,  1033,  1034,  1036,  1037,  1043,  1049,  1056,
+    1057,  1063,  1070,  1071,  1077,  1083,  1089,  1096,  1097,  1103,
+    1110,  1111,  1118,  1119,  1126
 };
 #endif
 
@@ -2215,7 +2217,7 @@ yyparse(ASTptr *root) {
             {
                 /* InitVal: ListTree */
                 (yyval.astptr) = new ListTree((yyvsp[0].astptr));
-                Verifyanumber((yyvsp[0].astptr));
+                VerifyNumber((yyvsp[0].astptr));
             }
 #line 2271 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
@@ -2370,19 +2372,17 @@ yyparse(ASTptr *root) {
 #line 566 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* FuncDefproto: FunDefAST */
-                //$1->Setrange($1, $2);
                 (yyval.astptr) = (yyvsp[-1].astptr);
 
                 delete (yyvsp[0].tkptr);
             }
-#line 2429 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2428 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 38: /* FuncDefproto: FuncDefHead FuncFParams ')'  */
-#line 574 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 573 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* FuncDefproto: FunDefAST */
-                //$1->Setrange($1, $3);
                 FunDefAST *p = dynamic_cast<FunDefAST *>((yyvsp[-2].astptr));
                 p->fparams = dynamic_cast<Vecptr>((yyvsp[-1].astptr))->Getfparams(); // Move assignment
 
@@ -2394,11 +2394,11 @@ yyparse(ASTptr *root) {
                 delete (yyvsp[-1].astptr);
                 delete (yyvsp[0].tkptr);
             }
-#line 2448 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2446 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 39: /* FuncDefHead: "int" "identifier" '('  */
-#line 590 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 588 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* FuncDefHead: FunDefAST */
                 /* new FunDefAST */
@@ -2426,11 +2426,11 @@ yyparse(ASTptr *root) {
                 delete (yyvsp[-1].tkptr);
                 delete (yyvsp[0].tkptr);
             }
-#line 2480 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2478 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 40: /* FuncDefHead: "void" "identifier" '('  */
-#line 618 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 616 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* FuncDefHead: FunDefAST */
                 /* new FunDefAST */
@@ -2458,11 +2458,11 @@ yyparse(ASTptr *root) {
                 delete (yyvsp[-1].tkptr);
                 delete (yyvsp[0].tkptr);
             }
-#line 2512 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2510 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 41: /* BlockItemArr: BlockItemArr Decl  */
-#line 648 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 646 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* BlockItemArr: BlockAST */
                 if (!(yyvsp[-1].astptr)->bgnlno)
@@ -2475,11 +2475,11 @@ yyparse(ASTptr *root) {
 
                 delete (yyvsp[0].astptr);
             }
-#line 2529 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2527 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 42: /* BlockItemArr: BlockItemArr Stmt  */
-#line 661 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 659 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* BlockItemArr: BlockAST */
                 if ((yyvsp[0].astptr)) {
@@ -2492,20 +2492,20 @@ yyparse(ASTptr *root) {
                 p->Insertclause((yyvsp[0].astptr));
                 (yyval.astptr) = (yyvsp[-1].astptr);
             }
-#line 2546 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2544 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 43: /* BlockItemArr: %empty  */
-#line 674 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 672 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* BlockItemArr: BlockAST */
                 (yyval.astptr) = new BlockAST;
             }
-#line 2555 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2553 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 44: /* Block: '{' BlockStart BlockItemArr '}'  */
-#line 680 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 678 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* BlockItemArr: BlockAST */
                 Popsymtab();
@@ -2516,30 +2516,30 @@ yyparse(ASTptr *root) {
                 delete (yyvsp[-3].tkptr);
                 delete (yyvsp[0].tkptr);
             }
-#line 2570 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2568 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 45: /* BlockStart: %empty  */
-#line 692 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 690 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* BlockStart: null */
                 Pushsymtab();
                 (yyval.astptr) = nullptr;
             }
-#line 2580 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2578 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 46: /* Stmt: ';'  */
-#line 699 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 697 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* Stmt: polymorphism */
                 (yyval.astptr) = nullptr;
             }
-#line 2589 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2587 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 47: /* Stmt: LVal '=' Exp ';'  */
-#line 704 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 702 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* Stmt: AssignAST */
                 AssignAST *p = new AssignAST;
@@ -2561,7 +2561,7 @@ yyparse(ASTptr *root) {
                 }
 
                 /* Check that exp is a single element */
-                Verifyanumber((yyvsp[-1].astptr));
+                VerifyNumber((yyvsp[-1].astptr));
 
                 p->lval = (yyvsp[-3].astptr);
                 p->exp = (yyvsp[-1].astptr);
@@ -2570,33 +2570,33 @@ yyparse(ASTptr *root) {
                 delete (yyvsp[-2].tkptr);
                 delete (yyvsp[0].tkptr);
             }
-#line 2624 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2622 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 48: /* Stmt: Exp ';'  */
-#line 735 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 733 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* Stmt: polymorphism */
                 if ((yyvsp[-1].astptr)->type != ASTType::Funcall)
-                    Verifyanumber((yyvsp[-1].astptr));
+                    VerifyNumber((yyvsp[-1].astptr));
                 (yyval.astptr) = (yyvsp[-1].astptr);
 
                 delete (yyvsp[0].tkptr);
             }
-#line 2637 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2635 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 49: /* Stmt: Block  */
-#line 744 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 742 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* Stmt: BlockAST */
                 (yyval.astptr) = (yyvsp[0].astptr);
             }
-#line 2646 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2644 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 50: /* Stmt: "if" '(' Cond ')' Stmt  */
-#line 749 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 747 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* Stmt: IfAST */
                 IfAST *p = new IfAST;
@@ -2612,11 +2612,11 @@ yyparse(ASTptr *root) {
                 delete (yyvsp[-3].tkptr);
                 delete (yyvsp[-1].tkptr);
             }
-#line 2666 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2664 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 51: /* Stmt: "if" '(' Cond ')' Stmt "else" Stmt  */
-#line 765 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 763 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* Stmt: IfAST */
                 IfAST *p = new IfAST;
@@ -2634,11 +2634,11 @@ yyparse(ASTptr *root) {
                 delete (yyvsp[-3].tkptr);
                 delete (yyvsp[-1].tkptr);
             }
-#line 2688 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2686 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 52: /* Stmt: WhileHead '(' Cond ')' Stmt  */
-#line 783 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 781 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* Stmt: WhileAST */
                 WhileAST *p = dynamic_cast<WhileAST *>((yyvsp[-4].astptr));
@@ -2656,11 +2656,11 @@ yyparse(ASTptr *root) {
                 delete (yyvsp[-3].tkptr);
                 delete (yyvsp[-1].tkptr);
             }
-#line 2710 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2708 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 53: /* Stmt: "break" ';'  */
-#line 801 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 799 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* Stmt: BreakAST */
                 if (Isemptywhilestk()) {
@@ -2679,11 +2679,11 @@ yyparse(ASTptr *root) {
                 delete (yyvsp[-1].tkptr);
                 delete (yyvsp[0].tkptr);
             }
-#line 2733 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2731 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 54: /* Stmt: "continue" ';'  */
-#line 820 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 818 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* Stmt: ContAST */
 
@@ -2704,11 +2704,11 @@ yyparse(ASTptr *root) {
                 delete (yyvsp[-1].tkptr);
                 delete (yyvsp[0].tkptr);
             }
-#line 2758 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2756 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 55: /* Stmt: "return" ';'  */
-#line 841 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 839 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* Stmt: RetAST */
                 RetAST *p = new RetAST;
@@ -2734,11 +2734,11 @@ yyparse(ASTptr *root) {
                 delete (yyvsp[-1].tkptr);
                 delete (yyvsp[0].tkptr);
             }
-#line 2788 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2786 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 56: /* Stmt: "return" Exp ';'  */
-#line 867 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 865 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* Stmt: RetAST */
                 RetAST *p = new RetAST;
@@ -2760,11 +2760,11 @@ yyparse(ASTptr *root) {
                 delete (yyvsp[-2].tkptr);
                 delete (yyvsp[0].tkptr);
             }
-#line 2815 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2813 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 57: /* WhileHead: "while"  */
-#line 891 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 889 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* WhileHead: WhileAST */
                 WhileAST *p = new WhileAST;
@@ -2776,32 +2776,32 @@ yyparse(ASTptr *root) {
 
                 delete (yyvsp[0].tkptr);
             }
-#line 2831 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2829 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 58: /* Exp: AddExp  */
-#line 905 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 903 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* Exp: polymorphism (BinaryAST, UnaryAST, FunCallAST, LvalAST) */
                 (yyvsp[0].astptr)->Eval();
                 (yyval.astptr) = (yyvsp[0].astptr);
             }
-#line 2841 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2839 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 59: /* Cond: LOrExp  */
-#line 912 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 910 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* Cond: polymorphism */
                 (yyvsp[0].astptr)->Eval();
                 (yyval.astptr) = (yyvsp[0].astptr);
-                Verifyanumber((yyvsp[0].astptr));
+                VerifyNumber((yyvsp[0].astptr));
             }
-#line 2852 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2850 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 60: /* ExpArr: ExpArr '[' Exp ']'  */
-#line 920 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 918 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* ExpArr: VecAST */
                 if (!(yyvsp[-3].astptr)->bgnlno)
@@ -2814,20 +2814,20 @@ yyparse(ASTptr *root) {
                 delete (yyvsp[-2].tkptr);
                 delete (yyvsp[0].tkptr);
             }
-#line 2869 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2867 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 61: /* ExpArr: %empty  */
-#line 933 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 931 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* ExpArr: VecAST */
                 (yyval.astptr) = new VecAST;
             }
-#line 2878 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2876 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 62: /* LVal: "identifier" ExpArr  */
-#line 939 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 937 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* LVal: LvalAST */
                 (yyval.astptr) = new LvalAST((yyvsp[-1].tkptr), (yyvsp[0].astptr));
@@ -2837,11 +2837,11 @@ yyparse(ASTptr *root) {
                 delete (yyvsp[-1].tkptr);
                 delete (yyvsp[0].astptr);
             }
-#line 2892 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2890 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 63: /* PrimaryExp: '(' Exp ')'  */
-#line 950 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 948 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* PrimaryExp: polymorphism */
                 (yyval.astptr) = (yyvsp[-1].astptr);
@@ -2850,21 +2850,21 @@ yyparse(ASTptr *root) {
                 delete (yyvsp[-2].tkptr);
                 delete (yyvsp[0].tkptr);
             }
-#line 2905 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2903 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 65: /* PrimaryExp: "constant"  */
-#line 960 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 958 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* PrimaryExp: polymorphism */
                 (yyval.astptr) = new BinaryAST((yyvsp[0].tkptr));
                 delete (yyvsp[0].tkptr);
             }
-#line 2915 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2913 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 66: /* FuncRParams: FuncRParams ',' Exp  */
-#line 967 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 965 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* FuncRParams: VecAST */
                 dynamic_cast<VecAST *>((yyvsp[-2].astptr))->Insertastlist((yyvsp[0].astptr));
@@ -2872,11 +2872,11 @@ yyparse(ASTptr *root) {
 
                 delete (yyvsp[-1].tkptr);
             }
-#line 2927 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2925 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 67: /* FuncRParams: Exp  */
-#line 975 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 973 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* FuncRParams: VecAST */
                 VecAST *p = new VecAST;
@@ -2884,11 +2884,11 @@ yyparse(ASTptr *root) {
                 p->Insertastlist((yyvsp[0].astptr));
                 (yyval.astptr) = p;
             }
-#line 2939 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2937 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 69: /* UnaryExp: "identifier" '(' ')'  */
-#line 985 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 983 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* UnaryExp: polymorphism */
 
@@ -2904,11 +2904,11 @@ yyparse(ASTptr *root) {
                 delete (yyvsp[-1].tkptr);
                 delete (yyvsp[0].tkptr);
             }
-#line 2959 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2957 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 70: /* UnaryExp: "identifier" '(' FuncRParams ')'  */
-#line 1001 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 999 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* UnaryExp: polymorphism */
 
@@ -2926,11 +2926,11 @@ yyparse(ASTptr *root) {
                 delete (yyvsp[-1].astptr);
                 delete (yyvsp[0].tkptr);
             }
-#line 2981 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2979 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 71: /* UnaryExp: UnaryOp UnaryExp  */
-#line 1019 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 1017 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* UnaryExp: polymorphism */
 
@@ -2945,141 +2945,141 @@ yyparse(ASTptr *root) {
 
                 delete (yyvsp[-1].tkptr);
             }
-#line 3000 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 2998 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 76: /* MulExp: MulExp '*' UnaryExp  */
-#line 1040 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 1038 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* MulExp: polymorphism */
                 (yyval.astptr) = new BinaryAST((yyvsp[-2].astptr), (yyvsp[0].astptr), (yyvsp[-1].tkptr));
                 delete (yyvsp[-1].tkptr);
             }
-#line 3010 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 3008 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 77: /* MulExp: MulExp '/' UnaryExp  */
-#line 1046 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 1044 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* MulExp: polymorphism */
                 (yyval.astptr) = new BinaryAST((yyvsp[-2].astptr), (yyvsp[0].astptr), (yyvsp[-1].tkptr));
                 delete (yyvsp[-1].tkptr);
             }
-#line 3020 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 3018 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 78: /* MulExp: MulExp '%' UnaryExp  */
-#line 1052 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 1050 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* MulExp: polymorphism */
                 (yyval.astptr) = new BinaryAST((yyvsp[-2].astptr), (yyvsp[0].astptr), (yyvsp[-1].tkptr));
                 delete (yyvsp[-1].tkptr);
             }
-#line 3030 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 3028 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 80: /* AddExp: AddExp '+' MulExp  */
-#line 1060 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 1058 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* AddExp: polymorphism */
                 (yyval.astptr) = new BinaryAST((yyvsp[-2].astptr), (yyvsp[0].astptr), (yyvsp[-1].tkptr));
                 delete (yyvsp[-1].tkptr);
             }
-#line 3040 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 3038 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 81: /* AddExp: AddExp '-' MulExp  */
-#line 1066 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 1064 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* AddExp: polymorphism */
                 (yyval.astptr) = new BinaryAST((yyvsp[-2].astptr), (yyvsp[0].astptr), (yyvsp[-1].tkptr));
                 delete (yyvsp[-1].tkptr);
             }
-#line 3050 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 3048 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 83: /* RelExp: RelExp '<' AddExp  */
-#line 1074 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 1072 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* RelExp: polymorphism */
                 (yyval.astptr) = new BinaryAST((yyvsp[-2].astptr), (yyvsp[0].astptr), (yyvsp[-1].tkptr));
                 delete (yyvsp[-1].tkptr);
             }
-#line 3060 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 3058 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 84: /* RelExp: RelExp '>' AddExp  */
-#line 1080 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 1078 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* RelExp: polymorphism */
                 (yyval.astptr) = new BinaryAST((yyvsp[-2].astptr), (yyvsp[0].astptr), (yyvsp[-1].tkptr));
                 delete (yyvsp[-1].tkptr);
             }
-#line 3070 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 3068 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 85: /* RelExp: RelExp "<=" AddExp  */
-#line 1086 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 1084 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* RelExp: polymorphism */
                 (yyval.astptr) = new BinaryAST((yyvsp[-2].astptr), (yyvsp[0].astptr), (yyvsp[-1].tkptr));
                 delete (yyvsp[-1].tkptr);
             }
-#line 3080 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 3078 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 86: /* RelExp: RelExp ">=" AddExp  */
-#line 1092 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 1090 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* RelExp: polymorphism */
                 (yyval.astptr) = new BinaryAST((yyvsp[-2].astptr), (yyvsp[0].astptr), (yyvsp[-1].tkptr));
                 delete (yyvsp[-1].tkptr);
             }
-#line 3090 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 3088 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 88: /* EqExp: EqExp "==" RelExp  */
-#line 1100 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 1098 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* EqExp: polymorphism */
                 (yyval.astptr) = new BinaryAST((yyvsp[-2].astptr), (yyvsp[0].astptr), (yyvsp[-1].tkptr));
                 delete (yyvsp[-1].tkptr);
             }
-#line 3100 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 3098 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 89: /* EqExp: EqExp "!=" RelExp  */
-#line 1106 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 1104 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* EqExp: polymorphism */
                 (yyval.astptr) = new BinaryAST((yyvsp[-2].astptr), (yyvsp[0].astptr), (yyvsp[-1].tkptr));
                 delete (yyvsp[-1].tkptr);
             }
-#line 3110 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 3108 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 91: /* LAndExp: LAndExp "&&" EqExp  */
-#line 1114 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 1112 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* LAndExp: polymorphism */
                 (yyval.astptr) = new BinaryAST((yyvsp[-2].astptr), (yyvsp[0].astptr), (yyvsp[-1].tkptr));
                 delete (yyvsp[-1].tkptr);
             }
-#line 3120 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 3118 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 93: /* LOrExp: LOrExp "||" LAndExp  */
-#line 1122 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 1120 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* LOrExp: polymorphism */
                 (yyval.astptr) = new BinaryAST((yyvsp[-2].astptr), (yyvsp[0].astptr), (yyvsp[-1].tkptr));
                 delete (yyvsp[-1].tkptr);
             }
-#line 3130 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 3128 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
             case 94: /* ConstExp: AddExp  */
-#line 1129 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 1127 "/cygdrive/d/Projects/Compiler/src/parser.y"
             {
                 /* ConstExp: polymorphism */
 
@@ -3091,11 +3091,11 @@ yyparse(ASTptr *root) {
                 }
                 (yyval.astptr) = (yyvsp[0].astptr);
             }
-#line 3146 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 3144 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
                 break;
 
 
-#line 3150 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
+#line 3148 "/cygdrive/d/Projects/Compiler/src/parser.tab.cpp"
 
             default:
                 break;
@@ -3317,7 +3317,7 @@ yyparse(ASTptr *root) {
     return yyresult;
 }
 
-#line 1142 "/cygdrive/d/Projects/Compiler/src/parser.y"
+#line 1140 "/cygdrive/d/Projects/Compiler/src/parser.y"
 
 
 /*** Supporting Routines ***/

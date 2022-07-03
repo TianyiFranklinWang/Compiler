@@ -522,9 +522,7 @@ char *yytext;
 #include "parser.tab.hpp"
 
 static int Convert2int(const char *);
-
 static int Countlines();
-
 #line 512 "/cygdrive/d/Projects/Compiler/src/lex.yy.cpp"
 /* Element Definitions */
 /* Identifier */
@@ -540,7 +538,6 @@ static int Countlines();
  * The user has a chance to override it with an option.
  */
 #include <unistd.h>
-
 #endif
 
 #ifndef YY_EXTRA_TYPE

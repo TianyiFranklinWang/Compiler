@@ -2,10 +2,10 @@
 #include "error.hpp"
 #include "genee.hpp"
 #include "parser.tab.hpp"
-#include "optimee.hpp"
+#include "eeoptim.hpp"
 #include "eeast.hpp"
 #include "gentg.hpp"
-#include "optimtg.hpp"
+#include "tgoptim.hpp"
 
 #include <iostream>
 #include <fstream>

@@ -187,8 +187,7 @@ void TGLine::RVDump() {
             return;
         case TGRecord::LArr:
             if (num[0] < 2048)
-                cout << "  sw    " << regfile[reg[1]] << ", " \
- << num[0] << "(" << regfile[reg[0]] << ")" << endl;
+                cout << "  sw    " << regfile[reg[1]] << ", " << num[0] << "(" << regfile[reg[0]] << ")" << endl;
             else {
                 cout << "  li    t0, " << num[0] << endl;
                 cout << "  add   t0, t0, " << regfile[reg[0]] << endl;

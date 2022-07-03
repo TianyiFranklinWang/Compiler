@@ -237,7 +237,7 @@ void FunCallAST::Generator() {
     // void function
     if (dynamic_cast<FunSYM *>(sym)->isvoid)
         funclines.emplace_back(EERecord::Voidcall, Setfuncaddr(*(sym->strptr)));
-        // non-void function
+    // non-void function
     else {
         addr = *Newtemp();
         funclines.emplace_back(EERecord::Asscall, std::string(addr), Setfuncaddr(*(sym->strptr)));
@@ -358,7 +358,6 @@ void DeclAST::Generator() {
 }
 
 // FunDefAST
-
 void FunDefAST::Convert2EE() {
     eelines.splice(eelines.end(), funclines);
 }
@@ -395,7 +394,6 @@ void FunDefAST::Generator() {
         funclines.emplace(q, EERecord::Decl, std::move(i));
 
     /* append function epilogue */
-    /* guaranteed return */
     if (dynamic_cast<FunSYM *>(sym)->isvoid)
         funclines.emplace_back(EERecord::Voidret);
     else
