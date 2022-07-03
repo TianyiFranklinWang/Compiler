@@ -29,6 +29,11 @@ jobs:
           command: |
             cmake -D CMAKE_BUILD_TYPE=Release -G Ninja -S . -B ./cmake-build-release
             cmake --build ./cmake-build-release --target Compiler -j$(nproc)
+      - run:
+          name: Test
+          command: |
+            cd ./test
+            python3 test.py
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
